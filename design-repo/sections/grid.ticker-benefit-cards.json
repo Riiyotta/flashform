@@ -1,0 +1,186 @@
+{
+  "id": "grid.ticker-benefit-cards",
+  "kind": "section",
+  "category": "grid",
+  "purpose": "Benefits: a tilted marquee band, a short redline intro, and six accent cards in a fixed staggered 12-column layout.",
+  "implementedBy": [
+    "src/components/Benefits.jsx",
+    "src/anim/scrollFx.js"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.grid.ticker-benefit-cards",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ticker",
+        "intro",
+        "cards"
+      ],
+      "properties": {
+        "ticker": {
+          "$ref": "#/definitions/runs"
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cards": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "text"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "ticker",
+        "observedMaxWords": 4,
+        "maxWords": 5
+      },
+      {
+        "path": "intro",
+        "observedMaxWords": 31,
+        "maxWords": 38
+      },
+      {
+        "path": "cards[].title",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      },
+      {
+        "path": "cards[].text",
+        "observedMaxWords": 42,
+        "maxWords": 51
+      }
+    ]
+  },
+  "assetRoles": [],
+  "motion": {
+    "allowedPatterns": [
+      "ticker-marquee",
+      "cards-scale",
+      "reveal-on-view"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [
+      "rise",
+      "paragraph-lines"
+    ],
+    "inViewThresholds": [
+      0.5
+    ]
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "cards: 2-column grid, height 300px, padding 20px; intro static; arrow hidden",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:613",
+          "expect": "@media (max-width: 1060px){.home-7__items{row-gap:16px;grid-template-columns:1fr 1fr"
+        }
+      ]
+    },
+    {
+      "maxWidth": "768",
+      "changes": "cards: 1 column",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:615",
+          "expect": "@media (max-width: 768px){.home-7__items{grid-template-columns:1fr}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Cards are <li> in a <ul>; title is an h3 placed after the text in DOM order (visual order is text then title too).",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Benefits.jsx:20",
+      "expect": "A few important "
+    },
+    {
+      "cite": "src/components/Benefits.jsx:30",
+      "expect": "Each of these benefits has been tested first-hand by Flashform developers. But what can I say: our product is a symbiosis of practical solutions that were made to facilitate daily work"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:4",
+      "expect": "No-code"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:4",
+      "expect": "Yeah, it's almost a no-code decision. This service is like a breath of fresh air: ease in use and functional. You don't need to know programming languages to get a request from a potential client in a convenient place"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:5",
+      "expect": "Beautiful and simple"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:5",
+      "expect": "You know, we really made a lot of effort to make such a banal at first glance service a pleasure to use. Fresh design with familiar elements. Isn't this happiness? Is the Flashform looks simple? You are all right!"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:6",
+      "expect": "One function"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:6",
+      "expect": "You understand, nothing extra. We simply take and send data from website contact forms to messengers of your choice. One service — one function. And it does the job as it should, without much fuss"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:7",
+      "expect": "To anyone"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:7",
+      "expect": "And that, is one of the best features of this product. It is designed both for professional developers who hate routine actions in their work, and for beginners in business who are making their first or second website in their life"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:8",
+      "expect": "Who loves quality"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:8",
+      "expect": "A business needs a contact form to work properly, right? The flash form will do its main job well — it will send you a messenger message about a new application from the website as soon as someone fills out the form"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:9",
+      "expect": "And that’s all"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:9",
+      "expect": "With practical experience, the developers of this product have only one goal in mind — to make work life a little easier. No, no less functional (this is important). Namely, it is easier, throwing a lifeline from boring tasks"
+    },
+    {
+      "cite": "src/components/Benefits.jsx:20",
+      "expect": "A few important <span className=\"h1--i\">benefits</span>"
+    },
+    {
+      "cite": "src/index.css:623",
+      "expect": ".home-7-item:nth-of-type(6){grid-column:7/10;grid-row:3/4}"
+    }
+  ]
+}

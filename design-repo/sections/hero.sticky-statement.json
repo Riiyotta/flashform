@@ -1,0 +1,157 @@
+{
+  "id": "hero.sticky-statement",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Open with the one-line product promise (\"We're just sending forms\") over the WebGL flower, pinned while the next panel slides over it.",
+  "implementedBy": [
+    "src/components/Hero.jsx",
+    "src/anim/gl.js"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "mustFollowNav": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.hero.sticky-statement",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "headline",
+        "subheadline",
+        "paragraph",
+        "cta",
+        "visual"
+      ],
+      "properties": {
+        "headline": {
+          "$ref": "#/definitions/runs"
+        },
+        "subheadline": {
+          "$ref": "#/definitions/runs"
+        },
+        "paragraph": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cta": {
+          "$ref": "#/definitions/cta"
+        },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "shader.hero-flower"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "headline",
+        "observedMaxWords": 5,
+        "maxWords": 6
+      },
+      {
+        "path": "subheadline",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      },
+      {
+        "path": "paragraph",
+        "observedMaxWords": 29,
+        "maxWords": 35
+      },
+      {
+        "path": "cta.label",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      }
+    ]
+  },
+  "assetRoles": [
+    "shader.hero-flower"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "hero-intro",
+      "webgl-flower"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [
+      "heading-chars",
+      "paragraph-lines",
+      "rise",
+      "fade"
+    ],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "h1 56px, max-width 400px; paragraph becomes static below the h1 (14px, max-width 500px); flower box 300px",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:418",
+          "expect": ".home-1__h1{max-width:400px}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "768",
+      "changes": "right column (globe + Try now) hidden; the mobile Try-now button shows only below 768, so at exactly 768px NO Try-now button is visible",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:446",
+          "expect": "@media (min-width: 768px){.home-1__btn--mobile{display:none}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "landscape-phone",
+      "changes": "hero un-sticks and gets min-height 100vh",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:405",
+          "expect": "@media screen and (orientation: landscape) and (max-width: 960px){.home-1-sticky{position:static}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "h1 + h2 heading pair. The superscript run renders as <small>. Recife italic runs must not get font-style:italic.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Hero.jsx:22",
+      "expect": "and that’s all"
+    },
+    {
+      "cite": "src/components/Hero.jsx:24",
+      "expect": "We are not a form builder. We do not seek to solve all problems. We Just send form data to instant messengers and email in the most convenient way"
+    },
+    {
+      "cite": "src/components/Hero.jsx:19",
+      "expect": "Try now"
+    },
+    {
+      "cite": "src/components/Hero.jsx:15",
+      "expect": "<small className=\"home-1__h1-small\">'re</small></span> just sending <span className=\"h1--i\">forms</span>"
+    },
+    {
+      "cite": "src/index.css:401",
+      "expect": ".home-1-sticky-wrapper{position:relative;height:200vh}"
+    }
+  ]
+}

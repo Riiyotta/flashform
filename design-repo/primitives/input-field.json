@@ -1,0 +1,27 @@
+{
+  "id": "input-field",
+  "kind": "primitive",
+  "purpose": "Underlined text input whose label doubles as placeholder and lifts on focus/value; red * for required; lowercase red error text.",
+  "implementedBy": [
+    "src/components/Input.jsx"
+  ],
+  "props": {
+    "label": "string",
+    "required": "boolean",
+    "tone": "'default' | 'on-accent'"
+  },
+  "states": [
+    "empty",
+    "focused/filled (.js-focus)",
+    "error"
+  ],
+  "tokens": [
+    "component.input"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Input.jsx:6",
+      "expect": "const lifted = focused || value.length > 0"
+    }
+  ]
+}

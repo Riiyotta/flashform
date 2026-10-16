@@ -1,0 +1,19 @@
+{
+  "id": "beta-popup",
+  "kind": "component",
+  "purpose": "Modal \"Join the beta\" form (name + email) on an accent window over an 80% black backdrop; locks the smooth scroller.",
+  "implementedBy": [
+    "src/components/BetaPopup.jsx"
+  ],
+  "composes": [
+    "input-field",
+    "button",
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/BetaPopup.jsx:8",
+      "expect": "export default function BetaPopup()"
+    }
+  ]
+}

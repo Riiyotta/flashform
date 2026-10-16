@@ -1,0 +1,18 @@
+{
+  "id": "horizontal-headline",
+  "kind": "component",
+  "purpose": "Sticky full-viewport stage whose single nowrap headline is translated sideways by vertical scroll, chars settling via per-char scrub.",
+  "implementedBy": [
+    "src/components/Integration.jsx",
+    "src/anim/scrollFx.js"
+  ],
+  "composes": [
+    "display-heading"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Integration.jsx:16",
+      "expect": "<div className=\"scroller-el\">"
+    }
+  ]
+}

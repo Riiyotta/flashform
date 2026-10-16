@@ -1,0 +1,138 @@
+{
+  "id": "statement.audience-rows",
+  "kind": "section",
+  "category": "statement",
+  "purpose": "Two-line split heading (\"relieves the headache / of developers and site owners\") followed by ruled audience rows.",
+  "implementedBy": [
+    "src/components/Relief.jsx"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.statement.audience-rows",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "headingTop",
+        "headingBottom",
+        "rows"
+      ],
+      "properties": {
+        "headingTop": {
+          "$ref": "#/definitions/runs"
+        },
+        "headingBottom": {
+          "$ref": "#/definitions/runs"
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "text"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "headingTop",
+        "observedMaxWords": 4,
+        "maxWords": 5
+      },
+      {
+        "path": "headingBottom",
+        "observedMaxWords": 5,
+        "maxWords": 6
+      },
+      {
+        "path": "rows[].title",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      },
+      {
+        "path": "rows[].text",
+        "observedMaxWords": 32,
+        "maxWords": 39
+      }
+    ]
+  },
+  "assetRoles": [],
+  "motion": {
+    "allowedPatterns": [
+      "reveal-on-view"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [
+      "heading-chars",
+      "line",
+      "rise"
+    ],
+    "inViewThresholds": [
+      0.4,
+      0.9
+    ]
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "headings stack; rows become block, text margin-top 16px",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:651",
+          "expect": "@media (max-width: 1060px){.home-8-item__content{margin-top:12px;display:block}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Two h2 elements form one sentence; keep them adjacent.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Relief.jsx:13",
+      "expect": " relieves the headache"
+    },
+    {
+      "cite": "src/components/Relief.jsx:2",
+      "expect": "For developers"
+    },
+    {
+      "cite": "src/components/Relief.jsx:2",
+      "expect": "You don't need to write a backend for the form handler. With a service-side API, you only need to insert a unique ID into your HTML, and Flashform will do the rest"
+    },
+    {
+      "cite": "src/components/Relief.jsx:3",
+      "expect": "For Site owners"
+    },
+    {
+      "cite": "src/components/Relief.jsx:3",
+      "expect": "It will be convenient for you to connect the form of your website to Webflow, for example, and send information to several communication channels at once, without programming skills"
+    },
+    {
+      "cite": "src/components/Relief.jsx:16",
+      "expect": "of <span className=\"h1--i\">developers</span> and site <span className=\"h1--i\">owners</span>"
+    },
+    {
+      "cite": "src/components/Relief.jsx:11",
+      "expect": "className=\"home-8__content\" data-in-view=\"0.4\""
+    }
+  ]
+}

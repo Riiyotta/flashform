@@ -1,0 +1,132 @@
+{
+  "icon-size": {
+    "$description": "Rendered icon sizes (desktop vw / mobile px).",
+    "globe": {
+      "$value": "2.6041666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:434",
+            "expect": "width:2.6041666667vw;height:2.6041666667vw;-webkit-backface-visibility"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "ticker-star": {
+      "$value": "3.3333333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:231",
+            "expect": ".ticker__item svg{display:block;width:3.3333333333vw"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "feature-glyph-height": {
+      "$value": "2.34375vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:497",
+            "expect": "height:2.34375vw"
+          }
+        ],
+        "mobile": "28px"
+      }
+    },
+    "channel-icon-height": {
+      "$value": "1.875vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:522",
+            "expect": "height:1.875vw"
+          }
+        ],
+        "mobile": "24px"
+      }
+    },
+    "accordion-arrow": {
+      "$value": "1.25vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:262",
+            "expect": "width:1.25vw;height:1.25vw;justify-self:end"
+          }
+        ],
+        "mobile": "16px"
+      }
+    },
+    "arrow-small": {
+      "$value": "2.5vw x 3.5416666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:608",
+            "expect": ".home-7__icon{display:block;max-width:100%;width:2.5vw;height:3.5416666667vw"
+          }
+        ]
+      }
+    },
+    "arrow-large": {
+      "$value": "154px x 220px",
+      "$type": "dimension",
+      "$description": "Intrinsic size at every width (home-6).",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/components/icons.jsx:4",
+            "expect": "width=\"154\" height=\"220\""
+          }
+        ]
+      }
+    },
+    "signin-arrow": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/components/icons.jsx:40",
+            "expect": "width=\"16\" height=\"16\""
+          }
+        ]
+      }
+    },
+    "popup-close": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:366",
+            "expect": ".popup__window svg{display:block;width:28px;height:28px}"
+          }
+        ]
+      }
+    },
+    "logo": {
+      "$value": "8.125vw x 1.4583333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:160",
+            "expect": ".navbar__logo svg{display:block;max-width:100%;width:8.125vw;height:1.4583333333vw}"
+          }
+        ],
+        "mobile": "108px x 20px (nav), 156px x 28px (footer)"
+      }
+    }
+  }
+}

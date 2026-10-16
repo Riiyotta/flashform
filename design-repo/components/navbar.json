@@ -1,0 +1,18 @@
+{
+  "id": "navbar",
+  "kind": "component",
+  "purpose": "Glass nav bar: logo, anchor links, \"Join the beta\" button; hides on scroll down.",
+  "implementedBy": [
+    "src/components/Navbar.jsx"
+  ],
+  "composes": [
+    "icon",
+    "text-link"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Navbar.jsx:16",
+      "expect": "export default function Navbar()"
+    }
+  ]
+}

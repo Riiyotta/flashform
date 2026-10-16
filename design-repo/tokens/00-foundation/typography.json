@@ -1,0 +1,531 @@
+{
+  "typography": {
+    "$description": "Typography foundation. Desktop sizes are vw on a 1440 design width (html font-size .8333vw = 12px at 1440). Mobile values apply at max-width:1060px. Letter-spacing is normal everywhere; no text-shadow (CLONE_SPEC 0.4).",
+    "family": {
+      "aeonik": {
+        "$value": "Aeonik",
+        "$type": "fontFamily",
+        "$description": "Display and UI face (weight 400 only).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:34",
+              "expect": "font-family:Aeonik;font-display:swap"
+            },
+            {
+              "cite": "tailwind.config.js:29",
+              "expect": "aeonik: ['Aeonik'"
+            }
+          ],
+          "fallback": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
+          "file": "public/fonts/Aeonik-Regular.woff2",
+          "vendorAttribution": "CoType Foundry (general knowledge, not in the source; confirm with the licence holder)",
+          "licensing": "COMMERCIAL TYPEFACE. The woff2 file is self-hosted from the original site (assets-manifest.tsv). Licensing the face for the original site does not license it for any derived page. A generated page must use a licence the deployer owns, or fall back to the declared fallback stack. Never redistribute the woff2 outside this private reference build."
+        }
+      },
+      "recife": {
+        "$value": "Recife",
+        "$type": "fontFamily",
+        "$description": "Italic display accent (.h1--i). The file is the BookItalic cut but is DECLARED font-style:normal; never set font-style:italic on it or the browser synthesises a second slant.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:35",
+              "expect": "font-family:Recife;font-display:swap"
+            },
+            {
+              "cite": "CLONE_SPEC.md:60",
+              "expect": "Recife is declared `font-style: normal` even though the file is an italic cut"
+            }
+          ],
+          "fallback": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
+          "file": "public/fonts/RecifeDisplayWeb-BookItalic.woff2",
+          "vendorAttribution": "Displaay Type Foundry (general knowledge, not in the source; confirm with the licence holder)",
+          "licensing": "COMMERCIAL TYPEFACE. The woff2 file is self-hosted from the original site (assets-manifest.tsv). Licensing the face for the original site does not license it for any derived page. A generated page must use a licence the deployer owns, or fall back to the declared fallback stack. Never redistribute the woff2 outside this private reference build."
+        }
+      },
+      "neuehaas": {
+        "$value": "NeueHaas",
+        "$type": "fontFamily",
+        "$description": "Body face. Weight 500 maps to the Roman file and 600 to the Medium file.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:36",
+              "expect": "font-family:NeueHaas;font-display:swap;src:url(/fonts/NeueHaasDisplay-Medium.woff2)"
+            },
+            {
+              "cite": "src/index.css:37",
+              "expect": "font-family:NeueHaas;font-display:swap;src:url(/fonts/NeueHaasDisplay-Roman.woff2)"
+            }
+          ],
+          "fallback": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif",
+          "file": "public/fonts/NeueHaasDisplay-Roman.woff2 + NeueHaasDisplay-Medium.woff2",
+          "vendorAttribution": "Neue Haas Grotesk Display, Monotype/Linotype (general knowledge, not in the source; confirm with the licence holder)",
+          "licensing": "COMMERCIAL TYPEFACE. The woff2 file is self-hosted from the original site (assets-manifest.tsv). Licensing the face for the original site does not license it for any derived page. A generated page must use a licence the deployer owns, or fall back to the declared fallback stack. Never redistribute the woff2 outside this private reference build."
+        }
+      },
+      "button-ua": {
+        "$value": "Arial",
+        "$type": "fontFamily",
+        "$description": "The original never sets a font on <button>, so Chromium renders the UA default (Arial 400). Reproduced on purpose.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:33",
+              "expect": "--font-button: Arial"
+            },
+            {
+              "cite": "CLONE_SPEC.md:26",
+              "expect": "**Buttons render in Arial.**"
+            }
+          ]
+        }
+      }
+    },
+    "weight": {
+      "regular-aeonik": {
+        "$value": 400,
+        "$type": "fontWeight",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:34",
+              "expect": "font-weight:400;font-style:normal}"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:44",
+              "expect": "\"400\""
+            }
+          ]
+        }
+      },
+      "book-recife": {
+        "$value": 350,
+        "$type": "fontWeight",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:35",
+              "expect": "font-weight:350;font-style:normal}"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:45",
+              "expect": "\"350\""
+            }
+          ]
+        }
+      },
+      "roman-neuehaas": {
+        "$value": 500,
+        "$type": "fontWeight",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:37",
+              "expect": "NeueHaasDisplay-Roman.woff2) format(\"woff2\");font-weight:500"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:43",
+              "expect": "\"500\""
+            }
+          ]
+        }
+      },
+      "medium-neuehaas": {
+        "$value": 600,
+        "$type": "fontWeight",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:36",
+              "expect": "NeueHaasDisplay-Medium.woff2) format(\"woff2\");font-weight:600"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:46",
+              "expect": "\"600\""
+            }
+          ]
+        }
+      }
+    },
+    "size": {
+      "display-xxl": {
+        "$value": "32.2916666667vw",
+        "$type": "dimension",
+        "$description": "Used by .home-10__bottom-day (roadmap big day).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:672",
+              "expect": "font-size:32.2916666667vw"
+            }
+          ],
+          "px1440": 465,
+          "mobile": null
+        }
+      },
+      "display-xl": {
+        "$value": "26.0416666667vw",
+        "$type": "dimension",
+        "$description": "Used by .home-5__h horizontal headline, .home-11__h FAQ.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:554",
+              "expect": ".home-5__h{font-size:26.0416666667vw"
+            }
+          ],
+          "px1440": 375,
+          "mobile": "56px (.h1) / 100px (.home-11__h)"
+        }
+      },
+      "ticker": {
+        "$value": "10.4166666667vw",
+        "$type": "dimension",
+        "$description": "Used by .ticker__item.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:230",
+              "expect": "font-size:10.4166666667vw"
+            }
+          ],
+          "px1440": 150,
+          "mobile": "48px"
+        }
+      },
+      "display": {
+        "$value": "7.8125vw",
+        "$type": "dimension",
+        "$description": "Used by .h1.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:38",
+              "expect": "line-height:1em;font-size:7.8125vw"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:24",
+              "expect": "\"112.5px\""
+            }
+          ],
+          "px1440": 112.5,
+          "mobile": "56px"
+        }
+      },
+      "heading-popup": {
+        "$value": "3.75vw",
+        "$type": "dimension",
+        "$description": "Used by .popup__form-h.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:374",
+              "expect": "font-size:3.75vw"
+            }
+          ],
+          "px1440": 54,
+          "mobile": "36px"
+        }
+      },
+      "heading-loader": {
+        "$value": "3.6458333333vw",
+        "$type": "dimension",
+        "$description": "Used by .loader__item.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:132",
+              "expect": ".loader__item{font-size:3.6458333333vw"
+            }
+          ],
+          "px1440": 52.5,
+          "mobile": null
+        }
+      },
+      "heading-card": {
+        "$value": "2.6041666667vw",
+        "$type": "dimension",
+        "$description": "Used by .home-7-item__title, .home-10__bottom-date.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:627",
+              "expect": ".home-7-item__title{"
+            }
+          ],
+          "px1440": 37.5,
+          "mobile": "24px"
+        }
+      },
+      "heading-item": {
+        "$value": "2.5vw",
+        "$type": "dimension",
+        "$description": "Used by .home-3-item__h.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:500",
+              "expect": "font-size:2.5vw"
+            }
+          ],
+          "px1440": 36,
+          "mobile": "28px"
+        }
+      },
+      "text-step": {
+        "$value": "2.1875vw",
+        "$type": "dimension",
+        "$description": "Used by .home-5-li__text.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:570",
+              "expect": "font-size:2.1875vw"
+            }
+          ],
+          "px1440": 31.5,
+          "mobile": "28px"
+        }
+      },
+      "heading-audience": {
+        "$value": "2.0833333333vw",
+        "$type": "dimension",
+        "$description": "Used by .home-8-item__h.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:653",
+              "expect": ".home-8-item__h{font-size:2.0833333333vw"
+            }
+          ],
+          "px1440": 30,
+          "mobile": "24px"
+        }
+      },
+      "numeral-faq": {
+        "$value": "1.6666666667vw",
+        "$type": "dimension",
+        "$description": "Used by .accordion__num.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:268",
+              "expect": ".accordion__num{font-size:1.6666666667vw"
+            }
+          ],
+          "px1440": 24,
+          "mobile": null
+        }
+      },
+      "heading-faq": {
+        "$value": "1.4583333333vw",
+        "$type": "dimension",
+        "$description": "Used by .accordion__h4.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:254",
+              "expect": "font-size:1.4583333333vw;line-height:1.2em"
+            }
+          ],
+          "px1440": 21,
+          "mobile": "20px"
+        }
+      },
+      "label-lg": {
+        "$value": "1.25vw",
+        "$type": "dimension",
+        "$description": "Used by .home-3-item-li__name, .home-1__h1-small.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:519",
+              "expect": ".home-3-item-li__name{font-size:1.25vw"
+            }
+          ],
+          "px1440": 18,
+          "mobile": "20px"
+        }
+      },
+      "body-lg": {
+        "$value": "1.0416666667vw",
+        "$type": "dimension",
+        "$description": "Used by .button, .home-3-item__text, .footer__h, .accordion__text, .home-8-item__text.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:505",
+              "expect": ".home-3-item__text{font-size:1.0416666667vw"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:23",
+              "expect": "\"15px\""
+            }
+          ],
+          "px1440": 15,
+          "mobile": "16px"
+        }
+      },
+      "body": {
+        "$value": ".8333333333vw",
+        "$type": "dimension",
+        "$description": "Used by html root size inherited by body, nav links, redline text.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:72",
+              "expect": "html{height:100vh;height:var(--vh);font-size:.8333333333vw"
+            },
+            {
+              "cite": "@repo/extraction/evidence/color-type-histogram.json:22",
+              "expect": "\"12px\""
+            }
+          ],
+          "px1440": 12,
+          "mobile": "14px"
+        }
+      },
+      "caption": {
+        "$value": ".7291666667vw",
+        "$type": "dimension",
+        "$description": "Used by .footer-contact__btn.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:327",
+              "expect": ".footer-contact__btn{font-size:.7291666667vw"
+            }
+          ],
+          "px1440": 10.5,
+          "mobile": "14px"
+        }
+      },
+      "input": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "Used by .input (fixed px at every width).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:281",
+              "expect": "font-size:16px;border-radius:0;padding-right:4.1666666667vw"
+            }
+          ],
+          "px1440": 16,
+          "mobile": "16px"
+        }
+      },
+      "input-error": {
+        "$value": "12px",
+        "$type": "dimension",
+        "$description": "Used by .input-error.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:292",
+              "expect": "color:var(--red);font-size:12px"
+            }
+          ],
+          "px1440": 12,
+          "mobile": "12px"
+        }
+      },
+      "label-lifted": {
+        "$value": "10px",
+        "$type": "dimension",
+        "$description": "Used by floating label when focused.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:279",
+              "expect": ".input-wrapper.js-focus .input-placeholder{transform:translateY(-30px);font-size:10px"
+            }
+          ],
+          "px1440": 10,
+          "mobile": "10px"
+        }
+      },
+      "toast": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "Used by .toast.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:390",
+              "expect": ".toast{position:relative;overflow:hidden"
+            }
+          ],
+          "px1440": 16,
+          "mobile": "16px"
+        }
+      }
+    },
+    "lineHeight": {
+      "tight": {
+        "$value": "1em",
+        "$type": "dimension",
+        "$description": "Display and most headings.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:38",
+              "expect": "font-weight:400;line-height:1em;font-size:7.8125vw"
+            }
+          ]
+        }
+      },
+      "body": {
+        "$value": "1.5em",
+        "$type": "dimension",
+        "$description": "body; em so children inherit the computed px (18px at 1440).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:73",
+              "expect": "line-height:1.5em;color:var(--accent)"
+            }
+          ]
+        }
+      },
+      "faq-question": {
+        "$value": "1.2em",
+        "$type": "dimension",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:254",
+              "expect": "font-size:1.4583333333vw;line-height:1.2em"
+            }
+          ]
+        }
+      },
+      "audience-text": {
+        "$value": "1.4em",
+        "$type": "dimension",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:658",
+              "expect": ".home-8-item__text{line-height:1.4em}"
+            }
+          ]
+        }
+      },
+      "ticker": {
+        "$value": "93%",
+        "$type": "dimension",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:230",
+              "expect": "font-size:10.4166666667vw;line-height:93%"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.playwright-mcp/
+design-repo.zip
+.DS_Store
+*.log
+.env*

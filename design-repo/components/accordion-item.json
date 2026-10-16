@@ -1,0 +1,18 @@
+{
+  "id": "accordion-item",
+  "kind": "component",
+  "purpose": "Numbered FAQ row; click toggles .opened (height to scrollHeight, arrow 180deg); hover wash rises from the bottom.",
+  "implementedBy": [
+    "src/components/Faq.jsx"
+  ],
+  "composes": [
+    "divider-line",
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Faq.jsx:12",
+      "expect": "function AccordionItem("
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "version": "1.0.0",
+  "$description": "One template per distinct page shape. The source has exactly ONE route and ONE page shape (CLONE_SPEC \"Routes\"; App.jsx mounts no router).",
+  "templates": {
+    "template.single-page-landing": {
+      "description": "The Flashform one-page landing: navbar, sticky hero, two over-revealer groups of content sections, physics footer.",
+      "routes": [
+        "/"
+      ],
+      "orderRule": "PageSpec nodes must be an ordered subsequence of this node list. Required nodes must be present; optional nodes may be omitted but never reordered, inserted elsewhere or repeated.",
+      "requiredRationale": "navbar, hero and footer are structural (navbar is the only nav; hero is the only sticky opener; footer carries the form/legal). All 10 content nodes are optional for generation; the observed page contains all of them.",
+      "groups": {
+        "over-revealer-1": {
+          "marginTop": "-90vh",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:68",
+              "expect": "<div className=\"over-revealer home-2-over-revealer\">"
+            },
+            {
+              "cite": "src/index.css:460",
+              "expect": ".home-2-over-revealer{margin-top:-90vh}"
+            }
+          ]
+        },
+        "over-revealer-2": {
+          "marginTop": "-100vh",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:74",
+              "expect": "<div className=\"over-revealer home-6-over-revealer\">"
+            },
+            {
+              "cite": "src/index.css:107",
+              "expect": "margin-top:-100vh}"
+            }
+          ]
+        }
+      },
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:65-83",
+          "expect": "<main>"
+        }
+      ],
+      "pageWordBudgets": [
+        {
+          "path": "meta.title",
+          "observedMaxWords": 11,
+          "maxWords": 14
+        },
+        {
+          "path": "meta.description",
+          "observedMaxWords": 24,
+          "maxWords": 29
+        },
+        {
+          "path": "overlays.introLoader.word",
+          "observedMaxWords": 2,
+          "maxWords": 3
+        },
+        {
+          "path": "overlays.betaPopup.title",
+          "observedMaxWords": 3,
+          "maxWords": 4
+        },
+        {
+          "path": "overlays.betaPopup.nameLabel",
+          "observedMaxWords": 2,
+          "maxWords": 3
+        },
+        {
+          "path": "overlays.betaPopup.emailLabel",
+          "observedMaxWords": 2,
+          "maxWords": 3
+        },
+        {
+          "path": "overlays.betaPopup.submitLabel",
+          "observedMaxWords": 1,
+          "maxWords": 2
+        },
+        {
+          "path": "overlays.toasts.success",
+          "observedMaxWords": 7,
+          "maxWords": 9
+        },
+        {
+          "path": "overlays.toasts.error",
+          "observedMaxWords": 4,
+          "maxWords": 5
+        }
+      ],
+      "nodes": [
+        {
+          "key": "nav",
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "group": "base",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:66",
+              "expect": "<Navbar />"
+            }
+          ]
+        },
+        {
+          "key": "hero",
+          "section": "hero.sticky-statement",
+          "required": true,
+          "repeatable": false,
+          "group": "base",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:67",
+              "expect": "<Hero />"
+            }
+          ]
+        },
+        {
+          "key": "meaning",
+          "section": "split.media-statement",
+          "variant": "media-left",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-1",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:69",
+              "expect": "<Meaning />"
+            }
+          ]
+        },
+        {
+          "key": "purpose",
+          "section": "panel.rounded-sticky",
+          "variant": "with-channel-list",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-1",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:70",
+              "expect": "<Purpose />"
+            }
+          ]
+        },
+        {
+          "key": "why",
+          "section": "split.media-statement",
+          "variant": "media-right",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-1",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:71",
+              "expect": "<Why />"
+            }
+          ]
+        },
+        {
+          "key": "integration",
+          "section": "scroll.horizontal-steps",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-1",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:72",
+              "expect": "<Integration />"
+            }
+          ]
+        },
+        {
+          "key": "messengers",
+          "section": "statement.centered-cta",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:75",
+              "expect": "<Messengers />"
+            }
+          ]
+        },
+        {
+          "key": "benefits",
+          "section": "grid.ticker-benefit-cards",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:76",
+              "expect": "<Benefits />"
+            }
+          ]
+        },
+        {
+          "key": "relief",
+          "section": "statement.audience-rows",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:77",
+              "expect": "<Relief />"
+            }
+          ]
+        },
+        {
+          "key": "problems",
+          "section": "panel.rounded-sticky",
+          "variant": "items-only",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:78",
+              "expect": "<Problems />"
+            }
+          ]
+        },
+        {
+          "key": "roadmap",
+          "section": "timeline.horizontal-roadmap",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:79",
+              "expect": "<Roadmap />"
+            }
+          ]
+        },
+        {
+          "key": "faq",
+          "section": "faq.accordion",
+          "required": false,
+          "repeatable": false,
+          "group": "over-revealer-2",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:80",
+              "expect": "<Faq />"
+            }
+          ]
+        },
+        {
+          "key": "footer",
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "group": "after-main",
+          "measuredFrom": [
+            {
+              "cite": "src/App.jsx:83",
+              "expect": "<Footer />"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "routes": [
+    {
+      "path": "/",
+      "template": "template.single-page-landing",
+      "measuredFrom": [
+        {
+          "cite": "CLONE_SPEC.md:7",
+          "expect": "**Routes:** there is only one route, `/`."
+        },
+        {
+          "cite": "src/App.jsx:57",
+          "expect": "<UIProvider>"
+        }
+      ]
+    }
+  ]
+}

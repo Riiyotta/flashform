@@ -1,0 +1,147 @@
+{
+  "id": "split.media-statement",
+  "kind": "section",
+  "category": "statement",
+  "purpose": "Explain one idea with a large mixed-italic heading and an uppercase redline paragraph beside a looping blend-lighten video.",
+  "implementedBy": [
+    "src/components/Meaning.jsx",
+    "src/components/Why.jsx"
+  ],
+  "variants": [
+    "media-left",
+    "media-right"
+  ],
+  "constraints": {
+    "maxPerPage": 2,
+    "variantsUniquePerPage": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.split.media-statement",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "paragraph",
+        "media"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/runs"
+        },
+        "paragraph": {
+          "type": "string",
+          "minLength": 1
+        },
+        "media": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "media.loop-video-square"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "heading",
+        "observedMaxWords": 5,
+        "maxWords": 6
+      },
+      {
+        "path": "paragraph",
+        "observedMaxWords": 25,
+        "maxWords": 30
+      }
+    ]
+  },
+  "assetRoles": [
+    "media.loop-video-square"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "reveal-on-view"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [
+      "heading-chars",
+      "paragraph-lines"
+    ],
+    "inViewThresholds": [
+      0.3,
+      0.4
+    ]
+  },
+  "responsive": [
+    {
+      "maxWidth": "960",
+      "changes": "stacks: media-left uses column-reverse (text above video), media-right uses column; video 60% wide centred",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:464",
+          "expect": "@media (max-width: 960px){.home-2__container{flex-direction:column-reverse"
+        }
+      ]
+    },
+    {
+      "maxWidth": "460",
+      "changes": "video 100% wide",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:474",
+          "expect": "@media (max-width: 460px){.home-2__visual{width:100%}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Videos are decorative (autoplay muted loop, no controls); provide no essential information in them.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Meaning.jsx:12",
+      "expect": "What does it mean "
+    },
+    {
+      "cite": "src/components/Meaning.jsx:12",
+      "expect": "Flashform?"
+    },
+    {
+      "cite": "src/components/Meaning.jsx:14",
+      "expect": "This is a simply-use service, which allows to you configure the sending of contact forms from your website to selected messengers in a few clicks"
+    },
+    {
+      "cite": "src/components/Why.jsx:7",
+      "expect": "Designed to make life "
+    },
+    {
+      "cite": "src/components/Why.jsx:9",
+      "expect": "It is enough to waste time on monotonous activities. We know that whenever you're programming, the least you want to do is customize contact forms"
+    },
+    {
+      "cite": "src/components/Why.jsx:7",
+      "expect": "{easier}"
+    },
+    {
+      "cite": "Flashfom_ the fastest and easiest way to connect with your customer.html:10",
+      "expect": "make life <span class=\"h1 h1--i\"> {easier} <"
+    },
+    {
+      "cite": "src/components/Meaning.jsx:4",
+      "expect": "data-in-view=\"0.4\""
+    },
+    {
+      "cite": "src/components/Why.jsx:4",
+      "expect": "data-in-view=\"0.3\""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "layout.container": {
+    "padding-x": {
+      "$value": "5.2083333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:49",
+            "expect": ".container{width:100%;position:relative;padding-left:5.2083333333vw"
+          }
+        ],
+        "mobile": "32px",
+        "tablet": "20px"
+      }
+    },
+    "max-width": {
+      "$value": "none",
+      "$type": "string",
+      "$description": "No max-width: content is 1290px at 1440.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:711",
+            "expect": ".container{max-width:none}"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "toast",
+  "kind": "component",
+  "purpose": "Top-right notice with a 5s progress bar; success (accent) and danger (red) variants.",
+  "implementedBy": [
+    "src/components/Toasts.jsx"
+  ],
+  "composes": [
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Toasts.jsx:5",
+      "expect": "function Toast("
+    }
+  ]
+}

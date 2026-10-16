@@ -1,0 +1,15 @@
+{
+  "id": "webgl-revealer",
+  "kind": "component",
+  "purpose": "OGL noise dissolve plane over the screencast panel.",
+  "implementedBy": [
+    "src/anim/gl.js"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/anim/gl.js:196",
+      "expect": "class Revealer extends Figure"
+    }
+  ]
+}

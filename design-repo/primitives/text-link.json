@@ -1,0 +1,27 @@
+{
+  "id": "text-link",
+  "kind": "primitive",
+  "purpose": "Inline link with a 2px accent underline that swings up from translateY(20px) rotate(10deg) on hover.",
+  "implementedBy": [
+    "src/components/Navbar.jsx",
+    "src/components/Footer.jsx"
+  ],
+  "props": {
+    "label": "string",
+    "href": "string"
+  },
+  "states": [
+    "rest",
+    "hover"
+  ],
+  "tokens": [
+    "motion.duration.ui",
+    "motion.ease.expo-out"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/index.css:173",
+      "expect": ".navbar__link:hover:after{transform:translateY(0) rotate(0);opacity:1}"
+    }
+  ]
+}

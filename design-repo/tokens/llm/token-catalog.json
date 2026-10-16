@@ -1,0 +1,1287 @@
+{
+  "version": "1.0.0",
+  "$description": "Curated, referenceable token view for generators. Reference by path in {braces}; never emit raw values.",
+  "categories": {
+    "breakpoint": {
+      "wide": {
+        "type": "number",
+        "value": 1366,
+        "file": "tokens/00-foundation/breakpoint.json"
+      },
+      "desktop": {
+        "type": "number",
+        "value": 1060,
+        "file": "tokens/00-foundation/breakpoint.json"
+      },
+      "stack": {
+        "type": "number",
+        "value": 960,
+        "file": "tokens/00-foundation/breakpoint.json"
+      },
+      "tablet": {
+        "type": "number",
+        "value": 768,
+        "file": "tokens/00-foundation/breakpoint.json"
+      },
+      "phone": {
+        "type": "number",
+        "value": 460,
+        "file": "tokens/00-foundation/breakpoint.json"
+      },
+      "landscape-phone": {
+        "type": "string",
+        "value": "(orientation: landscape) and (max-width: 960px)",
+        "file": "tokens/00-foundation/breakpoint.json"
+      }
+    },
+    "color": {
+      "black": {
+        "type": "color",
+        "value": "#111606",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "accent": {
+        "type": "color",
+        "value": "#b1dd40",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "white": {
+        "type": "color",
+        "value": "#ffffff",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "red": {
+        "type": "color",
+        "value": "#e73737",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "nav-glass": {
+        "type": "color",
+        "value": "#ffffff05",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "ticker-band": {
+        "type": "color",
+        "value": "#ffffff0d",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "backdrop": {
+        "type": "color",
+        "value": "#000000cc",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "scroll-thumb": {
+        "type": "color",
+        "value": "#6b6b6b",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "popup-close": {
+        "type": "color",
+        "value": "#333333",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "glow": {
+        "type": "color",
+        "value": "#b1dd4029",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "shader.flower-1": {
+        "type": "color",
+        "value": "#a5683e",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "shader.flower-2": {
+        "type": "color",
+        "value": "#45724e",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "shader.revealer-1": {
+        "type": "color",
+        "value": "#ffffff",
+        "file": "tokens/00-foundation/color.json"
+      },
+      "shader.revealer-2": {
+        "type": "color",
+        "value": "#000000",
+        "file": "tokens/00-foundation/color.json"
+      }
+    },
+    "elevation": {
+      "revealer-glow": {
+        "type": "shadow",
+        "value": "0 -16px 44px #b1dd4029",
+        "file": "tokens/00-foundation/elevation.json"
+      }
+    },
+    "icon-size": {
+      "globe": {
+        "type": "dimension",
+        "value": "2.6041666667vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "ticker-star": {
+        "type": "dimension",
+        "value": "3.3333333333vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "feature-glyph-height": {
+        "type": "dimension",
+        "value": "2.34375vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "channel-icon-height": {
+        "type": "dimension",
+        "value": "1.875vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "accordion-arrow": {
+        "type": "dimension",
+        "value": "1.25vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "arrow-small": {
+        "type": "dimension",
+        "value": "2.5vw x 3.5416666667vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "arrow-large": {
+        "type": "dimension",
+        "value": "154px x 220px",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "signin-arrow": {
+        "type": "dimension",
+        "value": "16px",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "popup-close": {
+        "type": "dimension",
+        "value": "28px",
+        "file": "tokens/00-foundation/icon-size.json"
+      },
+      "logo": {
+        "type": "dimension",
+        "value": "8.125vw x 1.4583333333vw",
+        "file": "tokens/00-foundation/icon-size.json"
+      }
+    },
+    "motion": {
+      "duration.fast": {
+        "type": "duration",
+        "value": "0.2s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.base": {
+        "type": "duration",
+        "value": "0.3s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.dot": {
+        "type": "duration",
+        "value": "0.4s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.accordion": {
+        "type": "duration",
+        "value": "0.45s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.ui": {
+        "type": "duration",
+        "value": "0.5s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.wash": {
+        "type": "duration",
+        "value": "0.8s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.star-spin": {
+        "type": "duration",
+        "value": "10s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.reveal-line": {
+        "type": "duration",
+        "value": "1s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.reveal-rise": {
+        "type": "duration",
+        "value": "0.7s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.reveal-fade": {
+        "type": "duration",
+        "value": "0.8s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.reveal-chars": {
+        "type": "duration",
+        "value": "0.5s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.reveal-lines": {
+        "type": "duration",
+        "value": "1s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.anchor-scroll": {
+        "type": "duration",
+        "value": "1s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.flower-rotate": {
+        "type": "duration",
+        "value": "2s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.flower-scale": {
+        "type": "duration",
+        "value": "1.5s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "duration.toast-life": {
+        "type": "duration",
+        "value": "5s",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "keyframes.world": {
+        "type": "string",
+        "value": "rotateY(0) -> rotateY(360deg), 5s linear infinite alternate",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "keyframes.ticker": {
+        "type": "string",
+        "value": "translateX(0) -> translateX(-50%), 4s linear infinite",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "keyframes.spinner-rotate": {
+        "type": "string",
+        "value": "rotate 2s linear infinite",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "keyframes.spinner-dash": {
+        "type": "string",
+        "value": "dash 1.5s ease-in-out infinite",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.expo-out": {
+        "type": "cubicBezier",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.css-ease": {
+        "type": "string",
+        "value": "ease",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.linear": {
+        "type": "string",
+        "value": "linear",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-line": {
+        "type": "string",
+        "value": "power1.inOut",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-out": {
+        "type": "string",
+        "value": "power3.out",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-lines": {
+        "type": "string",
+        "value": "power4.out",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-chars": {
+        "type": "string",
+        "value": "back.out(2)",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-split-heading": {
+        "type": "string",
+        "value": "back.out(1.2)",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-loader-slide": {
+        "type": "string",
+        "value": "power2.inOut",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-loader-zoom": {
+        "type": "string",
+        "value": "power3.inOut",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-flower-rotate": {
+        "type": "string",
+        "value": "back.inOut(2)",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "ease.gsap-scrub-effective": {
+        "type": "string",
+        "value": "power1.out",
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "stagger.reveal": {
+        "type": "number",
+        "value": 0.1,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "stagger.chars": {
+        "type": "number",
+        "value": 0.07,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "stagger.heading-delay-ms": {
+        "type": "number",
+        "value": 300,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "stagger.paragraph-delay-ms": {
+        "type": "number",
+        "value": 700,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.friction": {
+        "type": "number",
+        "value": 0.07,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.step-size": {
+        "type": "number",
+        "value": 0.8,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.clamp-delta": {
+        "type": "number",
+        "value": 120,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.key-step": {
+        "type": "number",
+        "value": 240,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.anchor-offset-vh": {
+        "type": "number",
+        "value": 0.3,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.scrub-section": {
+        "type": "number",
+        "value": 0.1,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "scroll.scrub-chars": {
+        "type": "number",
+        "value": 0.01,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "inView.default": {
+        "type": "number",
+        "value": 0.9,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "inView.used-values": {
+        "type": "array",
+        "value": [
+          0.3,
+          0.4,
+          0.5,
+          0.9
+        ],
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "loader.clone-delays-ms": {
+        "type": "array",
+        "value": [
+          1000,
+          100,
+          500,
+          1000,
+          1000,
+          1800
+        ],
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "loader.clone-mount-offset-ms": {
+        "type": "number",
+        "value": 800,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "loader.original-removed-ms": {
+        "type": "number",
+        "value": 6368,
+        "file": "tokens/00-foundation/motion.json"
+      },
+      "loader.zoom-scale": {
+        "type": "number",
+        "value": 100,
+        "file": "tokens/00-foundation/motion.json"
+      }
+    },
+    "radius": {
+      "nav": {
+        "type": "dimension",
+        "value": "12px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "panel": {
+        "type": "dimension",
+        "value": "20px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "card": {
+        "type": "dimension",
+        "value": "0 20px 20px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "card-mobile": {
+        "type": "dimension",
+        "value": "0 10px 10px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "popup": {
+        "type": "dimension",
+        "value": "12px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "menu": {
+        "type": "dimension",
+        "value": "10px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "toast": {
+        "type": "dimension",
+        "value": "5px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "scroll-thumb": {
+        "type": "dimension",
+        "value": "7px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "dot": {
+        "type": "dimension",
+        "value": "20px",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "circle": {
+        "type": "dimension",
+        "value": "50%",
+        "file": "tokens/00-foundation/radius.json"
+      },
+      "wash": {
+        "type": "dimension",
+        "value": "50% 50% 0 0",
+        "file": "tokens/00-foundation/radius.json"
+      }
+    },
+    "spacing": {
+      "3xs": {
+        "type": "dimension",
+        "value": ".5208333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "2xs": {
+        "type": "dimension",
+        "value": ".8333333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "xs": {
+        "type": "dimension",
+        "value": "1.0416666667vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "sm": {
+        "type": "dimension",
+        "value": "1.25vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "md": {
+        "type": "dimension",
+        "value": "1.4583333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "lg": {
+        "type": "dimension",
+        "value": "1.6666666667vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "xl": {
+        "type": "dimension",
+        "value": "2.0833333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "2xl": {
+        "type": "dimension",
+        "value": "2.2916666667vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "3xl": {
+        "type": "dimension",
+        "value": "2.7083333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "4xl": {
+        "type": "dimension",
+        "value": "3.125vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "5xl": {
+        "type": "dimension",
+        "value": "5.2083333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "6xl": {
+        "type": "dimension",
+        "value": "8.3333333333vw",
+        "file": "tokens/00-foundation/spacing.json"
+      },
+      "section": {
+        "type": "dimension",
+        "value": "15.625vw",
+        "file": "tokens/00-foundation/spacing.json"
+      }
+    },
+    "typography": {
+      "family.aeonik": {
+        "type": "fontFamily",
+        "value": "Aeonik",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "family.recife": {
+        "type": "fontFamily",
+        "value": "Recife",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "family.neuehaas": {
+        "type": "fontFamily",
+        "value": "NeueHaas",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "family.button-ua": {
+        "type": "fontFamily",
+        "value": "Arial",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "weight.regular-aeonik": {
+        "type": "fontWeight",
+        "value": 400,
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "weight.book-recife": {
+        "type": "fontWeight",
+        "value": 350,
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "weight.roman-neuehaas": {
+        "type": "fontWeight",
+        "value": 500,
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "weight.medium-neuehaas": {
+        "type": "fontWeight",
+        "value": 600,
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.display-xxl": {
+        "type": "dimension",
+        "value": "32.2916666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.display-xl": {
+        "type": "dimension",
+        "value": "26.0416666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.ticker": {
+        "type": "dimension",
+        "value": "10.4166666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.display": {
+        "type": "dimension",
+        "value": "7.8125vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-popup": {
+        "type": "dimension",
+        "value": "3.75vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-loader": {
+        "type": "dimension",
+        "value": "3.6458333333vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-card": {
+        "type": "dimension",
+        "value": "2.6041666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-item": {
+        "type": "dimension",
+        "value": "2.5vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.text-step": {
+        "type": "dimension",
+        "value": "2.1875vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-audience": {
+        "type": "dimension",
+        "value": "2.0833333333vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.numeral-faq": {
+        "type": "dimension",
+        "value": "1.6666666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.heading-faq": {
+        "type": "dimension",
+        "value": "1.4583333333vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.label-lg": {
+        "type": "dimension",
+        "value": "1.25vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.body-lg": {
+        "type": "dimension",
+        "value": "1.0416666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.body": {
+        "type": "dimension",
+        "value": ".8333333333vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.caption": {
+        "type": "dimension",
+        "value": ".7291666667vw",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.input": {
+        "type": "dimension",
+        "value": "16px",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.input-error": {
+        "type": "dimension",
+        "value": "12px",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.label-lifted": {
+        "type": "dimension",
+        "value": "10px",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "size.toast": {
+        "type": "dimension",
+        "value": "16px",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "lineHeight.tight": {
+        "type": "dimension",
+        "value": "1em",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "lineHeight.body": {
+        "type": "dimension",
+        "value": "1.5em",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "lineHeight.faq-question": {
+        "type": "dimension",
+        "value": "1.2em",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "lineHeight.audience-text": {
+        "type": "dimension",
+        "value": "1.4em",
+        "file": "tokens/00-foundation/typography.json"
+      },
+      "lineHeight.ticker": {
+        "type": "dimension",
+        "value": "93%",
+        "file": "tokens/00-foundation/typography.json"
+      }
+    },
+    "color-roles": {
+      "surface.page": {
+        "type": "color",
+        "value": "{color.black}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.accent-panel": {
+        "type": "color",
+        "value": "{color.accent}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.nav": {
+        "type": "color",
+        "value": "{color.nav-glass}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.ticker": {
+        "type": "color",
+        "value": "{color.ticker-band}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.backdrop": {
+        "type": "color",
+        "value": "{color.backdrop}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.danger": {
+        "type": "color",
+        "value": "{color.red}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "surface.spinner": {
+        "type": "color",
+        "value": "{color.white}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "text.default": {
+        "type": "color",
+        "value": "{color.accent}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "text.on-accent": {
+        "type": "color",
+        "value": "{color.black}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "text.error": {
+        "type": "color",
+        "value": "{color.red}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "text.toast": {
+        "type": "color",
+        "value": "{color.white}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "line.default": {
+        "type": "color",
+        "value": "{color.accent}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "line.on-accent": {
+        "type": "color",
+        "value": "{color.black}",
+        "file": "tokens/10-semantic/color-roles.json"
+      },
+      "line.footer": {
+        "type": "color",
+        "value": "{color.accent}",
+        "file": "tokens/10-semantic/color-roles.json"
+      }
+    },
+    "motion-roles": {
+      "reveal-on-view": {
+        "type": "string",
+        "value": "rAF check: 0 < rect.top <= innerHeight*threshold, once",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "hero-intro": {
+        "type": "string",
+        "value": "sectionAnimation(.home-1) when the loader completes",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "section-scale": {
+        "type": "string",
+        "value": "scale .88 -> 1 (+opacity) scrubbed over one viewport, >960 only",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "sticky-inner-scroll": {
+        "type": "string",
+        "value": "panel pinned at 100vh - 2*margin; content translated inside",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "horizontal-scroll": {
+        "type": "string",
+        "value": "wrapper height = scrollWidth - (innerWidth - innerHeight); 1px vertical = 1px horizontal; >1060 only",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "split-heading-scrub": {
+        "type": "string",
+        "value": "per-char ScrollTrigger, y 101% -> 0, back.out(1.2)",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "cards-scale": {
+        "type": "string",
+        "value": "card i starts translateY(40.8*i px) scaleY(1+.07i), scrubbed to 0/1",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "ticker-marquee": {
+        "type": "string",
+        "value": "rAF marquee, 80s base loop, scroll-velocity coupled, direction flips with scroll direction",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "roadmap-draw": {
+        "type": "string",
+        "value": "stroke-dash draw of the curve; items .is-visible at -y >= 8/30/52",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "webgl-flower": {
+        "type": "string",
+        "value": "OGL butterfly shader, load-in after loader",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "webgl-revealer": {
+        "type": "string",
+        "value": "OGL noise dissolve scrubbed from .home-5__sticky top+=40%",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "physics-letters": {
+        "type": "string",
+        "value": "matter-js letters dropped while #letter-parent top < innerHeight/2",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "accordion": {
+        "type": "string",
+        "value": "height 0 -> scrollHeight, arrow 180deg, .45s expo-out",
+        "file": "tokens/10-semantic/motion-roles.json"
+      },
+      "navbar-hide": {
+        "type": "string",
+        "value": "body.nav-hidden on scroll down; mouse screenY <= 300 reveals",
+        "file": "tokens/10-semantic/motion-roles.json"
+      }
+    },
+    "typography-roles": {
+      "display": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.display}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "display-italic": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.recife}",
+          "fontWeight": "{typography.weight.book-recife}",
+          "fontSize": "{typography.size.display}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "body": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.neuehaas}",
+          "fontWeight": "{typography.weight.roman-neuehaas}",
+          "fontSize": "{typography.size.body}",
+          "lineHeight": "{typography.lineHeight.body}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "redline": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.neuehaas}",
+          "fontWeight": "{typography.weight.roman-neuehaas}",
+          "fontSize": "{typography.size.body}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "item-heading": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.heading-item}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "card-title": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.heading-card}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "step-text": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.text-step}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "audience-heading": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.neuehaas}",
+          "fontWeight": "{typography.weight.roman-neuehaas}",
+          "fontSize": "{typography.size.heading-audience}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "faq-question": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.heading-faq}",
+          "lineHeight": "{typography.lineHeight.faq-question}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "button": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.button-ua}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.body-lg}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "ticker": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.aeonik}",
+          "fontWeight": "{typography.weight.regular-aeonik}",
+          "fontSize": "{typography.size.ticker}",
+          "lineHeight": "{typography.lineHeight.ticker}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      },
+      "numeral-xxl": {
+        "type": "typography",
+        "value": {
+          "fontFamily": "{typography.family.neuehaas}",
+          "fontWeight": "{typography.weight.medium-neuehaas}",
+          "fontSize": "{typography.size.display-xxl}",
+          "lineHeight": "{typography.lineHeight.tight}"
+        },
+        "file": "tokens/10-semantic/typography-roles.json"
+      }
+    },
+    "component.accordion": {
+      "row-padding": {
+        "type": "dimension",
+        "value": "1.4583333333vw 0",
+        "file": "tokens/20-component/accordion.json"
+      },
+      "wash-opacity": {
+        "type": "number",
+        "value": 0.2,
+        "file": "tokens/20-component/accordion.json"
+      },
+      "answer-offset": {
+        "type": "dimension",
+        "value": "38.0208333333vw",
+        "file": "tokens/20-component/accordion.json"
+      }
+    },
+    "component.button": {
+      "font": {
+        "type": "typography",
+        "value": "{typography-roles.button}",
+        "file": "tokens/20-component/button.json"
+      },
+      "gap": {
+        "type": "dimension",
+        "value": ".5208333333vw",
+        "file": "tokens/20-component/button.json"
+      },
+      "underline": {
+        "type": "string",
+        "value": "1px solid {color.accent}",
+        "file": "tokens/20-component/button.json"
+      },
+      "brackets": {
+        "type": "array",
+        "value": [
+          "[",
+          "]"
+        ],
+        "file": "tokens/20-component/button.json"
+      },
+      "hover-transition": {
+        "type": "transition",
+        "value": "transform {motion.duration.ui} {motion.ease.expo-out}",
+        "file": "tokens/20-component/button.json"
+      }
+    },
+    "component.card": {
+      "width": {
+        "type": "dimension",
+        "value": "21.6145833333vw",
+        "file": "tokens/20-component/card.json"
+      },
+      "height": {
+        "type": "dimension",
+        "value": "20.3125vw",
+        "file": "tokens/20-component/card.json"
+      },
+      "padding": {
+        "type": "dimension",
+        "value": "1.25vw 3.3333333333vw 1.25vw 1.25vw",
+        "file": "tokens/20-component/card.json"
+      },
+      "radius": {
+        "type": "dimension",
+        "value": "{radius.card}",
+        "file": "tokens/20-component/card.json"
+      },
+      "surface": {
+        "type": "color",
+        "value": "{color-roles.surface.accent-panel}",
+        "file": "tokens/20-component/card.json"
+      }
+    },
+    "component.input": {
+      "border": {
+        "type": "string",
+        "value": "2px solid {color.accent}",
+        "file": "tokens/20-component/input.json"
+      },
+      "label-lift": {
+        "type": "string",
+        "value": "translateY(-30px), 10px, opacity .7",
+        "file": "tokens/20-component/input.json"
+      },
+      "padding-right": {
+        "type": "dimension",
+        "value": "4.1666666667vw",
+        "file": "tokens/20-component/input.json"
+      }
+    },
+    "component.navbar": {
+      "top": {
+        "type": "dimension",
+        "value": "1.0416666667vw",
+        "file": "tokens/20-component/navbar.json"
+      },
+      "padding": {
+        "type": "dimension",
+        "value": "2.0833333333vw 1.4583333333vw",
+        "file": "tokens/20-component/navbar.json"
+      },
+      "radius": {
+        "type": "dimension",
+        "value": "{radius.nav}",
+        "file": "tokens/20-component/navbar.json"
+      },
+      "blend": {
+        "type": "string",
+        "value": "difference",
+        "file": "tokens/20-component/navbar.json"
+      },
+      "link-gap": {
+        "type": "dimension",
+        "value": "{spacing.xl}",
+        "file": "tokens/20-component/navbar.json"
+      }
+    },
+    "component.popup": {
+      "max-width": {
+        "type": "dimension",
+        "value": "44.2708333333vw",
+        "file": "tokens/20-component/popup.json"
+      },
+      "padding": {
+        "type": "dimension",
+        "value": "{spacing.xl}",
+        "file": "tokens/20-component/popup.json"
+      },
+      "enter-offset": {
+        "type": "dimension",
+        "value": "60px",
+        "file": "tokens/20-component/popup.json"
+      }
+    },
+    "component.rounded-panel": {
+      "margin": {
+        "type": "dimension",
+        "value": ".62vw",
+        "file": "tokens/20-component/rounded-panel.json"
+      },
+      "radius": {
+        "type": "dimension",
+        "value": "{radius.panel}",
+        "file": "tokens/20-component/rounded-panel.json"
+      },
+      "padding": {
+        "type": "dimension",
+        "value": "5.2083333333vw",
+        "file": "tokens/20-component/rounded-panel.json"
+      },
+      "initial-scale": {
+        "type": "number",
+        "value": 0.88,
+        "file": "tokens/20-component/rounded-panel.json"
+      },
+      "margin-top": {
+        "type": "dimension",
+        "value": "{spacing.section}",
+        "file": "tokens/20-component/rounded-panel.json"
+      }
+    },
+    "component.ticker": {
+      "rotation": {
+        "type": "dimension",
+        "value": "-2deg",
+        "file": "tokens/20-component/ticker.json"
+      },
+      "item-gap": {
+        "type": "dimension",
+        "value": "3.90625vw",
+        "file": "tokens/20-component/ticker.json"
+      },
+      "copies": {
+        "type": "number",
+        "value": 4,
+        "file": "tokens/20-component/ticker.json"
+      },
+      "loop-seconds": {
+        "type": "number",
+        "value": 80,
+        "file": "tokens/20-component/ticker.json"
+      }
+    },
+    "component.toast": {
+      "padding": {
+        "type": "dimension",
+        "value": "12px",
+        "file": "tokens/20-component/toast.json"
+      },
+      "top": {
+        "type": "dimension",
+        "value": "10%",
+        "file": "tokens/20-component/toast.json"
+      },
+      "progress-height": {
+        "type": "dimension",
+        "value": "2px",
+        "file": "tokens/20-component/toast.json"
+      }
+    },
+    "layout.container": {
+      "padding-x": {
+        "type": "dimension",
+        "value": "5.2083333333vw",
+        "file": "tokens/30-layout/container.json"
+      },
+      "max-width": {
+        "type": "string",
+        "value": "none",
+        "file": "tokens/30-layout/container.json"
+      }
+    },
+    "layout.grid": {
+      "columns": {
+        "type": "number",
+        "value": 12,
+        "file": "tokens/30-layout/grid.json"
+      },
+      "gap": {
+        "type": "dimension",
+        "value": "1.0416666667vw",
+        "file": "tokens/30-layout/grid.json"
+      },
+      "auto-flow": {
+        "type": "string",
+        "value": "column",
+        "file": "tokens/30-layout/grid.json"
+      }
+    },
+    "layout.section-spacing": {
+      "top": {
+        "type": "dimension",
+        "value": "15.625vw",
+        "file": "tokens/30-layout/section-spacing.json"
+      },
+      "none": {
+        "type": "dimension",
+        "value": "0",
+        "file": "tokens/30-layout/section-spacing.json"
+      },
+      "bottom-pb": {
+        "type": "dimension",
+        "value": "15.625vw",
+        "file": "tokens/30-layout/section-spacing.json"
+      },
+      "over-revealer-overlap": {
+        "type": "array",
+        "value": [
+          "-90vh",
+          "-100vh"
+        ],
+        "file": "tokens/30-layout/section-spacing.json"
+      },
+      "hero-sticky-height": {
+        "type": "dimension",
+        "value": "200vh",
+        "file": "tokens/30-layout/section-spacing.json"
+      }
+    },
+    "layout.z-index": {
+      "over-revealer": {
+        "type": "number",
+        "value": 3,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "revealer-canvas": {
+        "type": "number",
+        "value": 4,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "navbar": {
+        "type": "number",
+        "value": 100,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "loader": {
+        "type": "number",
+        "value": 1000,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "popup": {
+        "type": "number",
+        "value": 5000,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "toast": {
+        "type": "number",
+        "value": 10000,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "app-loader": {
+        "type": "number",
+        "value": 10001,
+        "file": "tokens/30-layout/z-index.json"
+      },
+      "scrollbar": {
+        "type": "number",
+        "value": 10000000,
+        "file": "tokens/30-layout/z-index.json"
+      }
+    }
+  }
+}

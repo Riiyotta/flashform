@@ -1,0 +1,76 @@
+{
+  "layout.section-spacing": {
+    "top": {
+      "$value": "15.625vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:61",
+            "expect": ".section{padding-top:15.625vw}"
+          }
+        ],
+        "mobile": "200px",
+        "tablet": "120px"
+      }
+    },
+    "none": {
+      "$value": "0",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:62",
+            "expect": ".section--nm{padding-top:0}"
+          }
+        ]
+      }
+    },
+    "bottom-pb": {
+      "$value": "15.625vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:63",
+            "expect": ".section--pb{padding-bottom:15.625vw}"
+          }
+        ],
+        "mobile": "200px",
+        "tablet": "120px"
+      }
+    },
+    "over-revealer-overlap": {
+      "$value": [
+        "-90vh",
+        "-100vh"
+      ],
+      "$type": "array",
+      "$description": "First over-revealer group overlaps the sticky hero by 90vh; the second overlaps the screencast panel by 100vh.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:460",
+            "expect": ".home-2-over-revealer{margin-top:-90vh}"
+          },
+          {
+            "cite": "src/index.css:107",
+            "expect": "margin-top:-100vh}"
+          }
+        ]
+      }
+    },
+    "hero-sticky-height": {
+      "$value": "200vh",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:401",
+            "expect": ".home-1-sticky-wrapper{position:relative;height:200vh}"
+          }
+        ]
+      }
+    }
+  }
+}

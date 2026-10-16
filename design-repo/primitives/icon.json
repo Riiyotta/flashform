@@ -1,0 +1,23 @@
+{
+  "id": "icon",
+  "kind": "primitive",
+  "purpose": "Inline SVG glyph from the fixed set (reference/inline-svg) or an <img> channel icon.",
+  "implementedBy": [
+    "src/components/icons.jsx"
+  ],
+  "props": {
+    "glyph": "asset id"
+  },
+  "states": [
+    "static"
+  ],
+  "tokens": [
+    "icon-size"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/icons.jsx:1",
+      "expect": "Generated from reference/inline-svg/*.svg"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "color-roles": {
+    "$description": "Semantic colour roles. Reference these, never raw hex. Two surfaces only: dark page and accent panel.",
+    "surface": {
+      "page": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$description": "Page and dark sections.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:73",
+              "expect": "background-color:var(--black)}"
+            }
+          ]
+        }
+      },
+      "accent-panel": {
+        "$value": "{color.accent}",
+        "$type": "color",
+        "$description": "Rounded panels, benefit cards, popup, mobile menu, success toast.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:222",
+              "expect": "overflow:hidden;background-color:var(--accent);color:var(--black)}"
+            }
+          ]
+        }
+      },
+      "nav": {
+        "$value": "{color.nav-glass}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:156",
+              "expect": ".navbar__content{background-color:#ffffff05"
+            }
+          ]
+        }
+      },
+      "ticker": {
+        "$value": "{color.ticker-band}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:226",
+              "expect": "background-color:#ffffff0d;padding-top:.5208333333vw"
+            }
+          ]
+        }
+      },
+      "backdrop": {
+        "$value": "{color.backdrop}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:358",
+              "expect": "background-color:#000c;z-index:0}"
+            }
+          ]
+        }
+      },
+      "danger": {
+        "$value": "{color.red}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:392",
+              "expect": ".toast--danger{background-color:var(--red)}"
+            }
+          ]
+        }
+      },
+      "spinner": {
+        "$value": "{color.white}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:133",
+              "expect": "background-color:var(--white);border-radius:50%"
+            }
+          ]
+        }
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.accent}",
+        "$type": "color",
+        "$description": "Body text colour on the dark page.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:73",
+              "expect": "color:var(--accent);height:100vh"
+            }
+          ]
+        }
+      },
+      "on-accent": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:222",
+              "expect": "overflow:hidden;background-color:var(--accent);color:var(--black)}"
+            }
+          ]
+        }
+      },
+      "error": {
+        "$value": "{color.red}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:287",
+              "expect": ".input-placeholder abbr{text-decoration:none;color:var(--red)}"
+            }
+          ]
+        }
+      },
+      "toast": {
+        "$value": "{color.white}",
+        "$type": "color",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:390",
+              "expect": "padding:12px;color:#fff;display:flex"
+            }
+          ]
+        }
+      }
+    },
+    "line": {
+      "default": {
+        "$value": "{color.accent}",
+        "$type": "color",
+        "$description": "2px rule on dark.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:91",
+              "expect": ".h-line{display:block;width:100%;height:2px;background-color:var(--accent)}"
+            }
+          ]
+        }
+      },
+      "on-accent": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$description": "2px rule inside accent panels.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:510",
+              "expect": ".home-3-item__line{width:100%;height:2px;background-color:var(--black)"
+            }
+          ]
+        }
+      },
+      "footer": {
+        "$value": "{color.accent}",
+        "$type": "color",
+        "$description": "Used at opacity .2.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:300",
+              "expect": ".footer__line{display:block;width:100%;height:2px;background-color:var(--accent);opacity:.2}"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

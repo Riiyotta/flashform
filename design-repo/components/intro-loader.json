@@ -1,0 +1,16 @@
+{
+  "id": "intro-loader",
+  "kind": "component",
+  "purpose": "Full-screen 5-column \"Flashform ®\" word grid that assembles and zooms through on every load.",
+  "implementedBy": [
+    "src/components/Loader.jsx",
+    "src/anim/loader.js"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Loader.jsx:5",
+      "expect": "const WORD = 'Flashform ®'"
+    }
+  ]
+}

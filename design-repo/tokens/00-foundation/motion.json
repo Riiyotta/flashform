@@ -1,0 +1,672 @@
+{
+  "motion": {
+    "$description": "Motion foundation. CSS timings from src/index.css; GSAP timings from src/anim (ported line for line from the original bundle). IMPORTANT QUIRK: the original passes ease \"linear.none\", which is not a registered GSAP ease, so GSAP falls back to power1.out. Tokens record the EFFECTIVE ease.",
+    "duration": {
+      "fast": {
+        "$value": "0.2s",
+        "$type": "duration",
+        "$description": "Scrollbar thumb width; toast fade (.2s is the clone default; the original bundle does not define it, CLONE_SPEC 8.5).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:118",
+              "expect": "transition:width .2s ease,opacity .3s ease"
+            }
+          ]
+        }
+      },
+      "base": {
+        "$value": "0.3s",
+        "$type": "duration",
+        "$description": "Popup, input label.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:355",
+              "expect": "transition:opacity .3s ease,visibility .3s ease}"
+            }
+          ]
+        }
+      },
+      "dot": {
+        "$value": "0.4s",
+        "$type": "duration",
+        "$description": "Burger dots; roadmap item fade.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:186",
+              "expect": "border-radius:20px;background-color:var(--accent);transition:transform .4s ease}"
+            }
+          ]
+        }
+      },
+      "accordion": {
+        "$value": "0.45s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:272",
+              "expect": "transition:height .45s cubic-bezier(.16,1,.3,1),margin .45s"
+            }
+          ]
+        }
+      },
+      "ui": {
+        "$value": "0.5s",
+        "$type": "duration",
+        "$description": "Buttons, link underlines, navbar hide, mobile panel.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:210",
+              "expect": ".button__text{transition:transform .5s cubic-bezier(.16,1,.3,1)"
+            }
+          ]
+        }
+      },
+      "wash": {
+        "$value": "0.8s",
+        "$type": "duration",
+        "$description": "Accordion hover wash.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:271",
+              "expect": "transition:height .8s cubic-bezier(.16,1,.3,1)"
+            }
+          ]
+        }
+      },
+      "star-spin": {
+        "$value": "10s",
+        "$type": "duration",
+        "$description": "Ticker star spin on direction flip.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:231",
+              "expect": "transition:transform 10s linear"
+            }
+          ]
+        }
+      },
+      "reveal-line": {
+        "$value": "1s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:58",
+              "expect": "gsap.to(l, { duration: 1, scaleX: 1"
+            }
+          ]
+        }
+      },
+      "reveal-rise": {
+        "$value": "0.7s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:59",
+              "expect": "gsap.to(t, { duration: 0.7"
+            }
+          ]
+        }
+      },
+      "reveal-fade": {
+        "$value": "0.8s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:60",
+              "expect": "gsap.to(o, { duration: 0.8"
+            }
+          ]
+        }
+      },
+      "reveal-chars": {
+        "$value": "0.5s",
+        "$type": "duration",
+        "$description": "Opacity runs 1.1x (0.55s).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:24",
+              "expect": "animateByChars(el, duration = 0.5, stagger = 0.07)"
+            }
+          ]
+        }
+      },
+      "reveal-lines": {
+        "$value": "1s",
+        "$type": "duration",
+        "$description": "Opacity runs 1.2x (1.2s).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:35",
+              "expect": "animateByLines(el, duration = 1, stagger = 0.1)"
+            }
+          ]
+        }
+      },
+      "anchor-scroll": {
+        "$value": "1s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:235",
+              "expect": "gsap.to(window.ss.state, { duration: 1, target: y, overwrite: true })"
+            }
+          ]
+        }
+      },
+      "flower-rotate": {
+        "$value": "2s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:168",
+              "expect": "z: 0, duration: 2, ease: 'back.inOut(2)'"
+            }
+          ]
+        }
+      },
+      "flower-scale": {
+        "$value": "1.5s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:169",
+              "expect": "x: 2, y: 2, duration: 1.5, ease: 'back.out(2)'"
+            }
+          ]
+        }
+      },
+      "toast-life": {
+        "$value": "5s",
+        "$type": "duration",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:726",
+              "expect": ".toast__progress{animation:toast-progress 5s linear forwards}"
+            }
+          ]
+        }
+      }
+    },
+    "keyframes": {
+      "world": {
+        "$value": "rotateY(0) -> rotateY(360deg), 5s linear infinite alternate",
+        "$type": "string",
+        "$description": "Hero globe.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:434",
+              "expect": "animation:world 5s linear infinite alternate"
+            }
+          ]
+        }
+      },
+      "ticker": {
+        "$value": "translateX(0) -> translateX(-50%), 4s linear infinite",
+        "$type": "string",
+        "$description": "Button hover marquee.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:201",
+              "expect": "animation:ticker 4s linear infinite;display:flex"
+            }
+          ]
+        }
+      },
+      "spinner-rotate": {
+        "$value": "rotate 2s linear infinite",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:136",
+              "expect": "animation:rotate 2s linear infinite;height:50%"
+            }
+          ]
+        }
+      },
+      "spinner-dash": {
+        "$value": "dash 1.5s ease-in-out infinite",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:137",
+              "expect": "animation:dash 1.5s ease-in-out infinite;stroke-linecap:round"
+            }
+          ]
+        }
+      }
+    },
+    "ease": {
+      "expo-out": {
+        "$value": "cubic-bezier(.16,1,.3,1)",
+        "$type": "cubicBezier",
+        "$description": "All UI transitions.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:210",
+              "expect": ".button__text{transition:transform .5s cubic-bezier(.16,1,.3,1)"
+            },
+            {
+              "cite": "tailwind.config.js:47",
+              "expect": "expo: 'cubic-bezier(.16,1,.3,1)'"
+            }
+          ]
+        }
+      },
+      "css-ease": {
+        "$value": "ease",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:151",
+              "expect": "transition:transform .5s ease,opacity .5s ease}"
+            }
+          ]
+        }
+      },
+      "linear": {
+        "$value": "linear",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/index.css:231",
+              "expect": "transition:transform 10s linear"
+            }
+          ]
+        }
+      },
+      "gsap-line": {
+        "$value": "power1.inOut",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:58",
+              "expect": "ease: 'power1.inOut', stagger: 0.1"
+            }
+          ]
+        }
+      },
+      "gsap-out": {
+        "$value": "power3.out",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:57",
+              "expect": "const ease = 'power3.out'"
+            }
+          ]
+        }
+      },
+      "gsap-lines": {
+        "$value": "power4.out",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:39",
+              "expect": "y: '0%', rotation: 0, stagger, ease: 'power4.out'"
+            }
+          ]
+        }
+      },
+      "gsap-chars": {
+        "$value": "back.out(2)",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:30",
+              "expect": "scaleY: 1, stagger, ease: 'back.out(2)'"
+            }
+          ]
+        }
+      },
+      "gsap-split-heading": {
+        "$value": "back.out(1.2)",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:61",
+              "expect": "tl.to(c, { y: 0, opacity: 1, ease: 'back.out(1.2)', delay: d })"
+            }
+          ]
+        }
+      },
+      "gsap-loader-slide": {
+        "$value": "power2.inOut",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/loader.js:26",
+              "expect": "ease: 'power2.inOut', stagger: 0.01"
+            }
+          ]
+        }
+      },
+      "gsap-loader-zoom": {
+        "$value": "power3.inOut",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/loader.js:35",
+              "expect": "ease: 'power3.inOut', force3D: false"
+            }
+          ]
+        }
+      },
+      "gsap-flower-rotate": {
+        "$value": "back.inOut(2)",
+        "$type": "string",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:168",
+              "expect": "ease: 'back.inOut(2)'"
+            }
+          ]
+        }
+      },
+      "gsap-scrub-effective": {
+        "$value": "power1.out",
+        "$type": "string",
+        "$description": "EFFECTIVE ease of SectionScale, CardsScale and the Revealer: the source string is \"linear.none\", which GSAP does not know, so it falls back to power1.out. Do not \"fix\" it to linear.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:14",
+              "expect": "const ORIGINAL_EASE = 'linear.none'"
+            },
+            {
+              "cite": "src/anim/scrollFx.js:5",
+              "expect": "which is NOT a registered GSAP ease name"
+            }
+          ]
+        }
+      }
+    },
+    "stagger": {
+      "reveal": {
+        "$value": 0.1,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:59",
+              "expect": "gsap.to(t, { duration: 0.7, delay: 0, opacity: 1, y: 0, ease, stagger: 0.1 })"
+            }
+          ]
+        }
+      },
+      "chars": {
+        "$value": 0.07,
+        "$type": "number",
+        "$description": "Restarts for each line.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:24",
+              "expect": "animateByChars(el, duration = 0.5, stagger = 0.07)"
+            }
+          ]
+        }
+      },
+      "heading-delay-ms": {
+        "$value": 300,
+        "$type": "number",
+        "$description": "n-th [data-a-h] in a section waits n*300ms.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:61",
+              "expect": "animateByChars(e), n * 300)"
+            }
+          ]
+        }
+      },
+      "paragraph-delay-ms": {
+        "$value": 700,
+        "$type": "number",
+        "$description": "n-th [data-a-p] waits (n+1)*700ms.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:62",
+              "expect": "animateByLines(e), (n + 1) * 700)"
+            }
+          ]
+        }
+      }
+    },
+    "scroll": {
+      "friction": {
+        "$value": 0.07,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/smoothScroll.js:126",
+              "expect": "friction: 0.07, stepSize: 0.8"
+            }
+          ]
+        }
+      },
+      "step-size": {
+        "$value": 0.8,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/smoothScroll.js:126",
+              "expect": "friction: 0.07, stepSize: 0.8"
+            }
+          ]
+        }
+      },
+      "clamp-delta": {
+        "$value": 120,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/smoothScroll.js:126",
+              "expect": "clampScrollDelta: 120"
+            }
+          ]
+        }
+      },
+      "key-step": {
+        "$value": 240,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/smoothScroll.js:192",
+              "expect": "case KEYS.UP: this.state.target -= 240"
+            }
+          ]
+        }
+      },
+      "anchor-offset-vh": {
+        "$value": 0.3,
+        "$type": "number",
+        "$description": "Anchor scroll lands 30% of the viewport below the target top.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:232",
+              "expect": "window.innerHeight * 0.3"
+            }
+          ]
+        }
+      },
+      "scrub-section": {
+        "$value": 0.1,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:22",
+              "expect": "scroller: '#scroll-container', scrub: 0.1 },"
+            }
+          ]
+        }
+      },
+      "scrub-chars": {
+        "$value": 0.01,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/scrollFx.js:58",
+              "expect": "scrub: 0.01, scroller: $sc()"
+            }
+          ]
+        }
+      }
+    },
+    "inView": {
+      "$description": "ScrollAnimations activation threshold: a [data-in-view] element activates once when 0 < rect.top <= innerHeight*threshold (not IntersectionObserver).",
+      "default": {
+        "$value": 0.9,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/reveal.js:74",
+              "expect": "const th = +s.dataset.inView || 0.9"
+            }
+          ]
+        }
+      },
+      "used-values": {
+        "$value": [
+          0.3,
+          0.4,
+          0.5,
+          0.9
+        ],
+        "$type": "array",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/components/Why.jsx:4",
+              "expect": "data-in-view=\"0.3\""
+            },
+            {
+              "cite": "src/components/Meaning.jsx:4",
+              "expect": "data-in-view=\"0.4\""
+            },
+            {
+              "cite": "src/components/Benefits.jsx:15",
+              "expect": "data-in-view=\"0.5\""
+            },
+            {
+              "cite": "src/components/Integration.jsx:23",
+              "expect": "data-in-view=\"\""
+            }
+          ]
+        }
+      }
+    },
+    "loader": {
+      "$description": "Intro loader. The CLONE source and the ORIGINAL disagree on total length; both are recorded. The original awaits dynamic module imports before its timeline, which is why it runs longer than the sum of its delays.",
+      "clone-delays-ms": {
+        "$value": [
+          1000,
+          100,
+          500,
+          1000,
+          1000,
+          1800
+        ],
+        "$type": "array",
+        "$description": "Sum 5400ms of timeline delays, counted from the deferred mount below.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/loader.js:19-36",
+              "expect": "await delay(1000, signal)"
+            }
+          ]
+        }
+      },
+      "clone-mount-offset-ms": {
+        "$value": 800,
+        "$type": "number",
+        "$description": "Added by the animation-fix pass DURING this build: loader timeline and initPage() are deferred to 800ms after navigation start (Nuxt hydration + dynamic-import offset), so the clone loader now ends at ~6.2s, matching the original ~6.07s from first paint.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/core.js:60",
+              "expect": "export const MOUNT_AT = 800"
+            },
+            {
+              "cite": "src/anim/loader.js:16",
+              "expect": "await delay(mountDelay(), signal)"
+            },
+            {
+              "cite": "src/App.jsx:47",
+              "expect": "}, mountDelay())"
+            }
+          ]
+        }
+      },
+      "original-removed-ms": {
+        "$value": 6368,
+        "$type": "number",
+        "$description": "Playwright, live original at 1440x900: loader first observed at 296ms and removed at 6368ms after navigation commit = ~6.07s from first paint. This supersedes CLONE_SPEC 5.1 (~5.7s).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "@repo/extraction/evidence/qa-orig-1440.json:7",
+              "expect": "\"loaderRemovedMs\": 6368"
+            },
+            {
+              "cite": "@repo/extraction/evidence/qa-orig-1440.json:10",
+              "expect": "\"t\": 296"
+            }
+          ]
+        }
+      },
+      "zoom-scale": {
+        "$value": 100,
+        "$type": "number",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/loader.js:35",
+              "expect": "scale: 100, opacity: 0"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

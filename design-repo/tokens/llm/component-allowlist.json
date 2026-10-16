@@ -1,0 +1,393 @@
+{
+  "version": "1.0.0",
+  "$description": "Closed set a generator may instantiate (sections) or that contracts compose (primitives/components). verify_all.py checks parity with the files on disk and with pagespec.schema.json.",
+  "sections": [
+    {
+      "id": "shell.navbar",
+      "file": "sections/shell.navbar.json",
+      "variants": [],
+      "settableProperties": [
+        "cta",
+        "links",
+        "logo"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "brand.logo"
+      ]
+    },
+    {
+      "id": "hero.sticky-statement",
+      "file": "sections/hero.sticky-statement.json",
+      "variants": [],
+      "settableProperties": [
+        "cta",
+        "headline",
+        "paragraph",
+        "subheadline",
+        "visual"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "shader.hero-flower"
+      ]
+    },
+    {
+      "id": "split.media-statement",
+      "file": "sections/split.media-statement.json",
+      "variants": [
+        "media-left",
+        "media-right"
+      ],
+      "settableProperties": [
+        "heading",
+        "media",
+        "paragraph"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "media.loop-video-square"
+      ]
+    },
+    {
+      "id": "panel.rounded-sticky",
+      "file": "sections/panel.rounded-sticky.json",
+      "variants": [
+        "with-channel-list",
+        "items-only"
+      ],
+      "settableProperties": [
+        "heading",
+        "items"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "icon.feature-glyph",
+        "icon.generic-channel",
+        "icon.third-party-channel"
+      ]
+    },
+    {
+      "id": "scroll.horizontal-steps",
+      "file": "sections/scroll.horizontal-steps.json",
+      "variants": [],
+      "settableProperties": [
+        "headline",
+        "revealer",
+        "screencast",
+        "steps"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "media.product-screencast",
+        "shader.revealer-dissolve"
+      ]
+    },
+    {
+      "id": "statement.centered-cta",
+      "file": "sections/statement.centered-cta.json",
+      "variants": [],
+      "settableProperties": [
+        "cta",
+        "heading",
+        "paragraph"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": []
+    },
+    {
+      "id": "grid.ticker-benefit-cards",
+      "file": "sections/grid.ticker-benefit-cards.json",
+      "variants": [],
+      "settableProperties": [
+        "cards",
+        "intro",
+        "ticker"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": []
+    },
+    {
+      "id": "statement.audience-rows",
+      "file": "sections/statement.audience-rows.json",
+      "variants": [],
+      "settableProperties": [
+        "headingBottom",
+        "headingTop",
+        "rows"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": []
+    },
+    {
+      "id": "timeline.horizontal-roadmap",
+      "file": "sections/timeline.horizontal-roadmap.json",
+      "variants": [],
+      "settableProperties": [
+        "current",
+        "heading",
+        "milestones",
+        "paragraph"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": []
+    },
+    {
+      "id": "faq.accordion",
+      "file": "sections/faq.accordion.json",
+      "variants": [],
+      "settableProperties": [
+        "heading",
+        "items"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": []
+    },
+    {
+      "id": "shell.footer",
+      "file": "sections/shell.footer.json",
+      "variants": [],
+      "settableProperties": [
+        "contact",
+        "legal",
+        "logo",
+        "physicsWords",
+        "subscribe"
+      ],
+      "motionFields": [
+        "inViewThresholds",
+        "patterns",
+        "reducedMotionFallback",
+        "revealTargets"
+      ],
+      "assetRoles": [
+        "brand.logo"
+      ]
+    }
+  ],
+  "nodeProperties": [
+    "anchorId",
+    "content",
+    "id",
+    "motion",
+    "section",
+    "variant"
+  ],
+  "pageProperties": [
+    "contentProvenance",
+    "forms",
+    "meta",
+    "nodes",
+    "overlays",
+    "pageSpecVersion",
+    "route",
+    "template",
+    "theme"
+  ],
+  "primitives": [
+    {
+      "id": "button",
+      "file": "primitives/button.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "text-link",
+      "file": "primitives/text-link.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "divider-line",
+      "file": "primitives/divider-line.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "icon",
+      "file": "primitives/icon.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "input-field",
+      "file": "primitives/input-field.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "display-heading",
+      "file": "primitives/display-heading.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "redline-paragraph",
+      "file": "primitives/redline-paragraph.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "media-video",
+      "file": "primitives/media-video.json",
+      "instantiableInPageSpec": false
+    }
+  ],
+  "components": [
+    {
+      "id": "navbar",
+      "file": "components/navbar.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "mobile-menu",
+      "file": "components/mobile-menu.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "rounded-panel",
+      "file": "components/rounded-panel.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "rounded-item",
+      "file": "components/rounded-item.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "channel-list",
+      "file": "components/channel-list.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "step-row",
+      "file": "components/step-row.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "horizontal-headline",
+      "file": "components/horizontal-headline.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "benefit-card",
+      "file": "components/benefit-card.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "ticker-band",
+      "file": "components/ticker-band.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "audience-row",
+      "file": "components/audience-row.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "roadmap-curve",
+      "file": "components/roadmap-curve.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "accordion-item",
+      "file": "components/accordion-item.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "subscribe-form",
+      "file": "components/subscribe-form.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "beta-popup",
+      "file": "components/beta-popup.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "toast",
+      "file": "components/toast.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "app-loader",
+      "file": "components/app-loader.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "intro-loader",
+      "file": "components/intro-loader.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "webgl-flower",
+      "file": "components/webgl-flower.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "webgl-revealer",
+      "file": "components/webgl-revealer.json",
+      "instantiableInPageSpec": false
+    },
+    {
+      "id": "physics-letters",
+      "file": "components/physics-letters.json",
+      "instantiableInPageSpec": false
+    }
+  ],
+  "assetRoles": [
+    "brand.logo",
+    "icon.feature-glyph",
+    "icon.generic-channel",
+    "icon.third-party-channel",
+    "media.loop-video-square",
+    "media.product-screencast",
+    "meta.favicon",
+    "meta.og-image",
+    "shader.hero-flower",
+    "shader.revealer-dissolve"
+  ]
+}

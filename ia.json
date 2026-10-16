@@ -1,0 +1,166 @@
+{
+  "$comment": "Derived from the clone's src/App.jsx mount order and src/components/*, cross-checked against CLONE_SPEC.md §1 (Playwright recon of the live site). The live site has a single route; nav links are in-page anchors and every footer link is external.",
+  "meta": {
+    "source": "https://www.flshfrm.com/ (local React + Vite clone in this folder)",
+    "status": "measured-from-live-site",
+    "productionApproved": false,
+    "totalRoutes": 1,
+    "totalTemplates": 1
+  },
+  "categories": {
+    "SHELL": "Page chrome and overlays that are not part of the scrolling story: intro loader, navigation, menus, scroller UI, popup, toasts, footer.",
+    "HERO": "The pinned above-the-fold opening block.",
+    "STORY": "Explanatory narrative sections introducing what the product is and why it exists.",
+    "INTEGRATION": "How-to and connectivity sections: integration steps, screencast, supported messengers.",
+    "VALUE": "Benefit and problem/solution sections aimed at developers and site owners.",
+    "ROADMAP": "Release timeline content.",
+    "SUPPORT": "Answers to common questions."
+  },
+  "sections": {
+    "shell.intro-loader": {
+      "category": "SHELL",
+      "description": "Full-screen intro: a grid of brand-word items that slides in by column, splits by line, then zooms through the centre word (~6s) before the page reveals.",
+      "scope": "Shown once per load on the 1 route, before any other section animates.",
+      "implementedBy": "src/components/Loader.jsx + src/anim/loader.js"
+    },
+    "shell.app-loader": {
+      "category": "SHELL",
+      "description": "Small fixed circular spinner shown while a form submission is pending.",
+      "scope": "Available on the 1 route; visible only during a form submit.",
+      "implementedBy": "src/components/AppLoader.jsx"
+    },
+    "shell.navbar": {
+      "category": "SHELL",
+      "description": "Glass top bar with difference blend: brand mark, anchor links (#why #integration #benefits #roadmap #faq) and a 'Join the beta' action; hides on scroll down, reveals near the top.",
+      "scope": "Present on the 1 route at all widths; links collapse into the burger at ≤1060px.",
+      "implementedBy": "src/components/Navbar.jsx"
+    },
+    "shell.mobile-menu": {
+      "category": "SHELL",
+      "description": "Burger button plus small dropdown panel listing the same anchor links as the navbar.",
+      "scope": "Rendered on the 1 route only at ≤1060px.",
+      "implementedBy": "src/components/MobileMenu.jsx (inside Navbar.jsx)"
+    },
+    "shell.scrollbar": {
+      "category": "SHELL",
+      "description": "Custom draggable scrollbar thumb driven by the custom smooth scroller.",
+      "scope": "Desktop only (>1060px) on the 1 route; native scrolling below that.",
+      "implementedBy": "src/anim/smoothScroll.js"
+    },
+    "shell.beta-popup": {
+      "category": "SHELL",
+      "description": "Modal 'Join the beta' form (name + email) with backdrop and close button; opened from the navbar and CTA buttons.",
+      "scope": "Overlay on the 1 route, opened on demand.",
+      "implementedBy": "src/components/BetaPopup.jsx"
+    },
+    "shell.toasts": {
+      "category": "SHELL",
+      "description": "Stacked success/error notifications with a 5s progress bar and close button.",
+      "scope": "Overlay on the 1 route, shown after a form submit.",
+      "implementedBy": "src/components/Toasts.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Footer with physics-driven draggable letters spelling 'STAY IN TOUCH', contact links, an email signup form and legal links (all external).",
+      "scope": "Closes the 1 route.",
+      "implementedBy": "src/components/Footer.jsx + src/anim/fallingLetters.js"
+    },
+    "hero.home": {
+      "category": "HERO",
+      "description": "Pinned hero (200vh): split-text headline with italic accent words, intro paragraph, 'Try now' button, spinning globe icon and a WebGL flower.",
+      "scope": "Opens the 1 route.",
+      "implementedBy": "src/components/Hero.jsx + src/anim/gl.js"
+    },
+    "story.meaning": {
+      "category": "STORY",
+      "description": "'What does it mean Flashform?' heading and paragraph beside a looping video (1.mp4, lighten blend).",
+      "scope": "Appears once, on the 1 route.",
+      "implementedBy": "src/components/Meaning.jsx"
+    },
+    "story.purpose": {
+      "category": "STORY",
+      "description": "Green rounded scaling panel 'Purpose of using Flashform': problem/solution text that scrolls inside a pinned card, plus 6 messenger icons.",
+      "scope": "Appears once, on the 1 route.",
+      "implementedBy": "src/components/Purpose.jsx (uses RoundedSection.jsx)"
+    },
+    "story.why": {
+      "category": "STORY",
+      "description": "#why — 'Designed to make life {easier}' heading and paragraph beside a looping video (2.mp4).",
+      "scope": "Appears once, on the 1 route; target of the #why nav anchor.",
+      "implementedBy": "src/components/Why.jsx"
+    },
+    "integration.steps": {
+      "category": "INTEGRATION",
+      "description": "#integration — giant horizontally scrolling headline with per-letter rise, four numbered steps, then the screencast video that scales in and dissolves to black via a WebGL noise shader.",
+      "scope": "Appears once, on the 1 route; target of the #integration nav anchor.",
+      "implementedBy": "src/components/Integration.jsx + src/anim/scrollFx.js + src/anim/gl.js"
+    },
+    "integration.messengers": {
+      "category": "INTEGRATION",
+      "description": "'Integration of your form with different {messengers}' heading with a large arrow and a 'Get a beta' button.",
+      "scope": "Appears once, on the 1 route.",
+      "implementedBy": "src/components/Messengers.jsx"
+    },
+    "value.benefits": {
+      "category": "VALUE",
+      "description": "#benefits — tilted 'A few important benefits' ticker marquee that flips direction with scroll, plus 6 offset green cards that scale in.",
+      "scope": "Appears once, on the 1 route; target of the #benefits nav anchor.",
+      "implementedBy": "src/components/Benefits.jsx"
+    },
+    "value.relief": {
+      "category": "VALUE",
+      "description": "Two-column block on how the product helps developers and site owners ('For developers' / 'For Site owners').",
+      "scope": "Appears once, on the 1 route.",
+      "implementedBy": "src/components/Relief.jsx"
+    },
+    "value.problems": {
+      "category": "VALUE",
+      "description": "Second green rounded scaling panel 'Problems that we solve' listing 3 items.",
+      "scope": "Appears once, on the 1 route.",
+      "implementedBy": "src/components/Problems.jsx (uses RoundedSection.jsx)"
+    },
+    "roadmap.timeline": {
+      "category": "ROADMAP",
+      "description": "#roadmap — large date mark and a horizontally scrolling drawn curve with 3 milestones that reveal as the curve passes them.",
+      "scope": "On the 1 route at >1060px only (display:none at ≤1060px); target of the #roadmap nav anchor.",
+      "implementedBy": "src/components/Roadmap.jsx + src/anim/scrollFx.js"
+    },
+    "support.faq": {
+      "category": "SUPPORT",
+      "description": "#faq — 'FAQ' heading and a 4-item accordion; items open independently with a rotating arrow.",
+      "scope": "Appears once, on the 1 route; target of the #faq nav anchor.",
+      "implementedBy": "src/components/Faq.jsx"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Home (single-page site)",
+      "routeCount": 1,
+      "routes": ["/"],
+      "routePattern": null,
+      "chrome": "full",
+      "sections": [
+        "shell.intro-loader",
+        "shell.app-loader",
+        "shell.navbar",
+        "shell.mobile-menu",
+        "hero.home",
+        "story.meaning",
+        "story.purpose",
+        "story.why",
+        "integration.steps",
+        "integration.messengers",
+        "value.benefits",
+        "value.relief",
+        "value.problems",
+        "roadmap.timeline",
+        "support.faq",
+        "shell.footer",
+        "shell.beta-popup",
+        "shell.scrollbar",
+        "shell.toasts"
+      ]
+    }
+  ]
+}

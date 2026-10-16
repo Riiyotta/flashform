@@ -1,0 +1,111 @@
+{
+  "id": "statement.centered-cta",
+  "kind": "section",
+  "category": "statement",
+  "purpose": "Centred uppercase pitch with the large down-arrow and a secondary \"Get a beta\" CTA. No reveal animation.",
+  "implementedBy": [
+    "src/components/Messengers.jsx"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.statement.centered-cta",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "paragraph",
+        "cta"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/runs"
+        },
+        "paragraph": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cta": {
+          "$ref": "#/definitions/cta"
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "heading",
+        "observedMaxWords": 7,
+        "maxWords": 9
+      },
+      {
+        "path": "paragraph",
+        "observedMaxWords": 53,
+        "maxWords": 64
+      },
+      {
+        "path": "cta.label",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      }
+    ]
+  },
+  "assetRoles": [],
+  "motion": {
+    "allowedPatterns": [],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "paragraph max-width 70%",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:594",
+          "expect": "@media (max-width: 1060px){.home-6__text{max-width:70%;margin-top:36px}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "768",
+      "changes": "paragraph full width",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:596",
+          "expect": "@media (max-width: 768px){.home-6__text{max-width:100%}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Heading is uppercase via CSS; the italic run has text-transform:none.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Messengers.jsx:11",
+      "expect": "Integration of your form with different "
+    },
+    {
+      "cite": "src/components/Messengers.jsx:14",
+      "expect": "Most often, the data that a potential client leaves in the form are sent to email or to the CRM system. But the fact is that a small business does not always use a CRM system, and also does not always have a manager who monitors customer requests via email in real time"
+    },
+    {
+      "cite": "src/components/Messengers.jsx:16",
+      "expect": "Get a beta"
+    },
+    {
+      "cite": "src/components/Messengers.jsx:11",
+      "expect": "{messengers}"
+    },
+    {
+      "cite": "Flashfom_ the fastest and easiest way to connect with your customer.html:10",
+      "expect": "different <span class=\"h1 h1--i\"> {messengers} <"
+    },
+    {
+      "cite": "src/components/Messengers.jsx:5",
+      "expect": "(no reveal animation in this section)"
+    }
+  ]
+}

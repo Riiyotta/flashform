@@ -1,0 +1,15 @@
+{
+  "id": "webgl-flower",
+  "kind": "component",
+  "purpose": "OGL butterfly flower plane anchored to .home-1__gl (2x scene scale).",
+  "implementedBy": [
+    "src/anim/gl.js"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/anim/gl.js:133",
+      "expect": "class Butterfly extends Figure"
+    }
+  ]
+}

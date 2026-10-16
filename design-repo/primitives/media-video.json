@@ -1,0 +1,25 @@
+{
+  "id": "media-video",
+  "kind": "primitive",
+  "purpose": "Autoplay muted looping inline video; square art videos use mix-blend-mode:lighten on black.",
+  "implementedBy": [
+    "src/components/Meaning.jsx",
+    "src/components/Why.jsx",
+    "src/components/Integration.jsx"
+  ],
+  "props": {
+    "asset": "media ref"
+  },
+  "states": [
+    "playing"
+  ],
+  "tokens": [
+    "color.black"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Meaning.jsx:8",
+      "expect": "autoPlay muted loop playsInline"
+    }
+  ]
+}

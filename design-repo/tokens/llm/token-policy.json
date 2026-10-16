@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "resolutionOrder": [
+    "00-foundation",
+    "themes/flashform-dark",
+    "10-semantic",
+    "20-component",
+    "30-layout"
+  ],
+  "enforced": {
+    "pageSpecTokenOverrides": "NONE EXIST. The PageSpec schema has no style or token field: styling is owned entirely by section/component contracts. There is therefore nothing token-related to validate at the PageSpec layer (MASTER-GUIDE 3.21); token drift is checked at the catalog layer by verify_all.py."
+  },
+  "convention": {
+    "referenceSemanticFirst": "Contracts reference color-roles.* / typography-roles.* before foundation values.",
+    "noNewColours": "No colour outside tokens/00-foundation/color.json (the measured histogram contains nothing else).",
+    "shaderColoursAreNotUi": "color.shader.* are WebGL uniforms only."
+  },
+  "rawValueRestrictions": {
+    "breakpoint": "reference-only",
+    "color": "reference-only",
+    "elevation": "reference-only",
+    "icon-size": "reference-only",
+    "motion": "reference-only",
+    "radius": "reference-only",
+    "spacing": "reference-only",
+    "typography": "reference-only"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "subscribe-form",
+  "kind": "component",
+  "purpose": "Single email field with an inline \"[ Join ]\" button (footer).",
+  "implementedBy": [
+    "src/components/Footer.jsx"
+  ],
+  "composes": [
+    "input-field",
+    "button"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Footer.jsx:14",
+      "expect": "function FooterForm()"
+    }
+  ]
+}

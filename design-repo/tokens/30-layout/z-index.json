@@ -1,0 +1,100 @@
+{
+  "layout.z-index": {
+    "over-revealer": {
+      "$value": 3,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:107",
+            "expect": ".over-revealer{position:relative;z-index:3"
+          }
+        ]
+      }
+    },
+    "revealer-canvas": {
+      "$value": 4,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:452",
+            "expect": "#gl-2{position:absolute;top:0;left:-5.2083333333vw;z-index:4"
+          }
+        ]
+      }
+    },
+    "navbar": {
+      "$value": 100,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:151",
+            "expect": "left:0;right:0;z-index:100"
+          }
+        ]
+      }
+    },
+    "loader": {
+      "$value": 1000,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:126",
+            "expect": "height:var(--vh);z-index:1000"
+          }
+        ]
+      }
+    },
+    "popup": {
+      "$value": 5000,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:355",
+            "expect": "right:0;z-index:5000"
+          }
+        ]
+      }
+    },
+    "toast": {
+      "$value": 10000,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:389",
+            "expect": ".toast-container{position:fixed;z-index:10000"
+          }
+        ]
+      }
+    },
+    "app-loader": {
+      "$value": 10001,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:133",
+            "expect": "transform:translate(-50%);z-index:10001"
+          }
+        ]
+      }
+    },
+    "scrollbar": {
+      "$value": 10000000,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:114",
+            "expect": "z-index:10000000!important"
+          }
+        ]
+      }
+    }
+  }
+}

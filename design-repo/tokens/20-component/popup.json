@@ -1,0 +1,42 @@
+{
+  "component.popup": {
+    "max-width": {
+      "$value": "44.2708333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:359",
+            "expect": "max-width:44.2708333333vw;width:100%"
+          }
+        ],
+        "mobile": "80% / 85% (<=768) / 90% (<=460)"
+      }
+    },
+    "padding": {
+      "$value": "{spacing.xl}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:359",
+            "expect": "color:var(--black);padding:2.0833333333vw;border-radius:12px"
+          }
+        ],
+        "mobile": "20px 16px"
+      }
+    },
+    "enter-offset": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:371",
+            "expect": ".popup-enter-from .popup__window{transform:translateY(60px)}"
+          }
+        ]
+      }
+    }
+  }
+}

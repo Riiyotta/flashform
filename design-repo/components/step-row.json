@@ -1,0 +1,17 @@
+{
+  "id": "step-row",
+  "kind": "component",
+  "purpose": "Ruled row: \"Step n\" label + uppercase step text, each rising in.",
+  "implementedBy": [
+    "src/components/Integration.jsx"
+  ],
+  "composes": [
+    "divider-line"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Integration.jsx:26",
+      "expect": "home-5-li home-5__li"
+    }
+  ]
+}

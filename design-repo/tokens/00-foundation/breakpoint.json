@@ -1,0 +1,95 @@
+{
+  "breakpoint": {
+    "$description": "Media-query breakpoints (CLONE_SPEC 0.1). `desktop` is the single layout switch; the rest are local overrides.",
+    "wide": {
+      "$value": 1366,
+      "$type": "number",
+      "$description": "Only changes the rounded-section margin.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:212",
+            "expect": "@media (max-width: 1366px){.rounded-section{--margin: .42vw}"
+          }
+        ]
+      }
+    },
+    "desktop": {
+      "$value": 1060,
+      "$type": "number",
+      "$description": "Desktop/mobile switch: smooth scroller, horizontal scroll, mobile sizes.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:39",
+            "expect": "@media (max-width: 1060px){.h1{font-size:56px}"
+          },
+          {
+            "cite": "tailwind.config.js:51",
+            "expect": "desk: '1060px'"
+          }
+        ]
+      }
+    },
+    "stack": {
+      "$value": 960,
+      "$type": "number",
+      "$description": "2-column sections stack; SectionScale/CardsScale/SplitHeading JS disabled.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:464",
+            "expect": "@media (max-width: 960px){.home-2__container{flex-direction:column-reverse"
+          },
+          {
+            "cite": "src/anim/scrollFx.js:17",
+            "expect": "export function sectionScale(els, breakpoint = 960)"
+          }
+        ]
+      }
+    },
+    "tablet": {
+      "$value": 768,
+      "$type": "number",
+      "$description": "Container 20px; hero right column hidden; page reloads on resize above this width.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:52",
+            "expect": "@media (max-width: 768px){.container{padding-left:20px"
+          },
+          {
+            "cite": "src/anim/index.js:43",
+            "expect": "if (window.innerWidth > 768) window.location.reload()"
+          }
+        ]
+      }
+    },
+    "phone": {
+      "$value": 460,
+      "$type": "number",
+      "$description": "Grid becomes 4 columns; footer letters 50vh.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:59",
+            "expect": "@media (max-width: 460px){.grid{-moz-column-gap:20px;column-gap:20px;grid-template-columns:repeat(4,1fr)}"
+          }
+        ]
+      }
+    },
+    "landscape-phone": {
+      "$value": "(orientation: landscape) and (max-width: 960px)",
+      "$type": "string",
+      "$description": "Hero un-sticks.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:402",
+            "expect": "@media screen and (orientation: landscape) and (max-width: 960px){.home-1-sticky-wrapper"
+          }
+        ]
+      }
+    }
+  }
+}

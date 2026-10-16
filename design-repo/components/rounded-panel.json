@@ -1,0 +1,17 @@
+{
+  "id": "rounded-panel",
+  "kind": "component",
+  "purpose": "Accent rounded card (sticky + scale-in) with a 5/6-column heading/body split.",
+  "implementedBy": [
+    "src/components/RoundedSection.jsx"
+  ],
+  "composes": [
+    "display-heading"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/RoundedSection.jsx:4",
+      "expect": "export default function RoundedSection("
+    }
+  ]
+}

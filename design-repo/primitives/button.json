@@ -1,0 +1,30 @@
+{
+  "id": "button",
+  "kind": "primitive",
+  "purpose": "Bracketed uppercase CTA \"[ label ]\" with a 1px underline and a hover marquee of the label x4.",
+  "implementedBy": [
+    "src/components/Button.jsx"
+  ],
+  "props": {
+    "label": "string",
+    "as": "'button' | 'a'"
+  },
+  "states": [
+    "rest",
+    "hover (label slides up, marquee rises, underline swings away)"
+  ],
+  "tokens": [
+    "component.button",
+    "motion.keyframes.ticker"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Button.jsx:11",
+      "expect": "`${label} ${label} ${label} ${label}`"
+    },
+    {
+      "cite": "src/index.css:195",
+      "expect": ".button:hover .button__text{transform:translateY(-110%)}"
+    }
+  ]
+}

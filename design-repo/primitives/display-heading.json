@@ -1,0 +1,29 @@
+{
+  "id": "display-heading",
+  "kind": "primitive",
+  "purpose": "Aeonik 400 heading at 7.8125vw (56px mobile) composed of runs; italic runs switch to Recife 350.",
+  "implementedBy": [
+    "src/index.css"
+  ],
+  "props": {
+    "runs": "runs"
+  },
+  "states": [
+    "static",
+    "char reveal (data-a-h)"
+  ],
+  "tokens": [
+    "typography-roles.display",
+    "typography-roles.display-italic"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/index.css:38",
+      "expect": ".h1{font-family:Aeonik"
+    },
+    {
+      "cite": "src/index.css:41",
+      "expect": ".h1--i{font-family:Recife"
+    }
+  ]
+}

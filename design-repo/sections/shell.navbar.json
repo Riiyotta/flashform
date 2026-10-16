@@ -1,0 +1,139 @@
+{
+  "id": "shell.navbar",
+  "kind": "section",
+  "category": "shell",
+  "purpose": "Persistent brand + in-page anchor navigation and the always-available \"Join the beta\" conversion entry point.",
+  "implementedBy": [
+    "src/components/Navbar.jsx",
+    "src/components/MobileMenu.jsx"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "mustBeFirst": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.shell.navbar",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logo",
+        "links",
+        "cta"
+      ],
+      "properties": {
+        "logo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "brand.logo"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        },
+        "links": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/navLink"
+          }
+        },
+        "cta": {
+          "$ref": "#/definitions/cta"
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "links[].label",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      },
+      {
+        "path": "cta.label",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      }
+    ]
+  },
+  "assetRoles": [
+    "brand.logo"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "navbar-hide"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "mix-blend-mode:difference only >=1060; <=1060 links collapse into the burger panel (accent bg, radius 10px, right-aligned); padding 20px; logo 108x20",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:163",
+          "expect": "max-width: 1060px){.navbar__nav{transform:translateY(60px)"
+        }
+      ]
+    },
+    {
+      "maxWidth": "1060",
+      "changes": "\"Roadmap\" link hidden (its section is display:none)",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:169",
+          "expect": "@media (max-width: 1060px){.navbar__item--mob-hidden{display:none}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Logo link has aria-label; burger has aria-label \"Navigation button\". The original removes all focus outlines (reset sets outline:none); a new build should restore visible focus.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Navbar.jsx:8",
+      "expect": "Why flashform"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:9",
+      "expect": "Integration"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:10",
+      "expect": "Benefits"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:11",
+      "expect": "Roadmap"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:12",
+      "expect": "FAQ"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:42",
+      "expect": "Join the beta"
+    },
+    {
+      "cite": "src/components/Navbar.jsx:11",
+      "expect": "{ href: '#roadmap', label: 'Roadmap', mobHidden: true }"
+    },
+    {
+      "cite": "src/index.css:154",
+      "expect": ".navbar{mix-blend-mode:difference}"
+    }
+  ]
+}

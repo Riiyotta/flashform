@@ -1,0 +1,15 @@
+{
+  "id": "benefit-card",
+  "kind": "component",
+  "purpose": "Accent card (radius 0 20px 20px) with body text on top and title at the bottom; scales in from a stretched offset.",
+  "implementedBy": [
+    "src/components/Benefits.jsx"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Benefits.jsx:35",
+      "expect": "data-cards-scale=\"\""
+    }
+  ]
+}

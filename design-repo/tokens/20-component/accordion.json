@@ -1,0 +1,41 @@
+{
+  "component.accordion": {
+    "row-padding": {
+      "$value": "1.4583333333vw 0",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:259",
+            "expect": ".accordion__cols{padding-top:1.4583333333vw;padding-bottom:1.4583333333vw"
+          }
+        ],
+        "mobile": "20px 0"
+      }
+    },
+    "wash-opacity": {
+      "$value": 0.2,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:271",
+            "expect": "opacity:.2;border-radius:50% 50% 0 0"
+          }
+        ]
+      }
+    },
+    "answer-offset": {
+      "$value": "38.0208333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:273",
+            "expect": ".accordion__text{margin-left:38.0208333333vw;width:39.4791666667vw"
+          }
+        ]
+      }
+    }
+  }
+}

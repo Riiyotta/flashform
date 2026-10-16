@@ -1,0 +1,62 @@
+{
+  "$description": "The only theme. The original has no light mode; this resolves semantic colour roles to foundation values.",
+  "id": "flashform-dark",
+  "resolves": {
+    "color-roles.surface.page": {
+      "ref": "{color.black}",
+      "value": "#111606"
+    },
+    "color-roles.surface.accent-panel": {
+      "ref": "{color.accent}",
+      "value": "#b1dd40"
+    },
+    "color-roles.surface.nav": {
+      "ref": "{color.nav-glass}",
+      "value": "#ffffff05"
+    },
+    "color-roles.surface.ticker": {
+      "ref": "{color.ticker-band}",
+      "value": "#ffffff0d"
+    },
+    "color-roles.surface.backdrop": {
+      "ref": "{color.backdrop}",
+      "value": "#000000cc"
+    },
+    "color-roles.surface.danger": {
+      "ref": "{color.red}",
+      "value": "#e73737"
+    },
+    "color-roles.surface.spinner": {
+      "ref": "{color.white}",
+      "value": "#ffffff"
+    },
+    "color-roles.text.default": {
+      "ref": "{color.accent}",
+      "value": "#b1dd40"
+    },
+    "color-roles.text.on-accent": {
+      "ref": "{color.black}",
+      "value": "#111606"
+    },
+    "color-roles.text.error": {
+      "ref": "{color.red}",
+      "value": "#e73737"
+    },
+    "color-roles.text.toast": {
+      "ref": "{color.white}",
+      "value": "#ffffff"
+    },
+    "color-roles.line.default": {
+      "ref": "{color.accent}",
+      "value": "#b1dd40"
+    },
+    "color-roles.line.on-accent": {
+      "ref": "{color.black}",
+      "value": "#111606"
+    },
+    "color-roles.line.footer": {
+      "ref": "{color.accent}",
+      "value": "#b1dd40"
+    }
+  }
+}

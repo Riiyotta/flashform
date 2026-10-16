@@ -1,0 +1,218 @@
+{
+  "color": {
+    "$description": "Every colour in the original UI. Source of truth: src/index.css :root (single line, verbatim from the original). The 1440 computed-style histogram (extraction/evidence/color-type-histogram.json) contains only these values. No gradients exist (CLONE_SPEC 0.2).",
+    "black": {
+      "$value": "#111606",
+      "$type": "color",
+      "$description": "Page background; text on accent panels.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--black: #111606"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:9",
+            "expect": "\"rgb(17, 22, 6)\""
+          }
+        ]
+      }
+    },
+    "accent": {
+      "$value": "#b1dd40",
+      "$type": "color",
+      "$description": "Default text colour, lines, cards, rounded panels.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--accent: #b1dd40"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:8",
+            "expect": "\"rgb(177, 221, 64)\""
+          }
+        ]
+      }
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "App-loader circle; toast text; input ::selection text.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--white: #ffffff"
+          }
+        ]
+      }
+    },
+    "red": {
+      "$value": "#e73737",
+      "$type": "color",
+      "$description": "Required asterisk, input error, danger toast.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--red: #e73737"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:11",
+            "expect": "\"rgb(231, 55, 55)\""
+          }
+        ]
+      }
+    },
+    "nav-glass": {
+      "$value": "#ffffff05",
+      "$type": "color",
+      "$description": ".navbar__content background, rgba(255,255,255,.02).",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--nav-glass: #ffffff05"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:17",
+            "expect": "\"rgba(255, 255, 255, 0.02)\""
+          }
+        ]
+      }
+    },
+    "ticker-band": {
+      "$value": "#ffffff0d",
+      "$type": "color",
+      "$description": ".ticker band background, rgba(255,255,255,.05).",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--ticker-band: #ffffff0d"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:18",
+            "expect": "\"rgba(255, 255, 255, 0.05)\""
+          }
+        ]
+      }
+    },
+    "backdrop": {
+      "$value": "#000000cc",
+      "$type": "color",
+      "$description": "Popup backdrop #000c = rgba(0,0,0,.8).",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--backdrop: #000c"
+          }
+        ]
+      }
+    },
+    "scroll-thumb": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Idle custom-scrollbar thumb.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--scroll-thumb: #6b6b6b"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:19",
+            "expect": "\"rgb(107, 107, 107)\""
+          }
+        ]
+      }
+    },
+    "popup-close": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Popup close icon, used at fill-opacity .9.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:33",
+            "expect": "--popup-close: #333333"
+          },
+          {
+            "cite": "src/components/BetaPopup.jsx:50",
+            "expect": "fill=\"#333333\" fillOpacity=\"0.9\""
+          }
+        ]
+      }
+    },
+    "glow": {
+      "$value": "#b1dd4029",
+      "$type": "color",
+      "$description": "Accent at alpha .16; only used inside the over-revealer shadow.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:107",
+            "expect": "box-shadow:0 -16px 44px #b1dd4029"
+          }
+        ]
+      }
+    },
+    "shader": {
+      "$description": "WebGL uniform colours (not CSS). Never use as UI colours.",
+      "flower-1": {
+        "$value": "#a5683e",
+        "$type": "color",
+        "$description": "Butterfly u_color1 = rgb(165,104,62).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:146",
+              "expect": "u_color1: { value: new Vec3(165, 104, 62) }"
+            }
+          ]
+        }
+      },
+      "flower-2": {
+        "$value": "#45724e",
+        "$type": "color",
+        "$description": "Butterfly u_color2 = rgb(69,114,78).",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:147",
+              "expect": "u_color2: { value: new Vec3(69, 114, 78) }"
+            }
+          ]
+        }
+      },
+      "revealer-1": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Revealer uColor1.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:201",
+              "expect": "uColor1: { value: new Color('#FFFFFF') }"
+            }
+          ]
+        }
+      },
+      "revealer-2": {
+        "$value": "#000000",
+        "$type": "color",
+        "$description": "Revealer uColor2.",
+        "$extensions": {
+          "measuredFrom": [
+            {
+              "cite": "src/anim/gl.js:201",
+              "expect": "uColor2: { value: new Color('#000000') }"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

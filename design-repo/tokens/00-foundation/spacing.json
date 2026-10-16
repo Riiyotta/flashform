@@ -1,0 +1,187 @@
+{
+  "spacing": {
+    "$description": "Spacing steps actually used for margin/padding/gap/offsets in src/index.css (vw on 1440). usageCount = occurrences in spacing properties of the ported original stylesheet (computed at build time). Steps used once are kept only where a component token references them.",
+    "3xs": {
+      "$value": ".5208333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:226",
+            "expect": ".ticker{bottom:0;width:100%;overflow:hidden;background-color:#ffffff0d;padding-top:.5208333333vw"
+          }
+        ],
+        "px1440": 7.5,
+        "usageCount": 3
+      }
+    },
+    "2xs": {
+      "$value": ".8333333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:564",
+            "expect": ".home-5-li__content{padding-top:.8333333333vw"
+          }
+        ],
+        "px1440": 12,
+        "usageCount": 6
+      }
+    },
+    "xs": {
+      "$value": "1.0416666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:151",
+            "expect": ".navbar{position:absolute;top:1.0416666667vw"
+          }
+        ],
+        "px1440": 15,
+        "usageCount": 6
+      }
+    },
+    "sm": {
+      "$value": "1.25vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:433",
+            "expect": "padding-top:1.25vw}"
+          }
+        ],
+        "px1440": 18,
+        "usageCount": 5
+      }
+    },
+    "md": {
+      "$value": "1.4583333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:506",
+            "expect": ".home-3-item__text+.home-3-item__text{margin-top:1.4583333333vw"
+          }
+        ],
+        "px1440": 21,
+        "usageCount": 7
+      }
+    },
+    "lg": {
+      "$value": "1.6666666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:494",
+            "expect": "gap:1.6666666667vw;margin-bottom:2.0833333333vw"
+          }
+        ],
+        "px1440": 24,
+        "usageCount": 4
+      }
+    },
+    "xl": {
+      "$value": "2.0833333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:166",
+            "expect": ".navbar__ul{display:flex;align-items:center;gap:2.0833333333vw"
+          }
+        ],
+        "px1440": 30,
+        "usageCount": 10
+      }
+    },
+    "2xl": {
+      "$value": "2.2916666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:482",
+            "expect": ".home-2__text{max-width:29.1666666667vw;margin-top:2.2916666667vw"
+          }
+        ],
+        "px1440": 33,
+        "usageCount": 2
+      }
+    },
+    "3xl": {
+      "$value": "2.7083333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:275",
+            "expect": ".form{position:relative;margin-top:2.7083333333vw"
+          }
+        ],
+        "px1440": 39,
+        "usageCount": 2
+      }
+    },
+    "4xl": {
+      "$value": "3.125vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:598",
+            "expect": ".home-6__btn{margin-top:3.125vw"
+          }
+        ],
+        "px1440": 45,
+        "usageCount": 5
+      }
+    },
+    "5xl": {
+      "$value": "5.2083333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:49",
+            "expect": ".container{width:100%;position:relative;padding-left:5.2083333333vw"
+          }
+        ],
+        "px1440": 75,
+        "usageCount": 8
+      }
+    },
+    "6xl": {
+      "$value": "8.3333333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:584",
+            "expect": ".home-6{position:relative;z-index:3;padding-top:8.3333333333vw"
+          }
+        ],
+        "px1440": 120,
+        "usageCount": 2
+      }
+    },
+    "section": {
+      "$value": "15.625vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:61",
+            "expect": ".section{padding-top:15.625vw"
+          }
+        ],
+        "px1440": 225,
+        "usageCount": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "version": "1.0.0",
+  "$description": "Citation ledger for build-time evidence OUTSIDE this folder (the sibling clone project) plus evidence copied INSIDE it (@repo/extraction/evidence). Paths without @repo/ are relative to the clone project root (the parent of design-repo/). verify_all.py resolves every citation and checks that `expect` appears in the cited line range; when the sibling project is absent it WARNS and skips external citations instead of failing.",
+  "sourceProject": {
+    "name": "Flashform clone",
+    "original": "https://www.flshfrm.com/",
+    "devServer": "http://localhost:5181 (Vite)",
+    "framework": {
+      "react": "^18.3.1",
+      "vite": "^5.4.10",
+      "tailwindcss": "^3.4.14",
+      "gsap": "^3.10.4",
+      "matter-js": "^0.18.0",
+      "ogl": "^1.0.11",
+      "split-type": "^0.3.4"
+    },
+    "frameworkCitation": [
+      {
+        "cite": "package.json:15",
+        "expect": "\"react\": "
+      },
+      {
+        "cite": "package.json:12",
+        "expect": "\"gsap\": "
+      }
+    ],
+    "vcs": "none - the project folder is not a git repository, so design-repo.zip can never be committed alongside the live folder."
+  },
+  "policies": {
+    "maxWords": "maxWords = observedMaxWords + max(1, ceil(observedMaxWords * 0.2)). observedMaxWords is the longest instance of that field in the real page (example.pagespec.json). A design decision, applied uniformly; not a measured value.",
+    "evidencePriority": "QA Playwright measurements of the live original > reference/original-entry CSS/JS > src/ (the port) > CLONE_SPEC.md prose."
+  },
+  "values": [
+    {
+      "id": "loader.original-duration",
+      "value": "~6.07s from first paint (removed at 6368ms after commit; first observed at 296ms)",
+      "cites": [
+        {
+          "cite": "@repo/extraction/evidence/qa-orig-1440.json:7",
+          "expect": "\"loaderRemovedMs\": 6368"
+        },
+        {
+          "cite": "@repo/extraction/evidence/qa-orig-1440.json:10",
+          "expect": "\"t\": 296"
+        }
+      ],
+      "supersedes": [
+        {
+          "cite": "CLONE_SPEC.md:457",
+          "expect": "loader removed at ~5.7s"
+        }
+      ]
+    },
+    {
+      "id": "loader.col1-hold",
+      "value": "column-1 slide holds until ~2.5s",
+      "evidenceLevel": "reported-not-re-verified",
+      "note": "Reported by the QA pass that dispatched this build; no field in the copied qa JSON records it, so it is not cited as measured."
+    },
+    {
+      "id": "loader.clone-duration",
+      "value": "MOUNT_AT 800ms after navigation start + 5400ms of timeline delays = ~6.2s (changed mid-build: at build start the clone ran 5.4s from React mount with no offset)",
+      "cites": [
+        {
+          "cite": "src/anim/core.js:60",
+          "expect": "export const MOUNT_AT = 800"
+        },
+        {
+          "cite": "src/anim/loader.js:16-36",
+          "expect": "await delay(mountDelay(), signal)"
+        }
+      ]
+    },
+    {
+      "id": "ease.linear-none-fallback",
+      "value": "ease 'linear.none' is unregistered in GSAP and falls back to power1.out",
+      "cites": [
+        {
+          "cite": "src/anim/scrollFx.js:14",
+          "expect": "const ORIGINAL_EASE = 'linear.none'"
+        },
+        {
+          "cite": "src/anim/gl.js:211",
+          "expect": "{ value: 1, ease: 'linear.none' }"
+        }
+      ],
+      "supersedes": [
+        {
+          "cite": "CLONE_SPEC.md:476",
+          "expect": "Tweens to scale 1 and opacity 1 with ease linear"
+        }
+      ]
+    },
+    {
+      "id": "hero.u_mousePosition",
+      "value": "effectively always (0,0): the inertia objects are overwritten with plain numbers, so Vec2(x.value, y.value) is (0,0) every frame (3 petals, x1.5 brightness)",
+      "cites": [
+        {
+          "cite": "src/anim/gl.js:142",
+          "expect": "u_mousePosition: in the original the inertia objects are overwritten"
+        }
+      ],
+      "supersedes": [
+        {
+          "cite": "CLONE_SPEC.md:503",
+          "expect": "`u_mousePosition`: normalized mouse position."
+        }
+      ]
+    },
+    {
+      "id": "scrolltriggers.staged",
+      "value": "ScrollTriggers are created at staged times relative to page mount (initPage runs at MOUNT_AT = 800ms after navigation start): Revealer on the 2nd frame, SectionScale/CardsScale/SplitHeading/ScrollAnimations at +1000ms, FallingLetters at +2000ms",
+      "cites": [
+        {
+          "cite": "src/anim/index.js:70",
+          "expect": "await delay(1000, signal)"
+        },
+        {
+          "cite": "src/anim/index.js:79",
+          "expect": "await delay(2000, signal)"
+        },
+        {
+          "cite": "src/App.jsx:45",
+          "expect": "cleanup = initPage()"
+        }
+      ]
+    },
+    {
+      "id": "copy.braced-spacing",
+      "value": "the original renders \" {easier} \" and \" {messengers} \" with surrounding spaces inside the italic span",
+      "cites": [
+        {
+          "cite": "Flashfom_ the fastest and easiest way to connect with your customer.html:10",
+          "expect": "make life <span class=\"h1 h1--i\"> {easier} <"
+        },
+        {
+          "cite": "src/components/Why.jsx:7",
+          "expect": "{' {easier} '}"
+        }
+      ]
+    },
+    {
+      "id": "resize.reload",
+      "value": "page reloads on every resize above 768px",
+      "cites": [
+        {
+          "cite": "src/anim/index.js:43",
+          "expect": "if (window.innerWidth > 768) window.location.reload()"
+        }
+      ]
+    },
+    {
+      "id": "hero.768-no-try-now",
+      "value": "at exactly 768px no Try-now button is visible",
+      "cites": [
+        {
+          "cite": "src/index.css:437",
+          "expect": "@media (max-width: 768px){.home-1__right{display:none}"
+        },
+        {
+          "cite": "src/index.css:446",
+          "expect": "@media (min-width: 768px){.home-1__btn--mobile{display:none}"
+        }
+      ]
+    },
+    {
+      "id": "forms.stub",
+      "value": "FORM_ENDPOINT = null; submission is stubbed on purpose",
+      "cites": [
+        {
+          "cite": "src/components/submitForm.js:4",
+          "expect": "export const FORM_ENDPOINT = null"
+        }
+      ]
+    },
+    {
+      "id": "ticker.color-var-main",
+      "value": ".ticker__item sets color:var(--main), a custom property that is never defined; the colour therefore resolves through inheritance to the accent",
+      "cites": [
+        {
+          "cite": "src/index.css:230",
+          "expect": "color:var(--main);font-size:10.4166666667vw"
+        }
+      ]
+    },
+    {
+      "id": "histogram.palette",
+      "value": "1440 computed colours: accent 117, black 15, rgb(0,0,0) 1 (burger close glyph), red 1; backgrounds add #ffffff05, #ffffff0d, #6b6b6b",
+      "cites": [
+        {
+          "cite": "@repo/extraction/evidence/color-type-histogram.json:8",
+          "expect": "\"rgb(177, 221, 64)\""
+        }
+      ]
+    }
+  ]
+}

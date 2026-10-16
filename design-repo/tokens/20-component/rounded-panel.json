@@ -1,0 +1,68 @@
+{
+  "component.rounded-panel": {
+    "margin": {
+      "$value": ".62vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:211",
+            "expect": "--margin: .62vw"
+          }
+        ],
+        "wide": ".42vw",
+        "mobile": "10px",
+        "tablet": "0px"
+      }
+    },
+    "radius": {
+      "$value": "{radius.panel}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:211",
+            "expect": "--border-r: 20px"
+          }
+        ],
+        "tablet": "0"
+      }
+    },
+    "padding": {
+      "$value": "5.2083333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:225",
+            "expect": ".rounded-section__wrapper .container{padding-top:5.2083333333vw"
+          }
+        ]
+      }
+    },
+    "initial-scale": {
+      "$value": 0.88,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:82",
+            "expect": "html.js-anim [data-section-scale]{transform:scale(.88)"
+          }
+        ]
+      }
+    },
+    "margin-top": {
+      "$value": "{spacing.section}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:211",
+            "expect": "overflow:hidden;margin-top:15.625vw}"
+          }
+        ]
+      }
+    }
+  }
+}

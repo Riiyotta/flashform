@@ -1,0 +1,18 @@
+{
+  "id": "ticker-band",
+  "kind": "component",
+  "purpose": "Tilted (-2deg) translucent band with 4 copies of a 150px phrase + spinning stars, scroll-coupled.",
+  "implementedBy": [
+    "src/components/Benefits.jsx",
+    "src/anim/scrollFx.js"
+  ],
+  "composes": [
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Benefits.jsx:16",
+      "expect": "<div className=\"ticker\">"
+    }
+  ]
+}

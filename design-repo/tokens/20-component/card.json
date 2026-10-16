@@ -1,0 +1,67 @@
+{
+  "component.card": {
+    "width": {
+      "$value": "21.6145833333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": ".home-7-item{display:block;width:21.6145833333vw;height:20.3125vw"
+          }
+        ],
+        "mobile": "auto"
+      }
+    },
+    "height": {
+      "$value": "20.3125vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": ".home-7-item{display:block;width:21.6145833333vw;height:20.3125vw"
+          }
+        ],
+        "mobile": "300px"
+      }
+    },
+    "padding": {
+      "$value": "1.25vw 3.3333333333vw 1.25vw 1.25vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": "padding:1.25vw 3.3333333333vw 1.25vw 1.25vw}"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "radius": {
+      "$value": "{radius.card}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": "border-radius:0 20px 20px;padding:1.25vw"
+          }
+        ]
+      }
+    },
+    "surface": {
+      "$value": "{color-roles.surface.accent-panel}",
+      "$type": "color",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": ".home-7-item{display:block;width:21.6145833333vw;height:20.3125vw;background-color:var(--accent)"
+          }
+        ]
+      }
+    }
+  }
+}

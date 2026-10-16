@@ -1,0 +1,15 @@
+{
+  "id": "physics-letters",
+  "kind": "component",
+  "purpose": "matter-js canvas dropping STAY / IN / TOUCH letter sprites; draggable.",
+  "implementedBy": [
+    "src/anim/fallingLetters.js"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/anim/fallingLetters.js:13",
+      "expect": "export function fallingLetters(parent)"
+    }
+  ]
+}

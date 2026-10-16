@@ -1,0 +1,22 @@
+{
+  "elevation": {
+    "$description": "The only box-shadow in the UI.",
+    "revealer-glow": {
+      "$value": "0 -16px 44px #b1dd4029",
+      "$type": "shadow",
+      "$description": "Top-edge glow of the .over-revealer panels.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:107",
+            "expect": "box-shadow:0 -16px 44px #b1dd4029"
+          },
+          {
+            "cite": "tailwind.config.js:44",
+            "expect": "revealer: '0 -16px 44px #b1dd4029'"
+          }
+        ]
+      }
+    }
+  }
+}

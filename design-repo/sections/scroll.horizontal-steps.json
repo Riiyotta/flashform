@@ -1,0 +1,166 @@
+{
+  "id": "scroll.horizontal-steps",
+  "kind": "section",
+  "category": "scroll-stage",
+  "purpose": "The integration story: a giant one-line headline scrolled sideways, four numbered steps, then the product screencast dissolving into black.",
+  "implementedBy": [
+    "src/components/Integration.jsx",
+    "src/anim/scrollFx.js",
+    "src/anim/gl.js"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.scroll.horizontal-steps",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "headline",
+        "steps",
+        "screencast",
+        "revealer"
+      ],
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "screencast": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "media.product-screencast"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        },
+        "revealer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "shader.revealer-dissolve"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "headline",
+        "observedMaxWords": 8,
+        "maxWords": 10
+      },
+      {
+        "path": "steps[]",
+        "observedMaxWords": 11,
+        "maxWords": 14
+      }
+    ]
+  },
+  "assetRoles": [
+    "media.product-screencast",
+    "shader.revealer-dissolve"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "horizontal-scroll",
+      "split-heading-scrub",
+      "reveal-on-view",
+      "section-scale",
+      "webgl-revealer"
+    ],
+    "reducedMotionFallback": "native-vertical-flow",
+    "revealTargets": [
+      "line",
+      "rise"
+    ],
+    "inViewThresholds": [
+      0.9
+    ]
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "no horizontal scroll: headline in normal flow at 56px and wraps; steps stack label above text; screencast full width, radius 10px, opacity 1, no scale",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:556",
+          "expect": "@media (max-width: 1060px){.home-5__h{margin-left:32px}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "460",
+      "changes": "headline margin-left 20px",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:558",
+          "expect": "@media (max-width: 460px){.home-5__h{margin-left:20px}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "The headline is one h2; SplitType wraps chars in spans, so keep the plain-text headline as the accessible name.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Integration.jsx:18",
+      "expect": "How you can integrate it with your code?"
+    },
+    {
+      "cite": "src/components/Integration.jsx:2",
+      "expect": "Create and copy your personal ID link"
+    },
+    {
+      "cite": "src/components/Integration.jsx:3",
+      "expect": "Paste it in your HTML form or in fetch as URL"
+    },
+    {
+      "cite": "src/components/Integration.jsx:4",
+      "expect": "Choose where you want to send data from form"
+    },
+    {
+      "cite": "src/components/Integration.jsx:5",
+      "expect": "Done! The data from your website form is almost here"
+    },
+    {
+      "cite": "src/components/Integration.jsx:29",
+      "expect": "Step {i + 1}"
+    },
+    {
+      "cite": "src/index.css:554",
+      "expect": ".home-5__h{font-size:26.0416666667vw;white-space:nowrap"
+    }
+  ]
+}

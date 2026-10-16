@@ -1,0 +1,42 @@
+{
+  "layout.grid": {
+    "columns": {
+      "$value": 12,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:56",
+            "expect": "grid-template-columns:repeat(12,1fr)"
+          }
+        ],
+        "phone": 4
+      }
+    },
+    "gap": {
+      "$value": "1.0416666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:56",
+            "expect": "column-gap:1.0416666667vw;grid-auto-flow:column}"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "auto-flow": {
+      "$value": "column",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:56",
+            "expect": "column-gap:1.0416666667vw;grid-auto-flow:column}"
+          }
+        ]
+      }
+    }
+  }
+}

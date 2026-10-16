@@ -1,0 +1,67 @@
+{
+  "component.navbar": {
+    "top": {
+      "$value": "1.0416666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:151",
+            "expect": ".navbar{position:absolute;top:1.0416666667vw"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "padding": {
+      "$value": "2.0833333333vw 1.4583333333vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:156",
+            "expect": "padding:2.0833333333vw 1.4583333333vw"
+          }
+        ],
+        "mobile": "20px"
+      }
+    },
+    "radius": {
+      "$value": "{radius.nav}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:156",
+            "expect": "align-items:center;border-radius:12px}"
+          }
+        ]
+      }
+    },
+    "blend": {
+      "$value": "difference",
+      "$type": "string",
+      "$description": "Desktop only (>=1060). Never hard-code the perceived colour.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:154",
+            "expect": ".navbar{mix-blend-mode:difference}"
+          }
+        ]
+      }
+    },
+    "link-gap": {
+      "$value": "{spacing.xl}",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:166",
+            "expect": ".navbar__ul{display:flex;align-items:center;gap:2.0833333333vw}"
+          }
+        ]
+      }
+    }
+  }
+}

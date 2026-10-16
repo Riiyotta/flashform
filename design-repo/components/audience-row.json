@@ -1,0 +1,17 @@
+{
+  "id": "audience-row",
+  "kind": "component",
+  "purpose": "Ruled row with an uppercase 30px label (cols 1-4) and body text (cols 7-11).",
+  "implementedBy": [
+    "src/components/Relief.jsx"
+  ],
+  "composes": [
+    "divider-line"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Relief.jsx:21",
+      "expect": "home-8__item home-8-item"
+    }
+  ]
+}

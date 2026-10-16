@@ -1,0 +1,53 @@
+{
+  "component.ticker": {
+    "rotation": {
+      "$value": "-2deg",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:226",
+            "expect": "transform:rotate(-2deg)}"
+          }
+        ]
+      }
+    },
+    "item-gap": {
+      "$value": "3.90625vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:230",
+            "expect": "margin-left:3.90625vw}"
+          }
+        ],
+        "mobile": "32px (20px <=460)"
+      }
+    },
+    "copies": {
+      "$value": 4,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/components/Benefits.jsx:18",
+            "expect": "{[0, 1, 2, 3].map((i) => ("
+          }
+        ]
+      }
+    },
+    "loop-seconds": {
+      "$value": 80,
+      "$type": "number",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/index.js:59",
+            "expect": "ticker(tk, { duration: 80, direction: 1 })"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "faq.accordion",
+  "kind": "section",
+  "category": "faq",
+  "purpose": "Answer objections: a 375px \"FAQ\" headline and a numbered multi-open accordion.",
+  "implementedBy": [
+    "src/components/Faq.jsx"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "mustPrecedeFooter": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.faq.accordion",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "items"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/runs"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "question",
+              "answerLines"
+            ],
+            "properties": {
+              "question": {
+                "type": "string",
+                "minLength": 1
+              },
+              "answerLines": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 5,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "heading",
+        "observedMaxWords": 1,
+        "maxWords": 2
+      },
+      {
+        "path": "items[].question",
+        "observedMaxWords": 12,
+        "maxWords": 15
+      },
+      {
+        "path": "items[].answerLines",
+        "observedMaxWords": 46,
+        "maxWords": 56
+      }
+    ]
+  },
+  "assetRoles": [],
+  "motion": {
+    "allowedPatterns": [
+      "accordion"
+    ],
+    "reducedMotionFallback": "instant-toggle",
+    "revealTargets": [],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "heading 100px; rows become flex with no numbers; arrow 16px",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:269",
+          "expect": "@media (max-width: 1060px){.accordion__num{display:none}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "The original toggles on a <div> click with no aria-expanded; a new build should use a button with aria-expanded.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Faq.jsx:5",
+      "expect": "Is it form builder?"
+    },
+    {
+      "cite": "src/components/Faq.jsx:5",
+      "expect": "No, this is the web service that provide an API for implementing backend function to HTML form. It just send all data from your website form to convinient messengers or other chanels."
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "What I must to do for implementing this to my website form?"
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "Just follow these three steps:"
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "1. Create an copy your personal ID link."
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "2. Paste it in your HTML form or in fetch as URL."
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "3. Choose where you want to send data from form."
+    },
+    {
+      "cite": "src/components/Faq.jsx:6",
+      "expect": "4. Done! The data from your website form is almost here."
+    },
+    {
+      "cite": "src/components/Faq.jsx:7",
+      "expect": "Are the instructions different for integration with different messengers?"
+    },
+    {
+      "cite": "src/components/Faq.jsx:7",
+      "expect": "Yes, there are certain differences in the instructions for each messenger. But we have done everything so that you as a user do not experience any inconvenience:)"
+    },
+    {
+      "cite": "src/components/Faq.jsx:8",
+      "expect": "Is FlashForm a paid product?"
+    },
+    {
+      "cite": "src/components/Faq.jsx:8",
+      "expect": "You can use a free account if it is sufficient for your purposes. But if you need more integrations, then for $10 per month you get unlimited access to integrations."
+    },
+    {
+      "cite": "src/components/Faq.jsx:43",
+      "expect": "F<span className=\"h1--i\">A</span>Q"
+    },
+    {
+      "cite": "src/components/Faq.jsx:11",
+      "expect": "Multiple items may be open"
+    }
+  ]
+}

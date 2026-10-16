@@ -1,0 +1,452 @@
+{
+  "version": "1.0.0",
+  "$description": "Closed asset-role vocabulary. Every PageSpec media field is {assetRole, assetRef}; assetRole must be one of the settable roles below, and assetRef must be a registered id of that role (asset:...), or owner-supplied:<slot> / generated:<slot> when the policy allows it.",
+  "sourceIsRealCompany": true,
+  "licensing": {
+    "summary": "Flashform (flshfrm.com) is a real, live product site built by Emotion Agency. Its copy, videos, OG image, logo and favicon are the original owner's proprietary content. The messenger icons are third-party trademarks. The fonts are commercial typefaces. None of this may be reproduced in generated output except as stated per role; the bundled example PageSpec reproduces the original only as a fidelity reference (contentProvenance 'original-reference').",
+    "forbidden": [
+      "AI-generating or redrawing any real logo or brand mark (Flashform, WhatsApp, Telegram, Messenger, Discord)",
+      "depicting real people (no generated portraits, no employee or customer likenesses)",
+      "reusing the original's videos, screencast, OG image or copy in a new-content page",
+      "reusing the original's contact channels (agency email, personal WhatsApp/Telegram) or its third-party form endpoint"
+    ]
+  },
+  "policies": {
+    "must-reuse-exact": "Reference the registered asset by id, unmodified. Never regenerate, redraw, restyle or approximate it.",
+    "must-not-fabricate": "A real trademark or third-party brand mark. Never AI-generate, redraw or imitate it. Use only the official asset obtained from the mark owner under their brand guidelines, or omit it.",
+    "owner-supplied-only": "The original's proprietary media. Never reuse it in a generated page and never AI-generate a look-alike. Leave an owner-supplied slot (assetRef 'owner-supplied:<slot>') that the page owner fills with media they hold rights to.",
+    "may-generate-new": "New artwork may be generated, within the stated style constraints. It must not depict real people, real logos, or copy the original artwork."
+  },
+  "pinnedPolicies": {
+    "brand.logo": "must-not-fabricate",
+    "meta.favicon": "must-not-fabricate",
+    "icon.third-party-channel": "must-not-fabricate",
+    "media.loop-video-square": "owner-supplied-only",
+    "media.product-screencast": "owner-supplied-only",
+    "meta.og-image": "owner-supplied-only",
+    "font.commercial": "must-reuse-exact"
+  },
+  "refRules": {
+    "asset:": "registered id; must belong to the field role",
+    "owner-supplied:": "allowed for owner-supplied-only and may-generate-new roles; the page owner provides media they hold rights to",
+    "generated:": "allowed only for may-generate-new roles"
+  },
+  "roles": {
+    "brand.logo": {
+      "settableInPageSpec": true,
+      "description": "The Flashform logotype + flower mark (inline SVG, 154x28, fill #B1DD40). A real company trademark.",
+      "assets": [
+        {
+          "id": "asset:logo-flashform",
+          "source": "reference/inline-svg/logo.svg",
+          "inline": true
+        }
+      ],
+      "generationPolicy": "must-not-fabricate",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Navbar.jsx:32",
+          "expect": "<Logo />"
+        },
+        {
+          "cite": "src/components/Footer.jsx:47",
+          "expect": "<Logo />"
+        },
+        {
+          "cite": "src/components/icons.jsx:47",
+          "expect": "export const Logo"
+        }
+      ]
+    },
+    "meta.favicon": {
+      "settableInPageSpec": true,
+      "description": "Site favicon (the brand mark).",
+      "assets": [
+        {
+          "id": "asset:favicon",
+          "source": "public/assets/favicon.ico"
+        }
+      ],
+      "generationPolicy": "must-not-fabricate",
+      "measuredFrom": [
+        {
+          "cite": "index.html:14",
+          "expect": "rel=\"icon\" type=\"image/x-icon\""
+        }
+      ]
+    },
+    "meta.og-image": {
+      "settableInPageSpec": true,
+      "description": "1200x630 social card. The original's proprietary marketing image.",
+      "assets": [
+        {
+          "id": "asset:og-twitter",
+          "source": "public/assets/og/twitter.png"
+        }
+      ],
+      "generationPolicy": "owner-supplied-only",
+      "measuredFrom": [
+        {
+          "cite": "index.html:10",
+          "expect": "<meta property=\"og:image\" content=\"/assets/og/twitter.png\" />"
+        }
+      ]
+    },
+    "media.loop-video-square": {
+      "settableInPageSpec": true,
+      "description": "1024x1024 looping product-art video on a black ground, shown with mix-blend-mode:lighten so black merges into the page. The original's proprietary footage.",
+      "assets": [
+        {
+          "id": "asset:video-1",
+          "source": "public/assets/video/1.mp4"
+        },
+        {
+          "id": "asset:video-2",
+          "source": "public/assets/video/2.mp4"
+        }
+      ],
+      "constraints": {
+        "aspect": "1:1",
+        "background": "pure black (blend-lighten)",
+        "loop": true,
+        "muted": true
+      },
+      "generationPolicy": "owner-supplied-only",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Meaning.jsx:8",
+          "expect": "<video src=\"/assets/video/1.mp4\""
+        },
+        {
+          "cite": "src/components/Why.jsx:13",
+          "expect": "<video src=\"/assets/video/2.mp4\""
+        },
+        {
+          "cite": "src/index.css:469",
+          "expect": "mix-blend-mode:lighten;background-color:var(--black)}"
+        }
+      ]
+    },
+    "media.product-screencast": {
+      "settableInPageSpec": true,
+      "description": "1680x1050 screen recording of the real Flashform product UI. Proprietary; shows a real product.",
+      "assets": [
+        {
+          "id": "asset:video-screencast",
+          "source": "public/assets/video/screencast.mp4"
+        }
+      ],
+      "constraints": {
+        "aspect": "16:10",
+        "frame": "radius 0 20px 20px, max-width 74.4792vw, max-height 90vh"
+      },
+      "generationPolicy": "owner-supplied-only",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Integration.jsx:39",
+          "expect": "<video src=\"/assets/video/screencast.mp4\""
+        }
+      ]
+    },
+    "icon.third-party-channel": {
+      "settableInPageSpec": true,
+      "description": "WhatsApp, Telegram, Facebook Messenger and Discord marks. Third-party trademarks owned by Meta Platforms / Telegram / Discord; use only official assets per each brand guideline.",
+      "assets": [
+        {
+          "id": "asset:icon-whatsapp",
+          "source": "public/assets/icons/whatsapp.svg"
+        },
+        {
+          "id": "asset:icon-telegram",
+          "source": "public/assets/icons/telegram.svg"
+        },
+        {
+          "id": "asset:icon-messanger",
+          "source": "public/assets/icons/messanger.svg"
+        },
+        {
+          "id": "asset:icon-discord",
+          "source": "public/assets/icons/discord.svg"
+        }
+      ],
+      "generationPolicy": "must-not-fabricate",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Purpose.jsx:5",
+          "expect": "{ name: 'What’sApp', icon: 'whatsapp' }"
+        },
+        {
+          "cite": "src/components/Purpose.jsx:41",
+          "expect": "src={`/assets/icons/${c.icon}.svg`}"
+        }
+      ]
+    },
+    "icon.generic-channel": {
+      "settableInPageSpec": true,
+      "description": "Generic (non-brand) channel glyphs: email envelope and plus (\"Etc.\").",
+      "assets": [
+        {
+          "id": "asset:icon-email",
+          "source": "public/assets/icons/email.svg"
+        },
+        {
+          "id": "asset:icon-plus",
+          "source": "public/assets/icons/plus.svg"
+        }
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Purpose.jsx:6",
+          "expect": "{ name: 'Email', icon: 'email' }"
+        },
+        {
+          "cite": "src/components/Purpose.jsx:10",
+          "expect": "{ name: 'Etc.', icon: 'plus' }"
+        }
+      ]
+    },
+    "icon.feature-glyph": {
+      "settableInPageSpec": true,
+      "description": "Abstract geometric glyph heading a rounded-panel item (5 observed: twin rings, ring, stairs, triangles, clover).",
+      "assets": [
+        {
+          "id": "asset:feature-glyph-1",
+          "source": "reference/inline-svg/home3-icon-1.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:feature-glyph-2",
+          "source": "reference/inline-svg/home3-icon-2.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:feature-glyph-3",
+          "source": "reference/inline-svg/home3-icon-3.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:feature-glyph-4",
+          "source": "reference/inline-svg/home3-icon-4.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:feature-glyph-5",
+          "source": "reference/inline-svg/home3-icon-5.svg",
+          "inline": true
+        }
+      ],
+      "constraints": {
+        "fill": "single flat colour, #111606 or black (on the accent panel)",
+        "viewBox": "~45x45 (55x45 and 61x46 observed)",
+        "style": "flat geometric primitives (circles, squares, triangles); no text, no gradients, no strokes, no brand marks, no pictograms of people"
+      },
+      "generationPolicy": "may-generate-new",
+      "measuredFrom": [
+        {
+          "cite": "src/components/RoundedSection.jsx:27",
+          "expect": "<Icon className=\"home-3-item__icon\" />"
+        },
+        {
+          "cite": "src/components/icons.jsx:7",
+          "expect": "export const Home3Icon1"
+        }
+      ]
+    },
+    "icon.ui-glyph": {
+      "settableInPageSpec": false,
+      "description": "Fixed UI glyphs built into components (large arrow, accordion arrow, sign-in arrow, globe, ticker star, burger close, popup close, toast close). Not PageSpec-settable.",
+      "assets": [
+        {
+          "id": "asset:glyph-arrow-down-large",
+          "source": "reference/inline-svg/arrow-down-large.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:glyph-icon-accordion-arrow",
+          "source": "reference/inline-svg/icon-accordion-arrow.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:glyph-icon-signin-arrow",
+          "source": "reference/inline-svg/icon-signin-arrow.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:glyph-icon-globe",
+          "source": "reference/inline-svg/icon-globe.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:glyph-icon-ticker-star",
+          "source": "reference/inline-svg/icon-ticker-star.svg",
+          "inline": true
+        },
+        {
+          "id": "asset:glyph-icon-burger-close",
+          "source": "reference/inline-svg/icon-burger-close.svg",
+          "inline": true
+        }
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/components/icons.jsx:3",
+          "expect": "export const ArrowDownLarge"
+        },
+        {
+          "cite": "src/components/icons.jsx:35",
+          "expect": "export const Globe"
+        },
+        {
+          "cite": "src/components/icons.jsx:43",
+          "expect": "export const TickerStar"
+        }
+      ]
+    },
+    "physics.letter-sprite": {
+      "settableInPageSpec": false,
+      "description": "Footer physics letter sprites. Only S,T,A,Y,I,N,O,U,C,H exist, so physicsWords may only use these letters (rule PHYSICS_LETTERS_IN_GLYPH_SET).",
+      "assets": [
+        {
+          "id": "asset:letter-s",
+          "source": "public/assets/letters/s.svg"
+        },
+        {
+          "id": "asset:letter-T",
+          "source": "public/assets/letters/T.svg"
+        },
+        {
+          "id": "asset:letter-A",
+          "source": "public/assets/letters/A.svg"
+        },
+        {
+          "id": "asset:letter-Y",
+          "source": "public/assets/letters/Y.svg"
+        },
+        {
+          "id": "asset:letter-I",
+          "source": "public/assets/letters/I.svg"
+        },
+        {
+          "id": "asset:letter-N",
+          "source": "public/assets/letters/N.svg"
+        },
+        {
+          "id": "asset:letter-O",
+          "source": "public/assets/letters/O.svg"
+        },
+        {
+          "id": "asset:letter-U",
+          "source": "public/assets/letters/U.svg"
+        },
+        {
+          "id": "asset:letter-C",
+          "source": "public/assets/letters/C.svg"
+        },
+        {
+          "id": "asset:letter-H",
+          "source": "public/assets/letters/H.svg"
+        }
+      ],
+      "glyphSet": [
+        "S",
+        "T",
+        "A",
+        "Y",
+        "I",
+        "N",
+        "O",
+        "U",
+        "C",
+        "H"
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/anim/fallingLetters.js:6",
+          "expect": "{ text: 's', sizes: { w: 210, h: 286 } }"
+        },
+        {
+          "cite": "src/anim/fallingLetters.js:39",
+          "expect": "texture: `/assets/letters/${L.text}.svg`"
+        }
+      ]
+    },
+    "shader.hero-flower": {
+      "settableInPageSpec": true,
+      "description": "Procedural OGL \"butterfly\" flower shader (verbatim GLSL). Not a file asset; the id selects the shader.",
+      "assets": [
+        {
+          "id": "asset:shader-butterfly",
+          "source": "src/anim/shaders/butterfly.frag.glsl"
+        }
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/anim/gl.js:221",
+          "expect": "export function createButterfly()"
+        },
+        {
+          "cite": "src/components/Hero.jsx:28",
+          "expect": "<div className=\"home-1__gl js-hidden\" />"
+        }
+      ]
+    },
+    "shader.revealer-dissolve": {
+      "settableInPageSpec": true,
+      "description": "Procedural OGL noise-dissolve shader over the screencast panel.",
+      "assets": [
+        {
+          "id": "asset:shader-revealer",
+          "source": "src/anim/shaders/revealer.frag.glsl"
+        }
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/anim/gl.js:227",
+          "expect": "export function createRevealer()"
+        },
+        {
+          "cite": "src/components/Integration.jsx:41",
+          "expect": "<div id=\"gl-2\" />"
+        }
+      ]
+    },
+    "font.commercial": {
+      "settableInPageSpec": false,
+      "description": "Aeonik, Recife Display (italic cut declared normal) and Neue Haas Display: commercial typefaces self-hosted from the original. Licence required for any new deployment; see tokens/00-foundation/typography.json $extensions.licensing.",
+      "assets": [
+        {
+          "id": "asset:font-aeonik",
+          "source": "public/fonts/Aeonik-Regular.woff2"
+        },
+        {
+          "id": "asset:font-recife",
+          "source": "public/fonts/RecifeDisplayWeb-BookItalic.woff2"
+        },
+        {
+          "id": "asset:font-neuehaas-roman",
+          "source": "public/fonts/NeueHaasDisplay-Roman.woff2"
+        },
+        {
+          "id": "asset:font-neuehaas-medium",
+          "source": "public/fonts/NeueHaasDisplay-Medium.woff2"
+        }
+      ],
+      "generationPolicy": "must-reuse-exact",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:34",
+          "expect": "@font-face{font-family:Aeonik"
+        },
+        {
+          "cite": "src/index.css:35",
+          "expect": "@font-face{font-family:Recife"
+        }
+      ]
+    }
+  }
+}

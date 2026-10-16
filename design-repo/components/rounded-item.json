@@ -1,0 +1,18 @@
+{
+  "id": "rounded-item",
+  "kind": "component",
+  "purpose": "Panel item: glyph + h3 + paragraphs (+ optional list), ending in a 2px black rule.",
+  "implementedBy": [
+    "src/components/RoundedSection.jsx"
+  ],
+  "composes": [
+    "icon",
+    "divider-line"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/RoundedSection.jsx:23",
+      "expect": "export function RoundedItem("
+    }
+  ]
+}

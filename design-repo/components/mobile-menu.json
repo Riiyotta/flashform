@@ -1,0 +1,17 @@
+{
+  "id": "mobile-menu",
+  "kind": "component",
+  "purpose": "Three-dot burger that morphs into a close disc and opens an accent link panel (<=1060).",
+  "implementedBy": [
+    "src/components/MobileMenu.jsx"
+  ],
+  "composes": [
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/index.css:183",
+      "expect": ".burger--open .burger__dot--2{transform:scale(1) rotate(180deg)}"
+    }
+  ]
+}

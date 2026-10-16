@@ -1,0 +1,188 @@
+{
+  "id": "timeline.horizontal-roadmap",
+  "kind": "section",
+  "category": "scroll-stage",
+  "purpose": "Project roadmap: current milestone in a giant numeral, then a horizontally scrolled hand-drawn curve with three dated milestones. Desktop only.",
+  "implementedBy": [
+    "src/components/Roadmap.jsx",
+    "src/anim/scrollFx.js"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "desktopOnly": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.timeline.horizontal-roadmap",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "paragraph",
+        "current",
+        "milestones"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/runs"
+        },
+        "paragraph": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "month",
+            "day"
+          ],
+          "properties": {
+            "label": {
+              "$ref": "#/definitions/braced"
+            },
+            "month": {
+              "type": "string",
+              "minLength": 1
+            },
+            "day": {
+              "$ref": "#/definitions/day"
+            }
+          }
+        },
+        "milestones": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "month",
+              "day",
+              "title"
+            ],
+            "properties": {
+              "month": {
+                "type": "string",
+                "minLength": 1
+              },
+              "day": {
+                "$ref": "#/definitions/day"
+              },
+              "title": {
+                "$ref": "#/definitions/braced"
+              }
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "heading",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      },
+      {
+        "path": "paragraph",
+        "observedMaxWords": 21,
+        "maxWords": 26
+      },
+      {
+        "path": "current.label",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      },
+      {
+        "path": "milestones[].title",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      }
+    ]
+  },
+  "assetRoles": [],
+  "motion": {
+    "allowedPatterns": [
+      "reveal-on-view",
+      "horizontal-scroll",
+      "roadmap-draw"
+    ],
+    "reducedMotionFallback": "curve-fully-drawn",
+    "revealTargets": [
+      "heading-chars",
+      "paragraph-lines",
+      "rise",
+      "fade"
+    ],
+    "inViewThresholds": [
+      0.4
+    ]
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "section is display:none (and its nav link is mobile-hidden)",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:663",
+          "expect": "@media (max-width: 1060px){.home-10{display:none}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Milestone positions are absolute; reading order follows DOM order (chronological).",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Roadmap.jsx:18",
+      "expect": "Project "
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:20",
+      "expect": "Part of the Flashform is already done, but we continue to work on it to give you the best user experience"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:26",
+      "expect": "{Alpha release}"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:4",
+      "expect": "'jan'"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:4",
+      "expect": "{Beta release}"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:5",
+      "expect": "'march'"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:5",
+      "expect": "{Hopefully, a release}"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:6",
+      "expect": "'apr'"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:6",
+      "expect": "{Add new messengers}"
+    },
+    {
+      "cite": "src/components/Roadmap.jsx:27",
+      "expect": ">Dec <span className=\"home-10__bottom-day\" data-a-h=\"\">19</span>"
+    },
+    {
+      "cite": "src/index.css:683",
+      "expect": ".roadmap__item:nth-of-type(3){bottom:3.7037037037vh;left:230.3703703704vh}"
+    },
+    {
+      "cite": "src/anim/scrollFx.js:156",
+      "expect": "items[2].classList.toggle('is-visible', -y >= 52)"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "roadmap-curve",
+  "kind": "component",
+  "purpose": "Hand-drawn SVG curve drawn by stroke-dashoffset with three absolutely placed milestones.",
+  "implementedBy": [
+    "src/components/Roadmap.jsx",
+    "src/anim/scrollFx.js"
+  ],
+  "composes": [
+    "icon"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Roadmap.jsx:36",
+      "expect": "<RoadmapCurve />"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+section,category,templates,routes,Home (single-page site)
+shell.intro-loader,SHELL,1,1,x
+shell.app-loader,SHELL,1,1,x
+shell.navbar,SHELL,1,1,x
+shell.mobile-menu,SHELL,1,1,x
+shell.scrollbar,SHELL,1,1,x
+shell.beta-popup,SHELL,1,1,x
+shell.toasts,SHELL,1,1,x
+shell.footer,SHELL,1,1,x
+hero.home,HERO,1,1,x
+story.meaning,STORY,1,1,x
+story.purpose,STORY,1,1,x
+story.why,STORY,1,1,x
+integration.steps,INTEGRATION,1,1,x
+integration.messengers,INTEGRATION,1,1,x
+value.benefits,VALUE,1,1,x
+value.relief,VALUE,1,1,x
+value.problems,VALUE,1,1,x
+roadmap.timeline,ROADMAP,1,1,x
+support.faq,SUPPORT,1,1,x
+ROUTE COUNT,,,1,1

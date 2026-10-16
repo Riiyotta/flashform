@@ -1,0 +1,83 @@
+{
+  "repositoryId": "flashform-design-repo",
+  "name": "Flashform design-repo",
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "repositoryVersion": "1.0.0",
+  "pageSpecVersion": "1.0.0",
+  "allowlistVersion": "1.0.0",
+  "versionFieldNote": "allowlistVersion is MACHINE-CHECKED (verify_all.py fails if it differs from tokens/llm/component-allowlist.json version). pageSpecVersion is checked against the schema const, and every PageSpec instance must carry that const. repositoryVersion is DOCUMENTATION-ONLY: hand-maintained, nothing checks it.",
+  "defaultTheme": "flashform-dark",
+  "schemaValidatedThemes": [
+    "flashform-dark"
+  ],
+  "source": {
+    "original": "https://www.flshfrm.com/ (Flashform, a real live product site built by Emotion Agency)",
+    "clone": "sibling project folder (React 18.3.1 + Vite 5.4 + Tailwind 3.4; gsap 3.10.4 + ScrollTrigger, split-type, ogl, matter-js 0.18.0)",
+    "builtOn": "2026-10-16",
+    "snapshotNote": "A snapshot, not a mirror. The clone source was being edited by other agents during this build; see CHANGELOG.md for the values re-checked at the end.",
+    "vcs": "The clone folder is not a git repository, so the rule \"never commit design-repo.zip alongside the live folder\" is trivially satisfied. If it ever becomes one, gitignore design-repo.zip."
+  },
+  "counts": {
+    "tokensFoundation": 137,
+    "tokensSemantic": 40,
+    "tokensComponent": 36,
+    "tokensLayout": 18,
+    "primitives": 8,
+    "components": 20,
+    "sections": 11,
+    "templates": 1,
+    "routes": 1,
+    "assetRoles": 13,
+    "assetRolesSettable": 10,
+    "graphRules": 24,
+    "adversarialMutations": 57,
+    "themes": 1
+  },
+  "entryPoints": {
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "schema": "schema/pagespec.schema.json",
+    "example": "schema/example.pagespec.json",
+    "validator": "schema/semantic_validate.py",
+    "adversarialTests": "schema/tests/adversarial_test.py",
+    "verify": "extraction/verify_all.py",
+    "driftTest": "extraction/drift_test.py",
+    "measuredValues": "extraction/measured-values.json",
+    "templates": "templates/templates.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "assetRoles": "assets/asset-roles.json",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "componentAllowlist": "tokens/llm/component-allowlist.json",
+    "theme": "tokens/themes/flashform-dark.json",
+    "sections": [
+      "sections/faq.accordion.json",
+      "sections/grid.ticker-benefit-cards.json",
+      "sections/hero.sticky-statement.json",
+      "sections/panel.rounded-sticky.json",
+      "sections/scroll.horizontal-steps.json",
+      "sections/shell.footer.json",
+      "sections/shell.navbar.json",
+      "sections/split.media-statement.json",
+      "sections/statement.audience-rows.json",
+      "sections/statement.centered-cta.json",
+      "sections/timeline.horizontal-roadmap.json"
+    ]
+  },
+  "constraints": [
+    "FORMS ARE STUBBED: the clone sets FORM_ENDPOINT = null; the original posts to a Formspree endpoint owned by the original site owner. PageSpecs use forms.submission \"stub\" or an owner-supplied https endpoint; the original endpoint is rejected (FORM_ENDPOINT_NOT_ORIGINAL).",
+    "REAL LIVE COMPANY: copy, videos (1.mp4, 2.mp4, screencast.mp4), the OG image (twitter.png), logo and favicon are proprietary. new-content PageSpecs reject the original copy, contacts and proprietary media (ORIGINAL_COPY_NOT_REUSED, ORIGINAL_CONTACTS_NOT_REUSED, ASSET_REF_POLICY).",
+    "COMMERCIAL FONTS: Aeonik, Recife Display (italic cut declared font-style normal) and Neue Haas Display are self-hosted from the original; a licence is required for any new deployment.",
+    "THIRD-PARTY MARKS: WhatsApp, Telegram, Messenger and Discord icons are third-party trademarks (role icon.third-party-channel, pinned must-not-fabricate).",
+    "NO AI GENERATION of real logos, real people or the original proprietary content (assets/asset-roles.json licensing + pinnedPolicies).",
+    "SINGLE ROUTE: one route (/), one template; nav items are in-page anchors; all footer links are external.",
+    "MOTION QUIRKS KEPT ON PURPOSE: ease \"linear.none\" resolves to power1.out; ScrollTriggers created at staged times; page reloads on resize above 768px; hero u_mousePosition is effectively always (0,0).",
+    "DESIGN REVIEW PENDING: productionApproved=false; private reference build, do not publish or make public."
+  ],
+  "verification": {
+    "run": "python3 -I extraction/verify_all.py",
+    "requires": "Python 3.8+ with the jsonschema package",
+    "driftProof": "python3 -I extraction/drift_test.py"
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "typography-roles": {
+    "$description": "Semantic type roles = family + weight + size + line-height references.",
+    "display": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.display}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".h1",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:38",
+            "expect": ".h1{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "display-italic": {
+      "$value": {
+        "fontFamily": "{typography.family.recife}",
+        "fontWeight": "{typography.weight.book-recife}",
+        "fontSize": "{typography.size.display}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".h1--i (span inside headings; inherits size)",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:41",
+            "expect": ".h1--i{font-family:Recife"
+          }
+        ]
+      }
+    },
+    "body": {
+      "$value": {
+        "fontFamily": "{typography.family.neuehaas}",
+        "fontWeight": "{typography.weight.roman-neuehaas}",
+        "fontSize": "{typography.size.body}",
+        "lineHeight": "{typography.lineHeight.body}"
+      },
+      "$type": "typography",
+      "$description": "body",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:73",
+            "expect": "body{font-family:NeueHaas"
+          }
+        ]
+      }
+    },
+    "redline": {
+      "$value": {
+        "fontFamily": "{typography.family.neuehaas}",
+        "fontWeight": "{typography.weight.roman-neuehaas}",
+        "fontSize": "{typography.size.body}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".redline-text (uppercase, first-line indent 7.65625vw)",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:42",
+            "expect": ".redline-text{text-transform:uppercase}"
+          }
+        ]
+      }
+    },
+    "item-heading": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.heading-item}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".home-3-item__h",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:500",
+            "expect": ".home-3-item__h{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "card-title": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.heading-card}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".home-7-item__title",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:627",
+            "expect": ".home-7-item__title{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "step-text": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.text-step}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".home-5-li__text (uppercase)",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:570",
+            "expect": ".home-5-li__text{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "audience-heading": {
+      "$value": {
+        "fontFamily": "{typography.family.neuehaas}",
+        "fontWeight": "{typography.weight.roman-neuehaas}",
+        "fontSize": "{typography.size.heading-audience}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".home-8-item__h (asks 400, renders the 500 face)",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:653",
+            "expect": ".home-8-item__h{font-size:2.0833333333vw"
+          }
+        ]
+      }
+    },
+    "faq-question": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.heading-faq}",
+        "lineHeight": "{typography.lineHeight.faq-question}"
+      },
+      "$type": "typography",
+      "$description": ".accordion__h4",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:254",
+            "expect": ".accordion__h4{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "button": {
+      "$value": {
+        "fontFamily": "{typography.family.button-ua}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.body-lg}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": "<button class=button> (UA Arial 400, uppercase)",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:707",
+            "expect": "button.button:not(.input-btn){font-family:var(--font-button)"
+          }
+        ]
+      }
+    },
+    "ticker": {
+      "$value": {
+        "fontFamily": "{typography.family.aeonik}",
+        "fontWeight": "{typography.weight.regular-aeonik}",
+        "fontSize": "{typography.size.ticker}",
+        "lineHeight": "{typography.lineHeight.ticker}"
+      },
+      "$type": "typography",
+      "$description": ".ticker__item",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:230",
+            "expect": ".ticker__item{font-family:Aeonik"
+          }
+        ]
+      }
+    },
+    "numeral-xxl": {
+      "$value": {
+        "fontFamily": "{typography.family.neuehaas}",
+        "fontWeight": "{typography.weight.medium-neuehaas}",
+        "fontSize": "{typography.size.display-xxl}",
+        "lineHeight": "{typography.lineHeight.tight}"
+      },
+      "$type": "typography",
+      "$description": ".home-10__bottom-day",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:672",
+            "expect": ".home-10__bottom-day{font-family:NeueHaas"
+          }
+        ]
+      }
+    }
+  }
+}

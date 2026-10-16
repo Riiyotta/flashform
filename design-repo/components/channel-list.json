@@ -1,0 +1,18 @@
+{
+  "id": "channel-list",
+  "kind": "component",
+  "purpose": "Ruled list of channel names with right-aligned channel icons.",
+  "implementedBy": [
+    "src/components/Purpose.jsx"
+  ],
+  "composes": [
+    "icon",
+    "divider-line"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/components/Purpose.jsx:39",
+      "expect": "home-3-item-li__content"
+    }
+  ]
+}

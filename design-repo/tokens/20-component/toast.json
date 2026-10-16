@@ -1,0 +1,40 @@
+{
+  "component.toast": {
+    "padding": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:390",
+            "expect": "border-radius:5px;padding:12px"
+          }
+        ]
+      }
+    },
+    "top": {
+      "$value": "10%",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:389",
+            "expect": ".toast-container{position:fixed;z-index:10000;top:10%}"
+          }
+        ]
+      }
+    },
+    "progress-height": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:396",
+            "expect": ".toast__progress{position:absolute;top:0;left:0;width:0;height:2px"
+          }
+        ]
+      }
+    }
+  }
+}

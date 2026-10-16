@@ -1,0 +1,283 @@
+{
+  "id": "panel.rounded-sticky",
+  "kind": "section",
+  "category": "panel",
+  "purpose": "An accent-green rounded card that scales in and pins while its long right column scrolls inside it: problem/solution or benefit lists.",
+  "implementedBy": [
+    "src/components/RoundedSection.jsx",
+    "src/components/Purpose.jsx",
+    "src/components/Problems.jsx"
+  ],
+  "variants": [
+    "with-channel-list",
+    "items-only"
+  ],
+  "constraints": {
+    "maxPerPage": 2,
+    "variantsUniquePerPage": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.panel.rounded-sticky",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "items"
+      ],
+      "properties": {
+        "heading": {
+          "$ref": "#/definitions/runs"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "icon",
+              "title",
+              "paragraphs"
+            ],
+            "properties": {
+              "icon": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "assetRole",
+                  "assetRef"
+                ],
+                "properties": {
+                  "assetRole": {
+                    "enum": [
+                      "icon.feature-glyph"
+                    ]
+                  },
+                  "assetRef": {
+                    "$ref": "#/definitions/assetRef"
+                  }
+                }
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "paragraphs": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "channelList": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 6,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "icon"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "icon": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "properties": {
+                        "assetRole": {
+                          "enum": [
+                            "icon.third-party-channel",
+                            "icon.generic-channel"
+                          ]
+                        },
+                        "assetRef": {
+                          "$ref": "#/definitions/assetRef"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "heading",
+        "observedMaxWords": 4,
+        "maxWords": 5
+      },
+      {
+        "path": "items[].title",
+        "observedMaxWords": 8,
+        "maxWords": 10
+      },
+      {
+        "path": "items[].paragraphs[]",
+        "observedMaxWords": 48,
+        "maxWords": 58
+      },
+      {
+        "path": "items[].channelList[].name",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      }
+    ]
+  },
+  "assetRoles": [
+    "icon.feature-glyph",
+    "icon.generic-channel",
+    "icon.third-party-channel"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "section-scale",
+      "sticky-inner-scroll"
+    ],
+    "reducedMotionFallback": "static-final-state",
+    "revealTargets": [],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1366",
+      "changes": "--margin .42vw",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:212",
+          "expect": "@media (max-width: 1366px){.rounded-section{--margin: .42vw}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "1060",
+      "changes": "grid becomes block; --margin 10px; no scale",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:485",
+          "expect": "@media (max-width: 1060px){.home-3__container{display:block}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "768",
+      "changes": "full-bleed: --margin 0, radius 0, min-height 100vh",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:223",
+          "expect": "@media (max-width: 768px){.rounded-section__wrapper{border-radius:0;min-height:var(--vh)}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "Black text on #b1dd40. channelList icons are <img> with alt = channel name.",
+  "measuredFrom": [
+    {
+      "cite": "src/components/Purpose.jsx:16",
+      "expect": "Purpose of using "
+    },
+    {
+      "cite": "src/components/Purpose.jsx:19",
+      "expect": "The problem"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:21",
+      "expect": "When you build the website, the one of the most popular issue is a sending data from contact form to channel that convenient for you or your client."
+    },
+    {
+      "cite": "src/components/Purpose.jsx:22",
+      "expect": "A lot of time is spent on creating the form, integrating it into the website, and making sure that the information from the form reaches the chosen communication channel quickly and consistently"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:23",
+      "expect": "We have been constantly faced with this problem for several years as web developers. Every time we made a new site, we spent a lot of time to ensure that the information from the form was quickly sent to a convenient communication channel, and not just to email"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:28",
+      "expect": "Solution"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:31",
+      "expect": "Therefore, we have created a web service that allows you to connect your contact form to the chosen messenger or email in a few clicks, without the need to write dozens of lines of code, in a matter of minutes"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:32",
+      "expect": "Thus, when a user fills out the contact form on the site, you instantly receive this information in:"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:5",
+      "expect": "What’sApp"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:6",
+      "expect": "Email"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:7",
+      "expect": "Telegram"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:8",
+      "expect": "Facebook Messanger"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:9",
+      "expect": "Discord"
+    },
+    {
+      "cite": "src/components/Purpose.jsx:10",
+      "expect": "Etc."
+    },
+    {
+      "cite": "src/components/Problems.jsx:7",
+      "expect": "Problems "
+    },
+    {
+      "cite": "src/components/Problems.jsx:7",
+      "expect": "that we solve"
+    },
+    {
+      "cite": "src/components/Problems.jsx:8",
+      "expect": "Website conversion increases"
+    },
+    {
+      "cite": "src/components/Problems.jsx:8",
+      "expect": "Data from the form arrives instantly to selected messengers, so you can efficiently process requests from your customers. The speed of order processing affects the potential client's decision to work with you"
+    },
+    {
+      "cite": "src/components/Problems.jsx:9",
+      "expect": "Less time to set up the form"
+    },
+    {
+      "cite": "src/components/Problems.jsx:9",
+      "expect": "If you are a developer, you don't need to create a form backend every time in a new project. This will save time on routine things, which can be spent on more pleasant things"
+    },
+    {
+      "cite": "src/components/Problems.jsx:10",
+      "expect": "You don't need to know how to program"
+    },
+    {
+      "cite": "src/components/Problems.jsx:10",
+      "expect": "If you are not a developer, but are building a site yourself on Webflow or another builder, you can easily connect a form and send data to the messenger of your choice."
+    },
+    {
+      "cite": "src/components/Purpose.jsx:29",
+      "expect": "line={false}"
+    }
+  ]
+}

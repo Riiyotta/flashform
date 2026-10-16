@@ -1,0 +1,27 @@
+{
+  "id": "divider-line",
+  "kind": "primitive",
+  "purpose": "2px full-width rule (accent on dark, black on accent, accent at .2 in the footer). Optionally draws in with scaleX (data-a-l).",
+  "implementedBy": [
+    "src/components/Integration.jsx",
+    "src/components/Relief.jsx",
+    "src/components/Faq.jsx"
+  ],
+  "props": {
+    "tone": "'default' | 'on-accent' | 'footer'",
+    "reveal": "boolean"
+  },
+  "states": [
+    "static",
+    "reveal (scaleX 0 -> 1)"
+  ],
+  "tokens": [
+    "color-roles.line"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/index.css:91",
+      "expect": ".h-line{display:block;width:100%;height:2px"
+    }
+  ]
+}

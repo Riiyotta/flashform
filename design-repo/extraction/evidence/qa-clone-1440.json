@@ -1,0 +1,238 @@
+{
+ "url": "http://localhost:5181/",
+ "vw": 1440,
+ "vh": 900,
+ "loaderFrames": 3,
+ "loaderFirstChangeMs": 87,
+ "loaderRemovedMs": 18,
+ "loaderTimelineSample": [
+  {
+   "t": 18,
+   "sig": "[false,null,null,null]",
+   "loader": false,
+   "c1": null,
+   "c5": null,
+   "lop": null
+  },
+  {
+   "t": 87,
+   "sig": "[true,\"none\",\"none\",\"1\"]",
+   "loader": true,
+   "c1": "none",
+   "c5": "none",
+   "lop": "1"
+  },
+  {
+   "t": 5544,
+   "sig": "[false,null,null,null]",
+   "loader": false,
+   "c1": null,
+   "c5": null,
+   "lop": null
+  }
+ ],
+ "inventory": [
+  {
+   "name": "world",
+   "dur": 5000,
+   "ease": "linear",
+   "delay": 0,
+   "iter": null,
+   "n": 1,
+   "sample": "svg"
+  },
+  {
+   "name": "ticker",
+   "dur": 4000,
+   "ease": "linear",
+   "delay": 0,
+   "iter": null,
+   "n": 6,
+   "sample": "button__hover-text"
+  }
+ ],
+ "transitions": {
+  ".char": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".word": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".line-inner": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".navbar": {
+   "transition": "transform, opacity 0.5s, 0.5s ease, ease 0s, 0s",
+   "anim": "none 0s"
+  },
+  ".scrollbar": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".scrollbar__thumb": {
+   "transition": "width, opacity, border-radius, background-color 0.2s, 0.3s, 0.3s, 0.3s ease, ease, ease, ease 0s, 0s, 0s, 0s",
+   "anim": "none 0s"
+  },
+  ".accordion__item": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".accordion__line": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".button": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".footer__contact": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".footer-contact__btn": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".navbar__link": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".toast-container": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".ticker__text": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".h-line": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  },
+  ".redline-text": {
+   "transition": "all 0s ease 0s",
+   "anim": "none 0s"
+  }
+ },
+ "beforeScroll": {
+  "y": 0,
+  "scrollerTf": "none",
+  "navTf": "none",
+  "navClass": "navbar",
+  "barOp": "1"
+ },
+ "scrollDown400": [
+  {
+   "t": 100,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -4.06366)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 200,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -17.8699)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 300,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -74.9096)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 400,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -80.54)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 500,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 600,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 700,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 800,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 900,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 1000,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 1100,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  },
+  {
+   "t": 1200,
+   "y": 0,
+   "scrollerTf": "none",
+   "navTf": "matrix(1, 0, 0, 1, 0, -81)",
+   "navClass": "navbar",
+   "barOp": "1"
+  }
+ ],
+ "afterScrollUp": {
+  "y": 0,
+  "scrollerTf": "none",
+  "navTf": "none",
+  "navClass": "navbar",
+  "barOp": "1"
+ },
+ "errors": [
+  "warning: [.WebGL-0x13c0044e600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c0044e600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c0044e600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x13c0044e600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+ ]
+}

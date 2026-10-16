@@ -1,0 +1,24 @@
+{
+  "id": "redline-paragraph",
+  "kind": "primitive",
+  "purpose": "Uppercase NeueHaas paragraph, line-height 1em, first line indented 7.65625vw (86px mobile); after split the indent moves to the first line.",
+  "implementedBy": [
+    "src/index.css"
+  ],
+  "props": {
+    "text": "string"
+  },
+  "states": [
+    "static",
+    "line reveal (data-a-p)"
+  ],
+  "tokens": [
+    "typography-roles.redline"
+  ],
+  "measuredFrom": [
+    {
+      "cite": "src/index.css:43",
+      "expect": ".redline-text:not(.splitted){text-indent:7.65625vw}"
+    }
+  ]
+}

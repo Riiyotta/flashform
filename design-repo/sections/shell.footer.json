@@ -1,0 +1,277 @@
+{
+  "id": "shell.footer",
+  "kind": "section",
+  "category": "shell",
+  "purpose": "Close with a playful physics \"STAY IN TOUCH\" letter drop, contact links, the beta sign-up form and legal links.",
+  "implementedBy": [
+    "src/components/Footer.jsx",
+    "src/anim/fallingLetters.js"
+  ],
+  "variants": [],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "mustBeLast": true
+  },
+  "content": {
+    "schemaRef": "#/definitions/content.shell.footer",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logo",
+        "physicsWords",
+        "contact",
+        "subscribe",
+        "legal"
+      ],
+      "properties": {
+        "logo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "properties": {
+            "assetRole": {
+              "enum": [
+                "brand.logo"
+              ]
+            },
+            "assetRef": {
+              "$ref": "#/definitions/assetRef"
+            }
+          }
+        },
+        "physicsWords": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z]+$"
+          }
+        },
+        "contact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "links"
+          ],
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1
+            },
+            "links": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {
+                "$ref": "#/definitions/externalLink"
+              }
+            }
+          }
+        },
+        "subscribe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "emailLabel",
+            "submitLabel"
+          ],
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1
+            },
+            "emailLabel": {
+              "type": "string",
+              "minLength": 1
+            },
+            "submitLabel": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "legal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "copyright",
+            "links",
+            "credit"
+          ],
+          "properties": {
+            "copyright": {
+              "type": "string",
+              "minLength": 1
+            },
+            "links": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2,
+              "items": {
+                "$ref": "#/definitions/externalLink"
+              }
+            },
+            "credit": {
+              "$ref": "#/definitions/externalLink"
+            }
+          }
+        }
+      }
+    },
+    "wordBudgets": [
+      {
+        "path": "contact.heading",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      },
+      {
+        "path": "contact.links[].label",
+        "observedMaxWords": 1,
+        "maxWords": 2
+      },
+      {
+        "path": "subscribe.heading",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      },
+      {
+        "path": "legal.links[].label",
+        "observedMaxWords": 3,
+        "maxWords": 4
+      },
+      {
+        "path": "legal.credit.label",
+        "observedMaxWords": 2,
+        "maxWords": 3
+      }
+    ]
+  },
+  "assetRoles": [
+    "brand.logo"
+  ],
+  "motion": {
+    "allowedPatterns": [
+      "physics-letters"
+    ],
+    "reducedMotionFallback": "static-empty-area",
+    "revealTargets": [],
+    "inViewThresholds": []
+  },
+  "responsive": [
+    {
+      "maxWidth": "1060",
+      "changes": "content and info rows stack (gap 32px / 12px); logo 156x28",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:304",
+          "expect": "@media (max-width: 1060px){.footer__content,.footer__info-content{display:flex;flex-direction:column;gap:32px}"
+        }
+      ]
+    },
+    {
+      "maxWidth": "460",
+      "changes": "letters area 50vh",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:298",
+          "expect": "@media (max-width: 460px){.footer__top{height:50vh}"
+        }
+      ]
+    }
+  ],
+  "accessibility": "All footer links are external (target _blank, rel \"noreferer noopener\" - sic in the original).",
+  "measuredFrom": [
+    {
+      "cite": "src/anim/fallingLetters.js:69",
+      "expect": "drop('Stay')"
+    },
+    {
+      "cite": "src/components/Footer.jsx:49",
+      "expect": "Contact us"
+    },
+    {
+      "cite": "src/components/Footer.jsx:9",
+      "expect": "['hello@emotion-agency.com'"
+    },
+    {
+      "cite": "src/components/Footer.jsx:9",
+      "expect": "mailto:hello@emotion-agency.com"
+    },
+    {
+      "cite": "src/components/Footer.jsx:10",
+      "expect": "['Whatsapp'"
+    },
+    {
+      "cite": "src/components/Footer.jsx:10",
+      "expect": "https://wa.me/+380970422959"
+    },
+    {
+      "cite": "src/components/Footer.jsx:11",
+      "expect": "['Telegram'"
+    },
+    {
+      "cite": "src/components/Footer.jsx:11",
+      "expect": "https://t.me/rstetsr"
+    },
+    {
+      "cite": "src/components/Footer.jsx:59",
+      "expect": "<h3 className=\"footer__h\">Join the beta</h3>"
+    },
+    {
+      "cite": "src/components/Footer.jsx:65",
+      "expect": "©2022 Flashform"
+    },
+    {
+      "cite": "src/components/Footer.jsx:67",
+      "expect": "Terms and conditions"
+    },
+    {
+      "cite": "src/components/Footer.jsx:67",
+      "expect": "https://www.termsandconditionsgenerator.com/live.php?token=KqfzIWBkH418WdHEZEWKRACbvJtGFf0j"
+    },
+    {
+      "cite": "src/components/Footer.jsx:70",
+      "expect": "Privacy Policy"
+    },
+    {
+      "cite": "src/components/Footer.jsx:70",
+      "expect": "https://www.privacypolicygenerator.info/live.php?token=iEz9YG406khJuP5hPg30r2GlroSf2mmH"
+    },
+    {
+      "cite": "src/components/Footer.jsx:73",
+      "expect": "by emotion"
+    },
+    {
+      "cite": "src/components/Footer.jsx:73",
+      "expect": "https://emotion-agency.com/en/"
+    },
+    {
+      "cite": "src/components/Footer.jsx:27",
+      "expect": "label=\"Your Email\" required value={email}"
+    },
+    {
+      "cite": "src/components/Footer.jsx:28",
+      "expect": "input-btn\">Join</Button>"
+    },
+    {
+      "cite": "src/anim/fallingLetters.js:70",
+      "expect": "later(() => drop('In'), 2000)"
+    },
+    {
+      "cite": "src/anim/fallingLetters.js:71",
+      "expect": "later(() => drop('Touch'), 3000)"
+    },
+    {
+      "cite": "src/components/Footer.jsx:34",
+      "expect": "Static fallback: empty 100vh"
+    }
+  ]
+}

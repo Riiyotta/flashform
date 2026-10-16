@@ -1,0 +1,173 @@
+{
+  "motion-roles": {
+    "$description": "Named motion behaviours; sections reference these ids in motion.patterns.",
+    "reveal-on-view": {
+      "$value": "rAF check: 0 < rect.top <= innerHeight*threshold, once",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/reveal.js:68",
+            "expect": "export class ScrollAnimations"
+          }
+        ]
+      }
+    },
+    "hero-intro": {
+      "$value": "sectionAnimation(.home-1) when the loader completes",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/index.js:107",
+            "expect": "if (hero) sectionAnimation(hero)"
+          }
+        ]
+      }
+    },
+    "section-scale": {
+      "$value": "scale .88 -> 1 (+opacity) scrubbed over one viewport, >960 only",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:17",
+            "expect": "export function sectionScale("
+          }
+        ]
+      }
+    },
+    "sticky-inner-scroll": {
+      "$value": "panel pinned at 100vh - 2*margin; content translated inside",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:77",
+            "expect": "export function sticky("
+          }
+        ]
+      }
+    },
+    "horizontal-scroll": {
+      "$value": "wrapper height = scrollWidth - (innerWidth - innerHeight); 1px vertical = 1px horizontal; >1060 only",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:103",
+            "expect": "export function horizontalScroll("
+          }
+        ]
+      }
+    },
+    "split-heading-scrub": {
+      "$value": "per-char ScrollTrigger, y 101% -> 0, back.out(1.2)",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:44",
+            "expect": "export function splitHeading("
+          }
+        ]
+      }
+    },
+    "cards-scale": {
+      "$value": "card i starts translateY(40.8*i px) scaleY(1+.07i), scrubbed to 0/1",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:30",
+            "expect": "export function cardsScale("
+          }
+        ]
+      }
+    },
+    "ticker-marquee": {
+      "$value": "rAF marquee, 80s base loop, scroll-velocity coupled, direction flips with scroll direction",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:171",
+            "expect": "export function ticker("
+          }
+        ]
+      }
+    },
+    "roadmap-draw": {
+      "$value": "stroke-dash draw of the curve; items .is-visible at -y >= 8/30/52",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:139",
+            "expect": "export function roadmap("
+          }
+        ]
+      }
+    },
+    "webgl-flower": {
+      "$value": "OGL butterfly shader, load-in after loader",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/gl.js:221",
+            "expect": "export function createButterfly()"
+          }
+        ]
+      }
+    },
+    "webgl-revealer": {
+      "$value": "OGL noise dissolve scrubbed from .home-5__sticky top+=40%",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/gl.js:227",
+            "expect": "export function createRevealer()"
+          }
+        ]
+      }
+    },
+    "physics-letters": {
+      "$value": "matter-js letters dropped while #letter-parent top < innerHeight/2",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/index.js:82",
+            "expect": "const fl = fallingLetters(parent)"
+          }
+        ]
+      }
+    },
+    "accordion": {
+      "$value": "height 0 -> scrollHeight, arrow 180deg, .45s expo-out",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:248",
+            "expect": ".accordion__item.opened .accordion__text{height:calc(var(--h, 1vh) * 100)"
+          }
+        ]
+      }
+    },
+    "navbar-hide": {
+      "$value": "body.nav-hidden on scroll down; mouse screenY <= 300 reveals",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/anim/scrollFx.js:205",
+            "expect": "export function navbarPos()"
+          }
+        ]
+      }
+    }
+  }
+}

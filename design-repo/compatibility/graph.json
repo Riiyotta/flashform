@@ -1,0 +1,320 @@
+{
+  "version": "1.0.0",
+  "$description": "Rhythm/position/compliance rules JSON Schema cannot express. Every rule id here has exactly one implementation in schema/semantic_validate.py (verify_all.py checks parity both ways). Severity: error = invalid, warn = non-fatal notice.",
+  "rules": [
+    {
+      "id": "TEMPLATE_NODE_SEQUENCE",
+      "severity": "error",
+      "description": "Cross-references the PageSpec's declared template against THAT template's real node list: every node's (section, variant) must match a template node, in template order, with no repeats of non-repeatable nodes, and every required template node present.",
+      "measuredFrom": [
+        {
+          "cite": "@repo/templates/templates.json:10",
+          "expect": "\"orderRule\""
+        }
+      ]
+    },
+    {
+      "id": "ROUTE_ALLOWED",
+      "severity": "error",
+      "description": "An original-reference PageSpec must use one of the template's real routes ('/').",
+      "measuredFrom": [
+        {
+          "cite": "@repo/templates/templates.json:7",
+          "expect": "\"routes\": ["
+        }
+      ]
+    },
+    {
+      "id": "ONE_HERO",
+      "severity": "error",
+      "description": "Exactly one hero.* node.",
+      "exemptTemplates": [],
+      "exemptionNote": "No exemption: the only template requires its hero (templates.json nodes[1].required = true).",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Hero.jsx:11",
+          "expect": "<section className=\"section section--nm home-1\">"
+        }
+      ]
+    },
+    {
+      "id": "NAV_FIRST",
+      "severity": "error",
+      "description": "shell.navbar is the first node.",
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:66",
+          "expect": "<Navbar />"
+        }
+      ]
+    },
+    {
+      "id": "HERO_FOLLOWS_NAV",
+      "severity": "error",
+      "description": "The hero node immediately follows shell.navbar.",
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:67",
+          "expect": "<Hero />"
+        }
+      ]
+    },
+    {
+      "id": "FOOTER_LAST",
+      "severity": "error",
+      "description": "shell.footer is the last node.",
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:83",
+          "expect": "<Footer />"
+        }
+      ]
+    },
+    {
+      "id": "FAQ_PRECEDES_FOOTER",
+      "severity": "error",
+      "description": "If faq.accordion is present it immediately precedes shell.footer.",
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:80",
+          "expect": "<Faq />"
+        }
+      ]
+    },
+    {
+      "id": "SECTION_MAX_PER_PAGE",
+      "severity": "error",
+      "description": "Counts per section respect constraints.maxPerPage; sections with variantsUniquePerPage may repeat only with distinct variants - keyed on (section, variant), never bare section id.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Purpose.jsx:16",
+          "expect": "<RoundedSection"
+        },
+        {
+          "cite": "src/components/Problems.jsx:7",
+          "expect": "<RoundedSection"
+        }
+      ]
+    },
+    {
+      "id": "NO_ADJACENT_SCROLL_STAGES",
+      "severity": "warn",
+      "description": "Two scroll-stage sections (horizontal-scroll pins) should not be adjacent. Observed composition separates them by six sections; this is rhythm guidance derived from that single composition, not a measured breakage, hence warn.",
+      "categories": [
+        "scroll-stage"
+      ],
+      "measuredFrom": [
+        {
+          "cite": "src/App.jsx:72",
+          "expect": "<Integration />"
+        },
+        {
+          "cite": "src/App.jsx:79",
+          "expect": "<Roadmap />"
+        }
+      ]
+    },
+    {
+      "id": "ANCHOR_IDS_UNIQUE",
+      "severity": "error",
+      "description": "anchorId values are unique on the page.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Why.jsx:4",
+          "expect": "id=\"why\""
+        }
+      ]
+    },
+    {
+      "id": "NAV_LINKS_RESOLVE",
+      "severity": "error",
+      "description": "Every navbar link href '#x' resolves to a node with anchorId x (omitting a section requires removing its link).",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Navbar.jsx:8",
+          "expect": "{ href: '#why', label: 'Why flashform' }"
+        },
+        {
+          "cite": "src/anim/scrollFx.js:229",
+          "expect": "const target = href && document.querySelector(href)"
+        }
+      ]
+    },
+    {
+      "id": "DESKTOP_ONLY_LINK_MOBILE_HIDDEN",
+      "severity": "error",
+      "description": "A nav link that targets a desktopOnly section (the roadmap is display:none <=1060) must set mobileHidden: true.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Navbar.jsx:11",
+          "expect": "mobHidden: true"
+        },
+        {
+          "cite": "src/index.css:663",
+          "expect": "@media (max-width: 1060px){.home-10{display:none}"
+        }
+      ]
+    },
+    {
+      "id": "CTA_REQUIRES_BETA_POPUP",
+      "severity": "error",
+      "description": "Any cta with action 'open-beta-popup' requires overlays.betaPopup.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Hero.jsx:19",
+          "expect": "onClick={openPopup}>Try now</Button>"
+        },
+        {
+          "cite": "src/App.jsx:84",
+          "expect": "<div className=\"new-form\"><BetaPopup /></div>"
+        }
+      ]
+    },
+    {
+      "id": "FORMS_REQUIRE_FEEDBACK",
+      "severity": "error",
+      "description": "If the page has a form (footer subscribe or beta popup), overlays.toasts and overlays.submitSpinner=true are required: submitForm always shows the spinner and a toast.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/submitForm.js:9",
+          "expect": "setAppLoading(true)"
+        },
+        {
+          "cite": "src/components/submitForm.js:24",
+          "expect": "pushToast(ok ?"
+        }
+      ]
+    },
+    {
+      "id": "FORM_ENDPOINT_NOT_ORIGINAL",
+      "severity": "error",
+      "description": "forms.endpoint must never be the original site owner's third-party Formspree endpoint (the clone stubs it: FORM_ENDPOINT = null). Pinned denylist.",
+      "denylist": [
+        "formspree.io/f/xyyvopzy"
+      ],
+      "measuredFrom": [
+        {
+          "cite": "src/components/submitForm.js:4",
+          "expect": "export const FORM_ENDPOINT = null"
+        },
+        {
+          "cite": "src/components/submitForm.js:1",
+          "expect": "https://formspree.io/f/xyyvopzy"
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL_CONTACTS_NOT_REUSED",
+      "severity": "error",
+      "description": "In new-content pages, footer/legal links must not reuse the original's real contact channels (agency email, a personal WhatsApp number and Telegram handle) or its generated-legal-page tokens.",
+      "denylist": [
+        "hello@emotion-agency.com",
+        "wa.me/+380970422959",
+        "t.me/rstetsr",
+        "emotion-agency.com",
+        "termsandconditionsgenerator.com/live.php?token=KqfzIWBkH418WdHEZEWKRACbvJtGFf0j",
+        "privacypolicygenerator.info/live.php?token=iEz9YG406khJuP5hPg30r2GlroSf2mmH"
+      ],
+      "measuredFrom": [
+        {
+          "cite": "src/components/Footer.jsx:10",
+          "expect": "['Whatsapp', 'https://wa.me/+380970422959']"
+        }
+      ]
+    },
+    {
+      "id": "ORIGINAL_COPY_NOT_REUSED",
+      "severity": "error",
+      "description": "In new-content pages, no text field may equal (case/space-normalised) any original string of 6+ words. The original strings are read from schema/example.pagespec.json (contentProvenance original-reference).",
+      "minWords": 6,
+      "measuredFrom": [
+        {
+          "cite": "@repo/schema/example.pagespec.json:6",
+          "expect": "\"contentProvenance\": \"original-reference\""
+        }
+      ]
+    },
+    {
+      "id": "BRAND_NAME_IN_NEW_CONTENT",
+      "severity": "warn",
+      "description": "A new-content page mentions 'Flashform': fine only when the deployer is the brand owner.",
+      "term": "flashform",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Meaning.jsx:12",
+          "expect": "Flashform?"
+        }
+      ]
+    },
+    {
+      "id": "PHYSICS_LETTERS_IN_GLYPH_SET",
+      "severity": "error",
+      "description": "footer physicsWords may only use letters that have a sprite (S,T,A,Y,I,N,O,U,C,H); any other letter would crash TABLE.find in fallingLetters.",
+      "measuredFrom": [
+        {
+          "cite": "src/anim/fallingLetters.js:34",
+          "expect": "const L = TABLE.find((l) => l.text.toUpperCase() === ch)"
+        },
+        {
+          "cite": "@repo/assets/asset-roles.json:352",
+          "expect": "\"glyphSet\""
+        }
+      ]
+    },
+    {
+      "id": "SUPERSCRIPT_HERO_HEADLINE_ONLY",
+      "severity": "error",
+      "description": "Run style 'superscript' (<small class=home-1__h1-small>) exists only in the hero headline.",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Hero.jsx:15",
+          "expect": "home-1__h1-small"
+        }
+      ]
+    },
+    {
+      "id": "CHANNEL_LIST_VARIANT",
+      "severity": "error",
+      "description": "channelList appears only in panel.rounded-sticky variant 'with-channel-list', and that variant must carry one (on its last item).",
+      "measuredFrom": [
+        {
+          "cite": "src/components/Purpose.jsx:35",
+          "expect": "<ul className=\"home-3-item__ul\">"
+        }
+      ]
+    },
+    {
+      "id": "ASSET_REF_POLICY",
+      "severity": "error",
+      "description": "assetRef must agree with the role's generationPolicy (assets/asset-roles.json): asset: ids must be registered under that role; generated: only for may-generate-new; owner-supplied: not for must-reuse-exact; registered owner-supplied-only media (the original's videos, screencast, OG image) only in original-reference pages.",
+      "measuredFrom": [
+        {
+          "cite": "@repo/assets/asset-roles.json:29",
+          "expect": "\"refRules\""
+        }
+      ]
+    },
+    {
+      "id": "MAX_WORDS",
+      "severity": "error",
+      "description": "Every text field respects its section's wordBudgets (sections/*.json content.wordBudgets).",
+      "measuredFrom": [
+        {
+          "cite": "@repo/extraction/measured-values.json:30",
+          "expect": "\"maxWords\""
+        }
+      ]
+    },
+    {
+      "id": "REDUCED_MOTION_FALLBACK",
+      "severity": "error",
+      "description": "Every node's motion carries the section's reducedMotionFallback. The source only kills CSS transitions under prefers-reduced-motion; JS motion has no reduced-motion branch, so generated pages must declare the static state.",
+      "measuredFrom": [
+        {
+          "cite": "src/index.css:31",
+          "expect": "@media (prefers-reduced-motion: reduce){*{transition:none!important}"
+        }
+      ]
+    }
+  ]
+}

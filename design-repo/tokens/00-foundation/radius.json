@@ -1,0 +1,153 @@
+{
+  "radius": {
+    "$description": "Border radii (CLONE_SPEC 0.5). Card radius is asymmetric: top-left corner square.",
+    "nav": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:156",
+            "expect": "align-items:center;border-radius:12px}"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:57",
+            "expect": "\"12px\""
+          }
+        ]
+      }
+    },
+    "panel": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Rounded section wrapper; 0 at <=768.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:211",
+            "expect": "--border-r: 20px"
+          }
+        ]
+      }
+    },
+    "card": {
+      "$value": "0 20px 20px",
+      "$type": "dimension",
+      "$description": "Benefit cards and screencast frame.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:617",
+            "expect": "border-radius:0 20px 20px;padding:1.25vw"
+          },
+          {
+            "cite": "src/index.css:576",
+            "expect": "border-radius:0 20px 20px;overflow:hidden;max-height:90vh"
+          },
+          {
+            "cite": "@repo/extraction/evidence/color-type-histogram.json:56",
+            "expect": "\"0px 20px 20px\""
+          }
+        ]
+      }
+    },
+    "card-mobile": {
+      "$value": "0 10px 10px",
+      "$type": "dimension",
+      "$description": "<=1060 card radius.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:625",
+            "expect": "border-radius:0 10px 10px}"
+          }
+        ]
+      }
+    },
+    "popup": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:359",
+            "expect": "border-radius:12px;z-index:1;max-width:44.2708333333vw"
+          }
+        ]
+      }
+    },
+    "menu": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:167",
+            "expect": "border-radius:10px;padding:12px;align-items:flex-end"
+          }
+        ]
+      }
+    },
+    "toast": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:390",
+            "expect": "border-radius:5px;padding:12px"
+          }
+        ]
+      }
+    },
+    "scroll-thumb": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:118",
+            "expect": ".scrollbar__thumb{width:6px;border-radius:7px"
+          }
+        ]
+      }
+    },
+    "dot": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:186",
+            "expect": "height:6px;border-radius:20px"
+          }
+        ]
+      }
+    },
+    "circle": {
+      "$value": "50%",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:133",
+            "expect": "background-color:var(--white);border-radius:50%"
+          }
+        ]
+      }
+    },
+    "wash": {
+      "$value": "50% 50% 0 0",
+      "$type": "dimension",
+      "$description": "Accordion hover wash start shape.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:271",
+            "expect": "opacity:.2;border-radius:50% 50% 0 0"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "component.input": {
+    "border": {
+      "$value": "2px solid {color.accent}",
+      "$type": "string",
+      "$description": "Popup variant: 2px solid black.",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:281",
+            "expect": "border-bottom:2px solid var(--accent);font-size:16px"
+          }
+        ]
+      }
+    },
+    "label-lift": {
+      "$value": "translateY(-30px), 10px, opacity .7",
+      "$type": "string",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:279",
+            "expect": ".input-wrapper.js-focus .input-placeholder{transform:translateY(-30px);font-size:10px;opacity:.7}"
+          }
+        ]
+      }
+    },
+    "padding-right": {
+      "$value": "4.1666666667vw",
+      "$type": "dimension",
+      "$extensions": {
+        "measuredFrom": [
+          {
+            "cite": "src/index.css:281",
+            "expect": "border-radius:0;padding-right:4.1666666667vw}"
+          }
+        ],
+        "mobile": "80px"
+      }
+    }
+  }
+}

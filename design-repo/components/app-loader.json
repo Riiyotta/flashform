@@ -1,0 +1,15 @@
+{
+  "id": "app-loader",
+  "kind": "component",
+  "purpose": "Fixed white disc spinner shown while a form submits.",
+  "implementedBy": [
+    "src/components/AppLoader.jsx"
+  ],
+  "composes": [],
+  "measuredFrom": [
+    {
+      "cite": "src/components/AppLoader.jsx:9",
+      "expect": "<div className=\"app-loader\">"
+    }
+  ]
+}
