@@ -1,5 +1,6 @@
 {
-  "pageSpecVersion": "1.0.0",
+  "pageSpecVersion": "1.1.0",
+  "mode": "reference",
   "template": "template.single-page-landing",
   "route": "/",
   "theme": "flashform-dark",

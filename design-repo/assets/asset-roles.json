@@ -1,15 +1,25 @@
 {
-  "version": "1.0.0",
-  "$description": "Closed asset-role vocabulary. Every PageSpec media field is {assetRole, assetRef}; assetRole must be one of the settable roles below, and assetRef must be a registered id of that role (asset:...), or owner-supplied:<slot> / generated:<slot> when the policy allows it.",
+  "version": "1.1.0",
+  "$description": "Closed asset-role vocabulary. Every PageSpec media field is {assetRole, assetRef}; assetRole must be one of the settable roles below, and assetRef must be a registered id of that role (asset:...), or owner-supplied:<slot> / generated:<slot> when the policy and the role's allowedRefKinds allow it. Every role (and every registered asset of a protected role) also carries an explicit `availability` that decides where it may appear: see `modes` and `availabilityVocabulary`.",
   "sourceIsRealCompany": true,
   "licensing": {
-    "summary": "Flashform (flshfrm.com) is a real, live product site built by Emotion Agency. Its copy, videos, OG image, logo and favicon are the original owner's proprietary content. The messenger icons are third-party trademarks. The fonts are commercial typefaces. None of this may be reproduced in generated output except as stated per role; the bundled example PageSpec reproduces the original only as a fidelity reference (contentProvenance 'original-reference').",
+    "summary": "Flashform (flshfrm.com) is a real, live product site built by Emotion Agency. Its copy, videos, OG image, logo and favicon are the original owner's proprietary content. The messenger icons are third-party trademarks. The fonts are commercial typefaces. None of this may be reproduced in generated output except as stated per role; the bundled reference example PageSpec reproduces the original only as a fidelity reference (mode 'reference', contentProvenance 'original-reference'). A generated page (mode 'generated') never carries the real Flashform logo or any other registered source-brand asset: it uses a generation-safe brand role (brand.placeholder, brand.user-supplied or brand.generated-mark).",
     "forbidden": [
       "AI-generating or redrawing any real logo or brand mark (Flashform, WhatsApp, Telegram, Messenger, Discord)",
       "depicting real people (no generated portraits, no employee or customer likenesses)",
       "reusing the original's videos, screencast, OG image or copy in a new-content page",
-      "reusing the original's contact channels (agency email, personal WhatsApp/Telegram) or its third-party form endpoint"
+      "reusing the original's contact channels (agency email, personal WhatsApp/Telegram) or its third-party form endpoint",
+      "using the real Flashform logo (role brand.logo, asset:logo-flashform), favicon or any other registered source-brand asset on a page generated for another brand (mode 'generated')"
     ]
+  },
+  "modes": {
+    "reference": "Clone / fidelity validation of the source brand (Flashform). Real roles (brand.logo, the registered favicon, OG image, videos) are allowed here, and only here. Requires contentProvenance 'original-reference'.",
+    "generated": "A new site for any other brand. The real Flashform logo and every registered source-brand asset are rejected (rule GENERATED_MODE_BLOCKS_REFERENCE_ASSETS); the page must use a generation-safe brand mark (rule GENERATED_MODE_REQUIRES_BRAND_MARK). Requires contentProvenance 'new-content'."
+  },
+  "availabilityVocabulary": {
+    "generation-safe": "May appear in a page generated for another brand (subject to generationPolicy and allowedRefKinds).",
+    "reference-only": "The real source-brand mark. May appear only in mode 'reference'. In mode 'generated' the role (any ref) is an error.",
+    "blocked-in-generated": "Source-specific proprietary media or files. Usable in mode 'reference' only. At role level it blocks the whole role; at asset level it blocks that registered asset while the role's owner-supplied: slots stay usable. Enforced exactly like reference-only; the name records why (proprietary media, not the brand mark)."
   },
   "policies": {
     "must-reuse-exact": "Reference the registered asset by id, unmodified. Never regenerate, redraw, restyle or approximate it.",
@@ -28,18 +38,19 @@
   },
   "refRules": {
     "asset:": "registered id; must belong to the field role",
-    "owner-supplied:": "allowed for owner-supplied-only and may-generate-new roles; the page owner provides media they hold rights to",
+    "owner-supplied:": "allowed for owner-supplied-only and may-generate-new roles (and must-not-fabricate roles, where the page owner supplies a mark they hold rights to); further restricted per role by allowedRefKinds",
     "generated:": "allowed only for may-generate-new roles"
   },
   "roles": {
     "brand.logo": {
       "settableInPageSpec": true,
-      "description": "The Flashform logotype + flower mark (inline SVG, 154x28, fill #B1DD40). A real company trademark.",
+      "description": "The real Flashform logotype + flower mark (inline SVG, 154x28, fill #B1DD40). A real company trademark: reference mode only. Generated pages use brand.placeholder, brand.user-supplied or brand.generated-mark instead.",
       "assets": [
         {
           "id": "asset:logo-flashform",
           "source": "reference/inline-svg/logo.svg",
-          "inline": true
+          "inline": true,
+          "availability": "reference-only"
         }
       ],
       "generationPolicy": "must-not-fabricate",
@@ -56,7 +67,59 @@
           "cite": "src/components/icons.jsx:47",
           "expect": "export const Logo"
         }
-      ]
+      ],
+      "availability": "reference-only",
+      "brandMark": true
+    },
+    "brand.placeholder": {
+      "settableInPageSpec": true,
+      "availability": "generation-safe",
+      "brandMark": true,
+      "description": "Neutral stand-in for a brand mark in a generated page: a plain text wordmark, no artwork. Use when no logo exists yet.",
+      "assets": [],
+      "allowedRefKinds": [
+        "generated"
+      ],
+      "generationGuidance": "assetRef 'generated:<slot>' (for example generated:placeholder-logo). Render the page's own brand name as plain text in the body typeface and the default text colour, inside the section's logo slot. No glyph, icon, flower, petal, butterfly or any other artwork; nothing that resembles the Flashform logotype or flower mark. Replace it when the owner supplies a real logo.",
+      "constraints": {
+        "form": "text wordmark only",
+        "artwork": "none",
+        "mustNotResemble": "asset:logo-flashform"
+      },
+      "generationPolicy": "may-generate-new",
+      "measuredFrom": []
+    },
+    "brand.user-supplied": {
+      "settableInPageSpec": true,
+      "availability": "generation-safe",
+      "brandMark": true,
+      "description": "The page owner's own logo, supplied by the owner. The design-repo registers no file for it.",
+      "assets": [],
+      "allowedRefKinds": [
+        "owner-supplied"
+      ],
+      "generationGuidance": "assetRef 'owner-supplied:<slot>' (for example owner-supplied:logo). Leave the slot for the owner to fill with a logo they hold rights to; until then show the brand name as plain text. Never fetch, trace or derive it from the Flashform logo and never AI-generate it.",
+      "generationPolicy": "owner-supplied-only",
+      "measuredFrom": []
+    },
+    "brand.generated-mark": {
+      "settableInPageSpec": true,
+      "availability": "generation-safe",
+      "brandMark": true,
+      "description": "A new neutral abstract mark generated for the new brand.",
+      "assets": [],
+      "allowedRefKinds": [
+        "generated"
+      ],
+      "generationGuidance": "assetRef 'generated:<slot>' (for example generated:brand-mark). Generate an original, simple geometric mark for the new brand. It must not be derived from, traced from or visually resemble the Flashform logotype or flower mark; no flower, petal or butterfly motif; no lettering of the word Flashform; must not depict a real person or imitate any other real logo.",
+      "constraints": {
+        "form": "abstract geometric",
+        "mustNotResemble": "asset:logo-flashform",
+        "noRealPeople": true,
+        "noRealLogos": true
+      },
+      "generationPolicy": "may-generate-new",
+      "measuredFrom": []
     },
     "meta.favicon": {
       "settableInPageSpec": true,
@@ -64,7 +127,8 @@
       "assets": [
         {
           "id": "asset:favicon",
-          "source": "public/assets/favicon.ico"
+          "source": "public/assets/favicon.ico",
+          "availability": "blocked-in-generated"
         }
       ],
       "generationPolicy": "must-not-fabricate",
@@ -73,7 +137,8 @@
           "cite": "index.html:14",
           "expect": "rel=\"icon\" type=\"image/x-icon\""
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "meta.og-image": {
       "settableInPageSpec": true,
@@ -81,7 +146,8 @@
       "assets": [
         {
           "id": "asset:og-twitter",
-          "source": "public/assets/og/twitter.png"
+          "source": "public/assets/og/twitter.png",
+          "availability": "blocked-in-generated"
         }
       ],
       "generationPolicy": "owner-supplied-only",
@@ -90,7 +156,8 @@
           "cite": "index.html:10",
           "expect": "<meta property=\"og:image\" content=\"/assets/og/twitter.png\" />"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "media.loop-video-square": {
       "settableInPageSpec": true,
@@ -98,11 +165,13 @@
       "assets": [
         {
           "id": "asset:video-1",
-          "source": "public/assets/video/1.mp4"
+          "source": "public/assets/video/1.mp4",
+          "availability": "blocked-in-generated"
         },
         {
           "id": "asset:video-2",
-          "source": "public/assets/video/2.mp4"
+          "source": "public/assets/video/2.mp4",
+          "availability": "blocked-in-generated"
         }
       ],
       "constraints": {
@@ -125,7 +194,8 @@
           "cite": "src/index.css:469",
           "expect": "mix-blend-mode:lighten;background-color:var(--black)}"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "media.product-screencast": {
       "settableInPageSpec": true,
@@ -133,7 +203,8 @@
       "assets": [
         {
           "id": "asset:video-screencast",
-          "source": "public/assets/video/screencast.mp4"
+          "source": "public/assets/video/screencast.mp4",
+          "availability": "blocked-in-generated"
         }
       ],
       "constraints": {
@@ -146,7 +217,8 @@
           "cite": "src/components/Integration.jsx:39",
           "expect": "<video src=\"/assets/video/screencast.mp4\""
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "icon.third-party-channel": {
       "settableInPageSpec": true,
@@ -154,19 +226,23 @@
       "assets": [
         {
           "id": "asset:icon-whatsapp",
-          "source": "public/assets/icons/whatsapp.svg"
+          "source": "public/assets/icons/whatsapp.svg",
+          "availability": "generation-safe"
         },
         {
           "id": "asset:icon-telegram",
-          "source": "public/assets/icons/telegram.svg"
+          "source": "public/assets/icons/telegram.svg",
+          "availability": "generation-safe"
         },
         {
           "id": "asset:icon-messanger",
-          "source": "public/assets/icons/messanger.svg"
+          "source": "public/assets/icons/messanger.svg",
+          "availability": "generation-safe"
         },
         {
           "id": "asset:icon-discord",
-          "source": "public/assets/icons/discord.svg"
+          "source": "public/assets/icons/discord.svg",
+          "availability": "generation-safe"
         }
       ],
       "generationPolicy": "must-not-fabricate",
@@ -179,7 +255,8 @@
           "cite": "src/components/Purpose.jsx:41",
           "expect": "src={`/assets/icons/${c.icon}.svg`}"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "icon.generic-channel": {
       "settableInPageSpec": true,
@@ -204,7 +281,8 @@
           "cite": "src/components/Purpose.jsx:10",
           "expect": "{ name: 'Etc.', icon: 'plus' }"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "icon.feature-glyph": {
       "settableInPageSpec": true,
@@ -251,7 +329,8 @@
           "cite": "src/components/icons.jsx:7",
           "expect": "export const Home3Icon1"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "icon.ui-glyph": {
       "settableInPageSpec": false,
@@ -302,7 +381,8 @@
           "cite": "src/components/icons.jsx:43",
           "expect": "export const TickerStar"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "physics.letter-sprite": {
       "settableInPageSpec": false,
@@ -371,7 +451,8 @@
           "cite": "src/anim/fallingLetters.js:39",
           "expect": "texture: `/assets/letters/${L.text}.svg`"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "shader.hero-flower": {
       "settableInPageSpec": true,
@@ -392,7 +473,8 @@
           "cite": "src/components/Hero.jsx:28",
           "expect": "<div className=\"home-1__gl js-hidden\" />"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "shader.revealer-dissolve": {
       "settableInPageSpec": true,
@@ -413,7 +495,8 @@
           "cite": "src/components/Integration.jsx:41",
           "expect": "<div id=\"gl-2\" />"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     },
     "font.commercial": {
       "settableInPageSpec": false,
@@ -446,7 +529,15 @@
           "cite": "src/index.css:35",
           "expect": "@font-face{font-family:Recife"
         }
-      ]
+      ],
+      "availability": "generation-safe"
     }
+  },
+  "pinnedAvailability": {
+    "brand.logo": "reference-only"
+  },
+  "pinnedAssetAvailability": {
+    "asset:logo-flashform": "reference-only",
+    "asset:favicon": "blocked-in-generated"
   }
 }

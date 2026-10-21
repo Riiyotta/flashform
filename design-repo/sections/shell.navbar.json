@@ -34,7 +34,10 @@
           "properties": {
             "assetRole": {
               "enum": [
-                "brand.logo"
+                "brand.generated-mark",
+                "brand.logo",
+                "brand.placeholder",
+                "brand.user-supplied"
               ]
             },
             "assetRef": {
@@ -69,7 +72,10 @@
     ]
   },
   "assetRoles": [
-    "brand.logo"
+    "brand.generated-mark",
+    "brand.logo",
+    "brand.placeholder",
+    "brand.user-supplied"
   ],
   "motion": {
     "allowedPatterns": [

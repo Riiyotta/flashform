@@ -7,6 +7,7 @@
   "additionalProperties": false,
   "required": [
     "pageSpecVersion",
+    "mode",
     "template",
     "route",
     "theme",
@@ -18,7 +19,14 @@
   ],
   "properties": {
     "pageSpecVersion": {
-      "const": "1.0.0"
+      "const": "1.1.0"
+    },
+    "mode": {
+      "enum": [
+        "reference",
+        "generated"
+      ],
+      "description": "reference = clone / fidelity validation of the source brand (the real Flashform roles are allowed); generated = a new site for any other brand (the real Flashform logo and every registered source-brand asset are rejected; a generation-safe brand mark is required). Must agree with contentProvenance: reference <-> original-reference, generated <-> new-content."
     },
     "template": {
       "enum": [
@@ -295,7 +303,10 @@
     },
     "assetRole": {
       "enum": [
+        "brand.generated-mark",
         "brand.logo",
+        "brand.placeholder",
+        "brand.user-supplied",
         "icon.feature-glyph",
         "icon.generic-channel",
         "icon.third-party-channel",
@@ -353,7 +364,10 @@
           "properties": {
             "assetRole": {
               "enum": [
-                "brand.logo"
+                "brand.generated-mark",
+                "brand.logo",
+                "brand.placeholder",
+                "brand.user-supplied"
               ]
             },
             "assetRef": {
@@ -1216,7 +1230,10 @@
           "properties": {
             "assetRole": {
               "enum": [
-                "brand.logo"
+                "brand.generated-mark",
+                "brand.logo",
+                "brand.placeholder",
+                "brand.user-supplied"
               ]
             },
             "assetRef": {

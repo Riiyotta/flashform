@@ -1,0 +1,294 @@
+{
+  "pageSpecVersion": "1.1.0",
+  "mode": "generated",
+  "template": "template.single-page-landing",
+  "route": "/launch",
+  "theme": "flashform-dark",
+  "contentProvenance": "new-content",
+  "meta": {
+    "title": "Fernwick Demo: shared plant-care reminders for small offices",
+    "description": "A fictional demo site that shows a generated page for an original brand.",
+    "ogImage": {
+      "assetRole": "meta.og-image",
+      "assetRef": "owner-supplied:og-card"
+    },
+    "favicon": {
+      "assetRole": "meta.favicon",
+      "assetRef": "owner-supplied:favicon"
+    }
+  },
+  "overlays": {
+    "introLoader": {
+      "word": "Fernwick"
+    },
+    "betaPopup": {
+      "title": "Join the beta",
+      "nameLabel": "Your Name",
+      "emailLabel": "Your Email",
+      "submitLabel": "Join"
+    },
+    "toasts": {
+      "success": "You are on the list",
+      "error": "Something went wrong"
+    },
+    "submitSpinner": true
+  },
+  "forms": {
+    "submission": "stub"
+  },
+  "nodes": [
+    {
+      "id": "nav",
+      "section": "shell.navbar",
+      "content": {
+        "logo": {
+          "assetRole": "brand.placeholder",
+          "assetRef": "generated:placeholder-logo"
+        },
+        "links": [
+          {
+            "label": "Benefits",
+            "href": "#benefits",
+            "mobileHidden": false
+          },
+          {
+            "label": "FAQ",
+            "href": "#faq",
+            "mobileHidden": false
+          }
+        ],
+        "cta": {
+          "label": "Join the beta",
+          "action": "open-beta-popup"
+        }
+      },
+      "motion": {
+        "patterns": [
+          "navbar-hide"
+        ],
+        "reducedMotionFallback": "static-final-state"
+      }
+    },
+    {
+      "id": "hero",
+      "section": "hero.sticky-statement",
+      "content": {
+        "headline": [
+          {
+            "text": "Plants that ",
+            "style": "roman"
+          },
+          {
+            "text": "thrive",
+            "style": "italic"
+          }
+        ],
+        "subheadline": [
+          {
+            "text": "without guessing",
+            "style": "italic"
+          }
+        ],
+        "paragraph": "Fernwick sends one gentle reminder to whoever sits nearest the fern so every office plant gets water on time",
+        "cta": {
+          "label": "Start free",
+          "action": "open-beta-popup"
+        },
+        "visual": {
+          "assetRole": "shader.hero-flower",
+          "assetRef": "asset:shader-butterfly"
+        }
+      },
+      "motion": {
+        "patterns": [
+          "hero-intro",
+          "webgl-flower"
+        ],
+        "reducedMotionFallback": "static-final-state",
+        "revealTargets": [
+          "heading-chars",
+          "paragraph-lines",
+          "rise",
+          "fade"
+        ]
+      }
+    },
+    {
+      "id": "meaning",
+      "section": "split.media-statement",
+      "variant": "media-left",
+      "content": {
+        "heading": [
+          {
+            "text": "One list, ",
+            "style": "roman"
+          },
+          {
+            "text": "every plant",
+            "style": "italic"
+          }
+        ],
+        "paragraph": "Add each plant once and Fernwick tells the team who waters what and when",
+        "media": {
+          "assetRole": "media.loop-video-square",
+          "assetRef": "owner-supplied:loop-a"
+        }
+      },
+      "motion": {
+        "patterns": [
+          "reveal-on-view"
+        ],
+        "reducedMotionFallback": "static-final-state",
+        "inViewThresholds": [
+          0.4
+        ],
+        "revealTargets": [
+          "heading-chars",
+          "paragraph-lines"
+        ]
+      }
+    },
+    {
+      "id": "benefits",
+      "section": "grid.ticker-benefit-cards",
+      "anchorId": "benefits",
+      "content": {
+        "ticker": [
+          {
+            "text": "Why offices ",
+            "style": "roman"
+          },
+          {
+            "text": "bloom",
+            "style": "italic"
+          }
+        ],
+        "intro": "Six reasons small offices keep their plants alive with one shared schedule",
+        "cards": [
+          {
+            "title": "Shared rota",
+            "text": "Everyone sees whose turn it is this week."
+          },
+          {
+            "title": "Gentle nudges",
+            "text": "A short reminder arrives only when water is due."
+          },
+          {
+            "title": "Plant profiles",
+            "text": "Each plant keeps its own light and water notes."
+          },
+          {
+            "title": "Holiday cover",
+            "text": "Hand a plant to a colleague before you leave."
+          },
+          {
+            "title": "Light checks",
+            "text": "Move a plant when its spot gets too dim."
+          },
+          {
+            "title": "Simple setup",
+            "text": "Add your plants in a few minutes, no training."
+          }
+        ]
+      },
+      "motion": {
+        "patterns": [
+          "ticker-marquee",
+          "cards-scale",
+          "reveal-on-view"
+        ],
+        "reducedMotionFallback": "static-final-state",
+        "inViewThresholds": [
+          0.5
+        ],
+        "revealTargets": [
+          "rise",
+          "paragraph-lines"
+        ]
+      }
+    },
+    {
+      "id": "faq",
+      "section": "faq.accordion",
+      "anchorId": "faq",
+      "content": {
+        "heading": [
+          {
+            "text": "F",
+            "style": "roman"
+          },
+          {
+            "text": "A",
+            "style": "italic"
+          },
+          {
+            "text": "Q",
+            "style": "roman"
+          }
+        ],
+        "items": [
+          {
+            "question": "Do I need an account?",
+            "answerLines": [
+              "No. Share one link with your team and pick a start day."
+            ]
+          }
+        ]
+      },
+      "motion": {
+        "patterns": [
+          "accordion"
+        ],
+        "reducedMotionFallback": "instant-toggle"
+      }
+    },
+    {
+      "id": "footer",
+      "section": "shell.footer",
+      "content": {
+        "logo": {
+          "assetRole": "brand.placeholder",
+          "assetRef": "generated:placeholder-logo"
+        },
+        "physicsWords": [
+          "Stay",
+          "In",
+          "Touch"
+        ],
+        "contact": {
+          "heading": "Contact us",
+          "links": [
+            {
+              "label": "Email us",
+              "href": "mailto:team@example.com"
+            }
+          ]
+        },
+        "subscribe": {
+          "heading": "Join the beta",
+          "emailLabel": "Your Email",
+          "submitLabel": "Join"
+        },
+        "legal": {
+          "copyright": "©2026 Fernwick Demo",
+          "links": [
+            {
+              "label": "Terms",
+              "href": "https://example.com/terms"
+            }
+          ],
+          "credit": {
+            "label": "Studio",
+            "href": "https://example.com/"
+          }
+        }
+      },
+      "motion": {
+        "patterns": [
+          "physics-letters"
+        ],
+        "reducedMotionFallback": "static-empty-area"
+      }
+    }
+  ]
+}
