@@ -3,9 +3,9 @@
 
 Checks (each one is proven to catch drift by extraction/drift_test.py, which mutates a scratch copy):
   1  json        every *.json parses
-  2  schema      pagespec.schema.json is valid Draft-07 and example.pagespec.json has 0 schema errors
-  3  semantic    semantic_validate.py reports 0 errors / 0 warnings on the example
-  4  adversarial schema/tests/adversarial_test.py: every mutation rejected, every control passes
+  2  schema      pagespec.schema.json is valid Draft-07 and EVERY schema/example*.pagespec.json has 0 schema errors
+  3  semantic    semantic_validate.py reports 0 errors / 0 warnings on EVERY example
+  4  adversarial schema/tests/adversarial_test.py: every mutation (spec + registry) rejected, every control passes
   5  allowlist   parity: files on disk <-> tokens/llm/component-allowlist.json <-> pagespec.schema.json
   6  contracts   each section's content.schema == schema definitions; template nodes reference real sections/variants
   7  graph       compatibility/graph.json rule ids == semantic_validate.RULES ids (both directions)
@@ -14,10 +14,14 @@ Checks (each one is proven to catch drift by extraction/drift_test.py, which mut
  10  citations   every measuredFrom/cites entry resolves (path exists, range within file, `expect` text inside the range).
                  Paths with @repo/ are inside this folder and always checked; others are relative to the sibling clone
                  project (the parent folder) and are WARN-skipped when that project is absent (standalone copy).
- 11  assets      asset roles closed + pinned policies unchanged + schema/allowlist roles agree
+ 11  assets      asset roles closed + pinned policies unchanged + schema/allowlist roles agree + availability: closed enum,
+                 every role classified, protected assets explicit, real logo / favicon availability PINNED
  12  tokens      every {token.ref} resolves; theme resolves every colour role; policy keys are real catalog keys
  13  manifest    entryPoints exist and are inside design-repo/
  14  paths       no absolute local machine paths in any text file
+ 15  modes       PageSpec mode enum == validator MODES == asset-roles modes; mode <-> contentProvenance; brand-mark role enums ==
+                 the generation-safe brand roles; example.pagespec.json is mode reference and example.generated.pagespec.json is
+                 mode generated, uses only generation-safe roles/assets and a generation-safe brand mark; manifest lists both
 """
 import json
 import os
@@ -63,6 +67,11 @@ def json_files():
                 yield os.path.relpath(os.path.join(d, f), ROOT)
 
 
+def example_files():
+    d = os.path.join(ROOT, 'schema')
+    return sorted(f'schema/{f}' for f in os.listdir(d) if f.startswith('example') and f.endswith('.pagespec.json'))
+
+
 def ids_in(folder):
     return sorted(f[:-5] for f in os.listdir(os.path.join(ROOT, folder)) if f.endswith('.json'))
 
@@ -84,19 +93,29 @@ def c_schema(F, W, I):
     import jsonschema
     s = load('schema/pagespec.schema.json')
     jsonschema.Draft7Validator.check_schema(s)
-    errs = list(jsonschema.Draft7Validator(s).iter_errors(load('schema/example.pagespec.json')))
-    for e in errs:
-        F.append(f"{'/'.join(map(str, e.absolute_path))}: {e.message[:150]}")
-    I.append(f'Draft-07 meta-schema OK; example.pagespec.json: {len(errs)} schema error(s)')
+    exs = example_files()
+    if not exs:
+        F.append('no schema/example*.pagespec.json found')
+    total = 0
+    for rel in exs:
+        errs = list(jsonschema.Draft7Validator(s).iter_errors(load(rel)))
+        total += len(errs)
+        for e in errs:
+            F.append(f"{rel} {'/'.join(map(str, e.absolute_path))}: {e.message[:150]}")
+    I.append(f'Draft-07 meta-schema OK; {len(exs)} example PageSpecs ({", ".join(os.path.basename(x) for x in exs)}): {total} schema error(s)')
 
 
 @check('3 semantic')
 def c_semantic(F, W, I):
     import semantic_validate as sv
-    errs, warns = sv.validate(load('schema/example.pagespec.json'))
-    F.extend(errs)
-    F.extend(f'(warning on the example) {w}' for w in warns)
-    I.append(f'example: {len(errs)} error(s), {len(warns)} warning(s)')
+    ne = nw = 0
+    exs = example_files()
+    for rel in exs:
+        errs, warns = sv.validate(load(rel))
+        ne, nw = ne + len(errs), nw + len(warns)
+        F.extend(f'{rel}: {e}' for e in errs)
+        F.extend(f'{rel}: (warning on an example) {w}' for w in warns)
+    I.append(f'{len(exs)} examples: {ne} error(s), {nw} warning(s)')
 
 
 @check('4 adversarial')
@@ -241,7 +260,7 @@ def recount():
         'templates': len(t['templates']), 'routes': len(t['routes']), 'assetRoles': len(roles),
         'assetRolesSettable': sum(1 for r in roles.values() if r['settableInPageSpec']),
         'graphRules': len(load('compatibility/graph.json')['rules']),
-        'adversarialMutations': len(at.MUTATIONS), 'themes': len(os.listdir(os.path.join(ROOT, 'tokens', 'themes'))),
+        'adversarialMutations': at.total_mutations(), 'themes': len(os.listdir(os.path.join(ROOT, 'tokens', 'themes'))),
     }
 
 
@@ -344,6 +363,22 @@ def c_assets(F, W, I):
     for k, r in roles.items():
         if r['generationPolicy'] not in pol:
             F.append(f'{k}: policy {r["generationPolicy"]} not in the closed policy set')
+    import semantic_validate as sv
+    for e in sv.availability_errors(doc):
+        F.append(e)
+    if set(doc.get('modes', {})) != set(sv.MODES):
+        F.append(f"asset-roles modes {sorted(doc.get('modes', {}))} != validator MODES {sorted(sv.MODES)}")
+    if set(doc.get('availabilityVocabulary', {})) != set(sv.AVAILABILITY):
+        F.append('asset-roles availabilityVocabulary keys != validator AVAILABILITY')
+    for k, r in roles.items():
+        ark = r.get('allowedRefKinds')
+        if ark is not None:
+            if not ark or not set(ark) <= {'asset', 'owner-supplied', 'generated'}:
+                F.append(f'{k}: allowedRefKinds {ark} is not a subset of asset/owner-supplied/generated')
+            if 'generated' in ark and r['generationPolicy'] != 'may-generate-new':
+                F.append(f'{k}: allowedRefKinds allows generated: but policy is {r["generationPolicy"]}')
+            if 'asset' in ark and not r['assets']:
+                F.append(f'{k}: allowedRefKinds allows asset: but no asset is registered')
     for k, v in doc['pinnedPolicies'].items():
         if k not in roles:
             F.append(f'pinned role {k} missing')
@@ -383,7 +418,10 @@ def c_assets(F, W, I):
                 if not os.path.isfile(os.path.join(PROJECT, a['source'])):
                     F.append(f"asset source missing: {a['source']}")
                     missing += 1
-    I.append(f'{len(roles)} roles ({len(settable)} settable), {len(doc["pinnedPolicies"])} pinned policies hold, {len(ids)} assets' + ('' if SIBLING else ' (sources not checked: no sibling project)'))
+    av = {}
+    for r in roles.values():
+        av[r['availability']] = av.get(r['availability'], 0) + 1
+    I.append(f'{len(roles)} roles ({len(settable)} settable), {len(doc["pinnedPolicies"])} pinned policies + {len(doc["pinnedAvailability"]) + len(doc["pinnedAssetAvailability"])} pinned availabilities hold, availability {av}, {len(ids)} assets' + ('' if SIBLING else ' (sources not checked: no sibling project)'))
 
 
 def token_tree():
@@ -482,6 +520,72 @@ def c_paths(F, W, I):
                 if p in txt:
                     F.append(f'{os.path.relpath(full, ROOT)} contains an absolute local path ({p})')
     I.append(f'{n} text files scanned')
+
+
+@check('15 modes')
+def c_modes(F, W, I):
+    import semantic_validate as sv
+    s = load('schema/pagespec.schema.json')
+    roles = load('assets/asset-roles.json')['roles']
+    modes = s['properties'].get('mode', {}).get('enum')
+    if modes != list(sv.MODES):
+        F.append(f'schema mode enum {modes} != validator MODES {list(sv.MODES)}')
+    if 'mode' not in s['required']:
+        F.append('schema does not require mode')
+    if sorted(sv.MODE_PROVENANCE) != sorted(sv.MODES):
+        F.append('validator MODE_PROVENANCE keys != MODES')
+    for prov in sv.MODE_PROVENANCE.values():
+        if prov not in s['properties']['contentProvenance']['enum']:
+            F.append(f'schema contentProvenance enum lacks {prov!r}')
+    safe = sorted(k for k, r in roles.items() if r.get('brandMark') and r['availability'] == 'generation-safe' and r['settableInPageSpec'])
+    if len(safe) < 2:
+        F.append(f'expected at least placeholder/user-supplied/generated-mark generation-safe brand roles, found {safe}')
+    allowed = sorted(k for k, r in roles.items() if r.get('brandMark') and r['settableInPageSpec'])
+    for sec in ('content.shell.navbar', 'content.shell.footer'):
+        got = sorted(s['definitions'][sec]['properties']['logo']['properties']['assetRole']['enum'])
+        if got != allowed:
+            F.append(f'{sec} logo role enum {got} != brand-mark roles {allowed}')
+    exs = example_files()
+    kinds = {}
+    for rel in exs:
+        ex = load(rel)
+        name = os.path.basename(rel)
+        want = 'generated' if '.generated.' in name else 'reference'
+        kinds[want] = kinds.get(want, 0) + 1
+        if ex.get('mode') != want:
+            F.append(f'{rel}: mode {ex.get("mode")!r} but the file name says {want!r}')
+        if sv.MODE_PROVENANCE.get(ex.get('mode')) != ex.get('contentProvenance'):
+            F.append(f'{rel}: mode {ex.get("mode")!r} disagrees with contentProvenance {ex.get("contentProvenance")!r}')
+        if ex.get('pageSpecVersion') != s['properties']['pageSpecVersion']['const']:
+            F.append(f'{rel}: pageSpecVersion != schema const')
+        media = list(sv.walk_media(ex))
+        if want == 'generated':
+            for where, m in media:
+                r = roles.get(m['assetRole'], {})
+                if r.get('availability') != 'generation-safe':
+                    F.append(f'{rel}: {where} uses {m["assetRole"]} ({r.get("availability")}) in a generated example')
+                if m['assetRef'].startswith('asset:'):
+                    aav = next((x.get('availability', r.get('availability')) for rr in roles.values() for x in rr['assets'] if x['id'] == m['assetRef']), None)
+                    if aav != 'generation-safe':
+                        F.append(f'{rel}: {where} references the registered asset {m["assetRef"]} ({aav}) in a generated example')
+            for n in ex['nodes']:
+                if n['section'] in ('shell.navbar', 'shell.footer') and n['content']['logo']['assetRole'] not in safe:
+                    F.append(f'{rel}: {n["id"]} logo role {n["content"]["logo"]["assetRole"]} is not a generation-safe brand mark')
+            if any('flashform' in x.lower() for x in sv.iter_strings(ex, skip=('theme',))):  # the theme id is the design system, not a brand claim
+                F.append(f'{rel}: the generated example mentions the source brand')
+        else:
+            real = [(w, m) for w, m in media if m['assetRole'] == 'brand.logo' and m['assetRef'] == 'asset:logo-flashform']
+            if len(real) != 2:
+                F.append(f'{rel}: the reference example should exercise the real logo on the navbar and footer (found {len(real)})')
+    for want in ('reference', 'generated'):
+        if kinds.get(want, 0) < 1:
+            F.append(f'no example PageSpec of mode {want}')
+    ep = load('registry.manifest.json')['entryPoints']
+    listed = {ep.get('example'), ep.get('exampleGenerated')}
+    for rel in exs:
+        if rel not in listed:
+            F.append(f'manifest entryPoints do not list {rel}')
+    I.append(f'mode enum {modes} == validator == asset-roles.modes; logo role enums == brand roles {allowed}; examples {kinds}, generated example uses only generation-safe roles/assets')
 
 
 def main():

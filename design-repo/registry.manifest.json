@@ -3,10 +3,10 @@
   "name": "Flashform design-repo",
   "status": "design-review-pending",
   "productionApproved": false,
-  "repositoryVersion": "1.0.0",
-  "pageSpecVersion": "1.0.0",
-  "allowlistVersion": "1.0.0",
-  "versionFieldNote": "allowlistVersion is MACHINE-CHECKED (verify_all.py fails if it differs from tokens/llm/component-allowlist.json version). pageSpecVersion is checked against the schema const, and every PageSpec instance must carry that const. repositoryVersion is DOCUMENTATION-ONLY: hand-maintained, nothing checks it.",
+  "repositoryVersion": "1.1.0",
+  "pageSpecVersion": "1.1.0",
+  "allowlistVersion": "1.1.0",
+  "versionFieldNote": "allowlistVersion is MACHINE-CHECKED (verify_all.py fails if it differs from tokens/llm/component-allowlist.json version). pageSpecVersion is checked against the schema const, and every PageSpec instance (both examples) must carry that const; 1.1.0 added the required PageSpec field `mode` (reference|generated). repositoryVersion is DOCUMENTATION-ONLY: hand-maintained, nothing checks it.",
   "defaultTheme": "flashform-dark",
   "schemaValidatedThemes": [
     "flashform-dark"
@@ -28,10 +28,10 @@
     "sections": 11,
     "templates": 1,
     "routes": 1,
-    "assetRoles": 13,
-    "assetRolesSettable": 10,
-    "graphRules": 24,
-    "adversarialMutations": 57,
+    "assetRoles": 16,
+    "assetRolesSettable": 13,
+    "graphRules": 27,
+    "adversarialMutations": 91,
     "themes": 1
   },
   "entryPoints": {
@@ -39,6 +39,7 @@
     "changelog": "CHANGELOG.md",
     "schema": "schema/pagespec.schema.json",
     "example": "schema/example.pagespec.json",
+    "exampleGenerated": "schema/example.generated.pagespec.json",
     "validator": "schema/semantic_validate.py",
     "adversarialTests": "schema/tests/adversarial_test.py",
     "verify": "extraction/verify_all.py",
@@ -67,10 +68,10 @@
   },
   "constraints": [
     "FORMS ARE STUBBED: the clone sets FORM_ENDPOINT = null; the original posts to a Formspree endpoint owned by the original site owner. PageSpecs use forms.submission \"stub\" or an owner-supplied https endpoint; the original endpoint is rejected (FORM_ENDPOINT_NOT_ORIGINAL).",
-    "REAL LIVE COMPANY: copy, videos (1.mp4, 2.mp4, screencast.mp4), the OG image (twitter.png), logo and favicon are proprietary. new-content PageSpecs reject the original copy, contacts and proprietary media (ORIGINAL_COPY_NOT_REUSED, ORIGINAL_CONTACTS_NOT_REUSED, ASSET_REF_POLICY).",
+    "REAL LIVE COMPANY: copy, videos (1.mp4, 2.mp4, screencast.mp4), the OG image (twitter.png), logo and favicon are proprietary. They are available in mode \"reference\" only (fidelity validation of the source brand). In mode \"generated\" (a site for any other brand) the real logo and every registered source-brand asset are rejected (GENERATED_MODE_BLOCKS_REFERENCE_ASSETS) and the original copy and contacts are rejected too (ORIGINAL_COPY_NOT_REUSED, ORIGINAL_CONTACTS_NOT_REUSED, ASSET_REF_POLICY).",
     "COMMERCIAL FONTS: Aeonik, Recife Display (italic cut declared font-style normal) and Neue Haas Display are self-hosted from the original; a licence is required for any new deployment.",
     "THIRD-PARTY MARKS: WhatsApp, Telegram, Messenger and Discord icons are third-party trademarks (role icon.third-party-channel, pinned must-not-fabricate).",
-    "NO AI GENERATION of real logos, real people or the original proprietary content (assets/asset-roles.json licensing + pinnedPolicies).",
+    "NO AI GENERATION of real logos, real people or the original proprietary content (assets/asset-roles.json licensing + pinnedPolicies). A generated page uses the generation-safe brand roles brand.placeholder, brand.user-supplied or brand.generated-mark, never brand.logo (pinnedAvailability: brand.logo is reference-only).",
     "SINGLE ROUTE: one route (/), one template; nav items are in-page anchors; all footer links are external.",
     "MOTION QUIRKS KEPT ON PURPOSE: ease \"linear.none\" resolves to power1.out; ScrollTriggers created at staged times; page reloads on resize above 768px; hero u_mousePosition is effectively always (0,0).",
     "DESIGN REVIEW PENDING: productionApproved=false; private reference build, do not publish or make public."

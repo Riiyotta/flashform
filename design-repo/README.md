@@ -78,10 +78,10 @@ design-repo/
 - sections: 11
 - templates: 1
 - routes: 1
-- assetRoles: 13
-- assetRolesSettable: 10
-- graphRules: 24
-- adversarialMutations: 57
+- assetRoles: 16
+- assetRolesSettable: 13
+- graphRules: 27
+- adversarialMutations: 91
 - themes: 1
 <!-- counts:end -->
 

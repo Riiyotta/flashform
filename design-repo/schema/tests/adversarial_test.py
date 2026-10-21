@@ -3,8 +3,11 @@
 
 Controls are synthesised generically: for every template in templates/templates.json the suite builds
 (a) the full node list and (b) a required-nodes-only page from that template's own node list, so a new or
-split template is covered with zero new control code. A hand-written new-content control proves the
-compliance rules do not reject legitimate generated pages.
+split template is covered with zero new control code. The bundled generated example (schema/example.generated.pagespec.json,
+mode "generated") is the base for the generated-mode controls and mutations: it proves the compliance rules do not
+reject legitimate generated pages, and that each generation-safe brand role passes.
+REGISTRY_MUTATIONS mutate an in-memory copy of assets/asset-roles.json and must be rejected by the shared pinned /
+closed-enum check semantic_validate.availability_errors (the same function verify_all check 11 runs).
 
 Usage: python3 -I schema/tests/adversarial_test.py     (exit 1 on any failed expectation)
 """
@@ -36,48 +39,24 @@ def set_links(spec, hrefs):
     nav['content']['links'] = [l for l in nav['content']['links'] if l['href'] in hrefs]
 
 
-def new_content_control():
-    """A legitimate generated page: no original copy, owner-supplied media, the owner's own links, stubbed forms."""
-    s = copy.deepcopy(EXAMPLE)
-    s['contentProvenance'] = 'new-content'
-    s['route'] = '/launch'
-    s['meta'] = {'title': 'Route every form to your team chat', 'description': 'Send website form entries straight to the chat apps your team already reads.',
-                 'ogImage': {'assetRole': 'meta.og-image', 'assetRef': 'owner-supplied:og-card'},
-                 'favicon': {'assetRole': 'meta.favicon', 'assetRef': 'owner-supplied:favicon'}}
-    s['overlays']['introLoader'] = {'word': 'Formline'}
-    keep = ['nav', 'hero', 'meaning', 'benefits', 'faq', 'footer']
-    drop(s, *[n['id'] for n in s['nodes'] if n['id'] not in keep])
-    set_links(s, {'#benefits', '#faq'})
-    for n in s['nodes']:
-        if n['id'] in ('nav', 'footer'):
-            n['content']['logo'] = {'assetRole': 'brand.logo', 'assetRef': 'owner-supplied:logo'}
-    h = node(s, 'hero')['content']
-    h['headline'] = [{'text': 'Forms that ', 'style': 'roman'}, {'text': 'arrive', 'style': 'italic'}]
-    h['subheadline'] = [{'text': 'in seconds', 'style': 'italic'}]
-    h['paragraph'] = 'Paste one link into your form and every new entry lands in the chat you already use'
-    h['cta'] = {'label': 'Start free', 'action': 'open-beta-popup'}
-    m = node(s, 'meaning')['content']
-    m['heading'] = [{'text': 'One link, ', 'style': 'roman'}, {'text': 'every channel', 'style': 'italic'}]
-    m['paragraph'] = 'Connect a contact form to chat apps and email without writing a backend'
-    m['media'] = {'assetRole': 'media.loop-video-square', 'assetRef': 'owner-supplied:loop-a'}
-    b = node(s, 'benefits')['content']
-    b['ticker'] = [{'text': 'Why teams ', 'style': 'roman'}, {'text': 'switch', 'style': 'italic'}]
-    b['intro'] = 'Six reasons small teams route their website forms through one simple service'
-    b['cards'] = [{'title': f'Reason {i}', 'text': f'Short supporting sentence number {i} about the benefit.'} for i in range(1, 7)]
-    fq = node(s, 'faq')['content']
-    fq['items'] = [{'question': 'Do I need a backend?', 'answerLines': ['No. Point your form at your personal link and choose a channel.']}]
-    ft = node(s, 'footer')['content']
-    ft['contact']['links'] = [{'label': 'Email us', 'href': 'mailto:team@example.com'}]
-    ft['legal'] = {'copyright': '©2026 Formline', 'links': [{'label': 'Terms', 'href': 'https://example.com/terms'}], 'credit': {'label': 'Studio', 'href': 'https://example.com/'}}
-    s['overlays']['toasts'] = {'success': 'You are on the list', 'error': 'Something went wrong'}
-    return s
+def brand(spec, role, ref):
+    """Set the navbar + footer logo of a spec to {role, ref}."""
+    for n in spec['nodes']:
+        if n['section'] in ('shell.navbar', 'shell.footer'):
+            n['content']['logo'] = {'assetRole': role, 'assetRef': ref}
 
 
-NEW = new_content_control()
+with open(os.path.join(ROOT, 'schema', 'example.generated.pagespec.json'), encoding='utf-8') as f:
+    NEW = json.load(f)  # the bundled generated example (mode generated): the base for every generated-mode mutation
 
 
 def controls():
-    out = [('example.pagespec.json (unmutated)', copy.deepcopy(EXAMPLE)), ('new-content control', copy.deepcopy(NEW))]
+    out = [('example.pagespec.json (unmutated)', copy.deepcopy(EXAMPLE)), ('example.generated.pagespec.json (unmutated, mode generated)', copy.deepcopy(NEW))]
+    for role, ref in (('brand.placeholder', 'generated:placeholder-logo'), ('brand.user-supplied', 'owner-supplied:logo'), ('brand.generated-mark', 'generated:brand-mark')):
+        g = copy.deepcopy(NEW)
+        brand(g, role, ref)
+        out.append((f'generated mode with {role} ({ref})', g))
+    out.append(('reference-mode spec with the real Flashform logo (brand.logo / asset:logo-flashform)', copy.deepcopy(EXAMPLE)))
     by_key = {(n['section'], n.get('variant')): n for n in EXAMPLE['nodes']}
     for tid, t in REPO.templates['templates'].items():
         full = copy.deepcopy(EXAMPLE)
@@ -134,6 +113,29 @@ MUTATIONS = [
     M('missing meta', 'SCHEMA', lambda s: s.pop('meta')),
     M('non-https form endpoint', 'SCHEMA', lambda s: s.__setitem__('forms', {'submission': 'owner-endpoint', 'endpoint': 'http://example.com/f'})),
     M('wrong pageSpecVersion', 'SCHEMA', lambda s: s.__setitem__('pageSpecVersion', '2.0.0')),
+    M('missing mode', 'SCHEMA', lambda s: s.pop('mode')),
+    M('missing mode (generated example)', 'SCHEMA', lambda s: s.pop('mode'), base='new'),
+    M('invalid mode value', 'SCHEMA', lambda s: s.__setitem__('mode', 'clone')),
+    M('invalid mode value (wrong case)', 'SCHEMA', lambda s: s.__setitem__('mode', 'Generated'), base='new'),
+    M('invalid mode value (both modes)', 'SCHEMA', lambda s: s.__setitem__('mode', ['reference', 'generated'])),
+    M('footer logo missing', 'SCHEMA', lambda s: node(s, 'footer')['content'].pop('logo'), base='new'),
+    M('logo role outside the brand roles', 'SCHEMA', lambda s: node(s, 'nav')['content'].__setitem__('logo', {'assetRole': 'meta.favicon', 'assetRef': 'asset:favicon'}), base='new'),
+    M('brand.placeholder with an asset: ref', 'ASSET_REF_POLICY', lambda s: brand(s, 'brand.placeholder', 'asset:logo-flashform'), base='new'),
+    M('brand.user-supplied with a generated: ref', 'ASSET_REF_POLICY', lambda s: brand(s, 'brand.user-supplied', 'generated:logo'), base='new'),
+    M('brand.generated-mark with an owner-supplied: ref', 'ASSET_REF_POLICY', lambda s: brand(s, 'brand.generated-mark', 'owner-supplied:logo'), base='new'),
+    # ---------------- mode rules: the real Flashform logo cannot appear in another generated brand
+    M('mode reference but contentProvenance new-content', 'MODE_PROVENANCE_CONSISTENT', lambda s: s.__setitem__('contentProvenance', 'new-content')),
+    M('mode generated but contentProvenance original-reference', 'MODE_PROVENANCE_CONSISTENT', lambda s: s.__setitem__('contentProvenance', 'original-reference'), base='new'),
+    M('generated mode: the real Flashform logo (nav + footer)', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: brand(s, 'brand.logo', 'asset:logo-flashform'), base='new'),
+    M('generated mode: real logo in the navbar only', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: node(s, 'nav')['content'].__setitem__('logo', {'assetRole': 'brand.logo', 'assetRef': 'asset:logo-flashform'}), base='new'),
+    M('generated mode: real logo in the footer only (a different section)', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: node(s, 'footer')['content'].__setitem__('logo', {'assetRole': 'brand.logo', 'assetRef': 'asset:logo-flashform'}), base='new'),
+    M('generated mode: brand.logo role with an owner-supplied ref', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: brand(s, 'brand.logo', 'owner-supplied:logo'), base='new'),
+    M('generated mode: brand.logo role with an AI-generated ref', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: brand(s, 'brand.logo', 'generated:logo'), base='new'),
+    M('generated mode: real favicon asset', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: s['meta'].__setitem__('favicon', {'assetRole': 'meta.favicon', 'assetRef': 'asset:favicon'}), base='new'),
+    M('generated mode: real OG image asset', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: s['meta'].__setitem__('ogImage', {'assetRole': 'meta.og-image', 'assetRef': 'asset:og-twitter'}), base='new'),
+    M("generated mode: the original's video", 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: node(s, 'meaning')['content'].__setitem__('media', {'assetRole': 'media.loop-video-square', 'assetRef': 'asset:video-2'}), base='new'),
+    M('generated mode: real logo id smuggled into a text field', 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS', lambda s: node(s, 'footer')['content']['contact']['links'].append({'label': 'asset:logo-flashform', 'href': 'https://example.com/logo'}), base='new'),
+    M('generated mode: real logo, and the brand-mark requirement fires too', 'GENERATED_MODE_REQUIRES_BRAND_MARK', lambda s: node(s, 'nav')['content'].__setitem__('logo', {'assetRole': 'brand.logo', 'assetRef': 'owner-supplied:logo'}), base='new'),
     M('invented run style', 'SCHEMA', lambda s: node(s, 'hero')['content']['headline'][0].__setitem__('style', 'bold')),
     # ---------------- structural (template cross-reference)
     M('duplicate one-per-page hero', 'TEMPLATE_NODE_SEQUENCE', lambda s: s['nodes'].insert(2, copy.deepcopy(node(s, 'hero')))),
@@ -186,6 +188,40 @@ MUTATIONS = [
 ]
 
 
+def _reg(path, value):
+    """Return a mutator that sets doc[...path] = value on an asset-roles document."""
+    def f(doc):
+        o = doc
+        for p in path[:-1]:
+            o = o[p]
+        o[path[-1]] = value
+    return f
+
+
+def _asset(doc, aid):
+    return next(a for r in doc['roles'].values() for a in r['assets'] if a['id'] == aid)
+
+
+REGISTRY_MUTATIONS = [
+    ('real-logo role availability -> generation-safe (valid but wrong)', _reg(('roles', 'brand.logo', 'availability'), 'generation-safe')),
+    ('real-logo role availability -> blocked-in-generated (valid but not the pin)', _reg(('roles', 'brand.logo', 'availability'), 'blocked-in-generated')),
+    ('real-logo role availability -> invalid value', _reg(('roles', 'brand.logo', 'availability'), 'semi-safe')),
+    ('real-logo role availability removed', lambda d: d['roles']['brand.logo'].pop('availability')),
+    ('real-logo asset availability -> generation-safe', lambda d: _asset(d, 'asset:logo-flashform').__setitem__('availability', 'generation-safe')),
+    ('real-logo role AND its pin map both changed (pin in code holds)', lambda d: (d['roles']['brand.logo'].__setitem__('availability', 'generation-safe'), d['pinnedAvailability'].__setitem__('brand.logo', 'generation-safe'))),
+    ('real favicon asset availability -> generation-safe', lambda d: _asset(d, 'asset:favicon').__setitem__('availability', 'generation-safe')),
+    ('a role without availability (unclassified)', lambda d: d['roles']['icon.generic-channel'].pop('availability')),
+    ('a role with an invalid availability', _reg(('roles', 'icon.generic-channel', 'availability'), 'public')),
+    ('protected role asset without explicit availability', lambda d: _asset(d, 'asset:og-twitter').pop('availability')),
+    ('generation-safe asset inside a reference-only role', lambda d: _asset(d, 'asset:logo-flashform').__setitem__('availability', 'generation-safe')),
+    ('brand mark role loses its generation guidance', lambda d: d['roles']['brand.generated-mark'].pop('generationGuidance')),
+]
+
+
+def total_mutations():
+    return len(MUTATIONS) + len(REGISTRY_MUTATIONS)
+
+
 def run():
     fails = 0
     print('CONTROLS (must pass with 0 errors)')
@@ -208,8 +244,20 @@ def run():
         fails += not ok
         first = next((g for g in got if g.startswith(expect)), got[0] if got else 'nothing')
         print(f"  {'REJECTED' if ok and not warn_only else 'WARNED  ' if ok else 'MISSED  '}  [{expect}] {name}  :: {first[:110]}")
-    n_c = len(controls())
-    print(f'\n{len(MUTATIONS)} mutations, {n_c} controls, {fails} failed expectation(s)')
+    print('REGISTRY MUTATIONS (the pinned / closed-enum availability check must reject them)')
+    control_errs = sv.availability_errors(REPO.assets)
+    ok = not control_errs
+    fails += not ok
+    print(f"  {'PASS' if ok else 'FAIL'}  control: the real asset-roles.json passes the availability check" + ('' if ok else f'  -> {control_errs}'))
+    for name, fn in REGISTRY_MUTATIONS:
+        doc = copy.deepcopy(REPO.assets)
+        fn(doc)
+        errs = sv.availability_errors(doc)
+        ok = bool(errs)
+        fails += not ok
+        print(f"  {'REJECTED' if ok else 'MISSED  '}  [AVAILABILITY] {name}  :: {(errs or ['nothing'])[0][:110]}")
+    n_c = len(controls()) + 1
+    print(f'\n{total_mutations()} mutations, {n_c} controls, {fails} failed expectation(s)')
     return 1 if fails else 0
 
 

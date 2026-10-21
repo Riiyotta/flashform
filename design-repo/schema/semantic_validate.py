@@ -2,13 +2,15 @@
 """Semantic validator for Flashform PageSpecs.
 
 Enforces what JSON Schema cannot: template node-sequence cross-reference, rhythm/position rules, compliance
-rules (form endpoint, original contacts/copy, asset-ref policy) and per-instance maxWords budgets.
+rules (form endpoint, original contacts/copy, asset-ref policy), the reference/generated MODE rules (the real
+Flashform logo and every registered source-brand asset are rejected in mode "generated"; a generation-safe brand mark
+is required there) and per-instance maxWords budgets.
 
 Every rule id in compatibility/graph.json has exactly one implementation in RULES below, and the severity
 used at runtime is READ FROM THE GRAPH (one source of truth). extraction/verify_all.py checks the two sets
 of ids match both ways.
 
-Usage:  python3 -I schema/semantic_validate.py [pagespec.json ...]   (default: schema/example.pagespec.json)
+Usage:  python3 -I schema/semantic_validate.py [pagespec.json ...]   (default: every schema/example*.pagespec.json)
 Exit code 1 if any error-severity finding. Requires the `jsonschema` package for the Draft-07 layer.
 """
 import json
@@ -17,6 +19,55 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # design-repo/
+
+MODES = ('reference', 'generated')
+MODE_PROVENANCE = {'reference': 'original-reference', 'generated': 'new-content'}
+AVAILABILITY = ('generation-safe', 'reference-only', 'blocked-in-generated')
+# Pinned: the real Flashform logo carries legal weight (a real trademark), so its availability is pinned in CODE as well as
+# in assets/asset-roles.json (pinnedAvailability / pinnedAssetAvailability). Membership in AVAILABILITY is not enough.
+PINNED_ROLE_AVAILABILITY = {'brand.logo': 'reference-only'}
+PINNED_ASSET_AVAILABILITY = {'asset:logo-flashform': 'reference-only', 'asset:favicon': 'blocked-in-generated'}
+
+
+def availability_errors(doc):
+    """Closed-enum + classification + pinned-value checks on an asset-roles document. Returns a list of messages.
+    Used by verify_all (check 11) and by the adversarial suite's registry mutations (one implementation, two callers)."""
+    errs = []
+    roles = doc['roles']
+    protected = ('must-not-fabricate', 'owner-supplied-only')
+    for k, r in roles.items():
+        av = r.get('availability')
+        if av is None:
+            errs.append(f'{k}: role has no availability (every role must be classified)')
+        elif av not in AVAILABILITY:
+            errs.append(f'{k}: availability {av!r} is not in the closed set {list(AVAILABILITY)}')
+        for a in r['assets']:
+            aav = a.get('availability')
+            if aav is None and r.get('generationPolicy') in protected:
+                errs.append(f"{a['id']}: registered asset of protected role {k} has no explicit availability")
+            elif aav is not None and aav not in AVAILABILITY:
+                errs.append(f"{a['id']}: availability {aav!r} is not in the closed set {list(AVAILABILITY)}")
+            elif aav == 'generation-safe' and av in ('reference-only', 'blocked-in-generated'):
+                errs.append(f"{a['id']}: asset is generation-safe inside the {av} role {k}")
+        if r.get('brandMark') and av == 'generation-safe':
+            if not r.get('generationGuidance') or not r.get('allowedRefKinds'):
+                errs.append(f'{k}: generation-safe brand mark needs generationGuidance and allowedRefKinds')
+    for k, want in PINNED_ROLE_AVAILABILITY.items():
+        if k not in roles:
+            errs.append(f'PINNED role {k} missing')
+        elif roles[k].get('availability') != want:
+            errs.append(f"PINNED availability drift: {k} is {roles[k].get('availability')!r}, must be {want!r}")
+    by_id = {a['id']: a for r in roles.values() for a in r['assets']}
+    for k, want in PINNED_ASSET_AVAILABILITY.items():
+        if k not in by_id:
+            errs.append(f'PINNED asset {k} missing')
+        elif by_id[k].get('availability') != want:
+            errs.append(f"PINNED availability drift: {k} is {by_id[k].get('availability')!r}, must be {want!r}")
+    if doc.get('pinnedAvailability') != PINNED_ROLE_AVAILABILITY:
+        errs.append('assets/asset-roles.json pinnedAvailability != the validator pin')
+    if doc.get('pinnedAssetAvailability') != PINNED_ASSET_AVAILABILITY:
+        errs.append('assets/asset-roles.json pinnedAssetAvailability != the validator pin')
+    return errs
 
 
 def _load(rel):
@@ -37,9 +88,11 @@ class Repo:
                 self.sections[d['id']] = d
         self.rules = {r['id']: r for r in self.graph['rules']}
         self.asset_ids = {}
+        self.asset_availability = {}
         for role, r in self.assets['roles'].items():
             for a in r['assets']:
                 self.asset_ids[a['id']] = role
+                self.asset_availability[a['id']] = a.get('availability', r.get('availability'))
         self._orig_strings = None
 
     def original_strings(self, min_words):
@@ -54,6 +107,22 @@ class Repo:
         return self._orig_strings
 
 
+def is_generated(spec):
+    return spec.get('mode') == 'generated'
+
+
+def iter_strings(obj, skip=()):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k not in skip:
+                yield from iter_strings(v, skip)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from iter_strings(v, skip)
+    elif isinstance(obj, str):
+        yield obj
+
+
 def norm(s):
     return ' '.join(s.lower().split())
 
@@ -61,7 +130,7 @@ def norm(s):
 def iter_text(obj, key=None):
     """Yield human-visible strings (joined runs count as one string)."""
     skip = {'assetRole', 'assetRef', 'href', 'section', 'variant', 'id', 'anchorId', 'template', 'route', 'theme', 'action', 'style',
-            'contentProvenance', 'pageSpecVersion', 'submission', 'endpoint', 'reducedMotionFallback', 'patterns', 'revealTargets'}
+            'contentProvenance', 'mode', 'pageSpecVersion', 'submission', 'endpoint', 'reducedMotionFallback', 'patterns', 'revealTargets'}
     if isinstance(obj, dict):
         for k, v in obj.items():
             if k in skip or k == 'motion':
@@ -141,10 +210,50 @@ def r_template_node_sequence(spec, repo, emit):
             emit(f"required template node {tn['key']!r} ({tn['section']}) is missing")
 
 
+def r_mode_provenance_consistent(spec, repo, emit):
+    want = MODE_PROVENANCE.get(spec.get('mode'))
+    if want != spec.get('contentProvenance'):
+        emit(f"mode {spec.get('mode')!r} requires contentProvenance {want!r}, got {spec.get('contentProvenance')!r}")
+
+
+def r_generated_mode_blocks_reference_assets(spec, repo, emit):
+    """In mode 'generated' nothing that is reference-only / blocked-in-generated may appear: not the real logo role (any ref),
+    not a registered source-brand asset id, in any field of any node or in meta."""
+    if not is_generated(spec):
+        return
+    roles = repo.assets['roles']
+    for where, m in walk_media(spec):
+        role, ref = m['assetRole'], m['assetRef']
+        av = roles.get(role, {}).get('availability')
+        if av != 'generation-safe':
+            emit(f'{where}: assetRole {role!r} is {av}; the real {role} must not appear in a generated page (use a generation-safe brand role)')
+        if ref.startswith('asset:') and repo.asset_availability.get(ref) not in (None, 'generation-safe'):
+            emit(f"{where}: {ref!r} is {repo.asset_availability[ref]}; a registered source-brand asset must not appear in a generated page")
+    blocked = sorted(i for i, a in repo.asset_availability.items() if a != 'generation-safe')
+    for s in iter_strings(spec, skip=('assetRef',)):  # assetRef values are checked structurally above
+        for i in blocked:
+            if i in s:
+                emit(f'a text field mentions {i!r}, a source-brand asset that is {repo.asset_availability[i]}')
+
+
+def r_generated_mode_requires_brand_mark(spec, repo, emit):
+    """A generated page must supply a generation-safe brand mark role where a brand mark is required (navbar + footer logo)."""
+    if not is_generated(spec):
+        return
+    roles = repo.assets['roles']
+    for n in spec['nodes']:
+        if n['section'] in ('shell.navbar', 'shell.footer'):
+            role = n['content'].get('logo', {}).get('assetRole')
+            r = roles.get(role, {})
+            if not (r.get('brandMark') and r.get('availability') == 'generation-safe'):
+                emit(f"node {n['id']!r}: logo role {role!r} is not a generation-safe brand mark "
+                     f"({', '.join(sorted(k for k, v in roles.items() if v.get('brandMark') and v.get('availability') == 'generation-safe'))})")
+
+
 def r_route_allowed(spec, repo, emit):
     t = repo.templates['templates'].get(spec.get('template'))
-    if t and spec.get('contentProvenance') == 'original-reference' and spec.get('route') not in t['routes']:
-        emit(f"original-reference page must use a real route of its template {t['routes']}, got {spec.get('route')!r}")
+    if t and spec.get('mode') == 'reference' and spec.get('route') not in t['routes']:
+        emit(f"reference-mode page must use a real route of its template {t['routes']}, got {spec.get('route')!r}")
 
 
 def _secs(spec):
@@ -275,7 +384,7 @@ def r_form_endpoint_not_original(spec, repo, emit):
 
 
 def r_original_contacts_not_reused(spec, repo, emit):
-    if spec.get('contentProvenance') != 'new-content':
+    if not is_generated(spec):
         return
     deny = repo.rules['ORIGINAL_CONTACTS_NOT_REUSED']['denylist']
 
@@ -295,7 +404,7 @@ def r_original_contacts_not_reused(spec, repo, emit):
 
 
 def r_original_copy_not_reused(spec, repo, emit):
-    if spec.get('contentProvenance') != 'new-content':
+    if not is_generated(spec):
         return
     mw = repo.rules['ORIGINAL_COPY_NOT_REUSED']['minWords']
     orig = repo.original_strings(mw)
@@ -305,7 +414,7 @@ def r_original_copy_not_reused(spec, repo, emit):
 
 
 def r_brand_name_in_new_content(spec, repo, emit):
-    if spec.get('contentProvenance') != 'new-content':
+    if not is_generated(spec):
         return
     term = repo.rules['BRAND_NAME_IN_NEW_CONTENT']['term']
     if any(term in s.lower() for s in iter_text(spec)):
@@ -360,10 +469,13 @@ def r_asset_ref_policy(spec, repo, emit):
             continue
         pol = r['generationPolicy']
         kind = ref.split(':', 1)[0]
+        if r.get('allowedRefKinds') and kind not in r['allowedRefKinds']:
+            emit(f"{where}: {role} accepts only {r['allowedRefKinds']} refs, got {kind!r}")
+            continue
         if kind == 'asset':
             if repo.asset_ids.get(ref) != role:
                 emit(f'{where}: {ref!r} is not a registered {role} asset')
-            elif pol == 'owner-supplied-only' and spec.get('contentProvenance') != 'original-reference':
+            elif pol == 'owner-supplied-only' and is_generated(spec):
                 emit(f"{where}: {ref!r} is the original's proprietary media ({role} is owner-supplied-only); use owner-supplied:<slot>")
         elif kind == 'generated' and pol != 'may-generate-new':
             emit(f'{where}: {role} is {pol}; AI-generated refs are forbidden')
@@ -400,6 +512,9 @@ def r_reduced_motion_fallback(spec, repo, emit):
 
 RULES = {
     'TEMPLATE_NODE_SEQUENCE': r_template_node_sequence,
+    'MODE_PROVENANCE_CONSISTENT': r_mode_provenance_consistent,
+    'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS': r_generated_mode_blocks_reference_assets,
+    'GENERATED_MODE_REQUIRES_BRAND_MARK': r_generated_mode_requires_brand_mark,
     'ROUTE_ALLOWED': r_route_allowed,
     'ONE_HERO': r_one_hero,
     'NAV_FIRST': r_nav_first,
@@ -449,8 +564,13 @@ def validate(spec, repo=None):
     return errors, warnings
 
 
+def example_paths():
+    d = os.path.join(ROOT, 'schema')
+    return [os.path.join(d, f) for f in sorted(os.listdir(d)) if f.startswith('example') and f.endswith('.pagespec.json')]
+
+
 def main(argv):
-    paths = argv or [os.path.join(ROOT, 'schema', 'example.pagespec.json')]
+    paths = argv or example_paths()
     repo = Repo()
     bad = 0
     for p in paths:

@@ -14,6 +14,43 @@
       ]
     },
     {
+      "id": "MODE_PROVENANCE_CONSISTENT",
+      "severity": "error",
+      "description": "mode and contentProvenance must agree: mode 'reference' <-> contentProvenance 'original-reference'; mode 'generated' <-> 'new-content'. Two fields describe one fact, so a page cannot claim to be generated while keeping the original's provenance (or the reverse).",
+      "measuredFrom": [
+        {
+          "cite": "@repo/schema/pagespec.schema.json:24",
+          "expect": "\"mode\": {"
+        }
+      ]
+    },
+    {
+      "id": "GENERATED_MODE_BLOCKS_REFERENCE_ASSETS",
+      "severity": "error",
+      "description": "In mode 'generated' no field may reference a role whose availability is reference-only or blocked-in-generated (the real Flashform logo brand.logo, with any ref), nor a registered asset id whose availability is not generation-safe (asset:logo-flashform, asset:favicon, asset:og-twitter, the original's videos); no text field may mention such an id. In mode 'reference' the real roles stay allowed. The pinned availability of the real logo is enforced by verify_all check 11.",
+      "measuredFrom": [
+        {
+          "cite": "@repo/assets/asset-roles.json:19",
+          "expect": "\"availabilityVocabulary\""
+        },
+        {
+          "cite": "@repo/assets/asset-roles.json:536",
+          "expect": "\"pinnedAvailability\""
+        }
+      ]
+    },
+    {
+      "id": "GENERATED_MODE_REQUIRES_BRAND_MARK",
+      "severity": "error",
+      "description": "In mode 'generated' the navbar and footer logo must use a generation-safe brand mark role (brandMark: true and availability generation-safe: brand.placeholder, brand.user-supplied or brand.generated-mark), so a generated page never requires the real Flashform trademark.",
+      "measuredFrom": [
+        {
+          "cite": "@repo/assets/asset-roles.json:74",
+          "expect": "\"brand.placeholder\""
+        }
+      ]
+    },
+    {
       "id": "ROUTE_ALLOWED",
       "severity": "error",
       "description": "An original-reference PageSpec must use one of the template's real routes ('/').",
@@ -206,7 +243,7 @@
     {
       "id": "ORIGINAL_CONTACTS_NOT_REUSED",
       "severity": "error",
-      "description": "In new-content pages, footer/legal links must not reuse the original's real contact channels (agency email, a personal WhatsApp number and Telegram handle) or its generated-legal-page tokens.",
+      "description": "In generated-mode pages, footer/legal links must not reuse the original's real contact channels (agency email, a personal WhatsApp number and Telegram handle) or its generated-legal-page tokens.",
       "denylist": [
         "hello@emotion-agency.com",
         "wa.me/+380970422959",
@@ -225,11 +262,11 @@
     {
       "id": "ORIGINAL_COPY_NOT_REUSED",
       "severity": "error",
-      "description": "In new-content pages, no text field may equal (case/space-normalised) any original string of 6+ words. The original strings are read from schema/example.pagespec.json (contentProvenance original-reference).",
+      "description": "In generated-mode pages, no text field may equal (case/space-normalised) any original string of 6+ words. The original strings are read from schema/example.pagespec.json (the mode-reference example).",
       "minWords": 6,
       "measuredFrom": [
         {
-          "cite": "@repo/schema/example.pagespec.json:6",
+          "cite": "@repo/schema/example.pagespec.json:7",
           "expect": "\"contentProvenance\": \"original-reference\""
         }
       ]
@@ -237,7 +274,7 @@
     {
       "id": "BRAND_NAME_IN_NEW_CONTENT",
       "severity": "warn",
-      "description": "A new-content page mentions 'Flashform': fine only when the deployer is the brand owner.",
+      "description": "A generated-mode page mentions 'Flashform': fine only when the deployer is the brand owner.",
       "term": "flashform",
       "measuredFrom": [
         {
@@ -256,7 +293,7 @@
           "expect": "const L = TABLE.find((l) => l.text.toUpperCase() === ch)"
         },
         {
-          "cite": "@repo/assets/asset-roles.json:352",
+          "cite": "@repo/assets/asset-roles.json:432",
           "expect": "\"glyphSet\""
         }
       ]
@@ -286,10 +323,10 @@
     {
       "id": "ASSET_REF_POLICY",
       "severity": "error",
-      "description": "assetRef must agree with the role's generationPolicy (assets/asset-roles.json): asset: ids must be registered under that role; generated: only for may-generate-new; owner-supplied: not for must-reuse-exact; registered owner-supplied-only media (the original's videos, screencast, OG image) only in original-reference pages.",
+      "description": "assetRef must agree with the role's generationPolicy (assets/asset-roles.json): asset: ids must be registered under that role; generated: only for may-generate-new; owner-supplied: not for must-reuse-exact; registered owner-supplied-only media (the original's videos, screencast, OG image) only in reference-mode pages. A role's allowedRefKinds (assets/asset-roles.json) further restricts the ref kinds.",
       "measuredFrom": [
         {
-          "cite": "@repo/assets/asset-roles.json:29",
+          "cite": "@repo/assets/asset-roles.json:39",
           "expect": "\"refRules\""
         }
       ]
