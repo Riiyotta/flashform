@@ -420,7 +420,7 @@ def c_assets(F, W, I):
                     missing += 1
     av = {}
     for r in roles.values():
-        av[r['availability']] = av.get(r['availability'], 0) + 1
+        av[r.get('availability')] = av.get(r.get('availability'), 0) + 1
     I.append(f'{len(roles)} roles ({len(settable)} settable), {len(doc["pinnedPolicies"])} pinned policies + {len(doc["pinnedAvailability"]) + len(doc["pinnedAssetAvailability"])} pinned availabilities hold, availability {av}, {len(ids)} assets' + ('' if SIBLING else ' (sources not checked: no sibling project)'))
 
 
@@ -537,7 +537,7 @@ def c_modes(F, W, I):
     for prov in sv.MODE_PROVENANCE.values():
         if prov not in s['properties']['contentProvenance']['enum']:
             F.append(f'schema contentProvenance enum lacks {prov!r}')
-    safe = sorted(k for k, r in roles.items() if r.get('brandMark') and r['availability'] == 'generation-safe' and r['settableInPageSpec'])
+    safe = sorted(k for k, r in roles.items() if r.get('brandMark') and r.get('availability') == 'generation-safe' and r['settableInPageSpec'])
     if len(safe) < 2:
         F.append(f'expected at least placeholder/user-supplied/generated-mark generation-safe brand roles, found {safe}')
     allowed = sorted(k for k, r in roles.items() if r.get('brandMark') and r['settableInPageSpec'])

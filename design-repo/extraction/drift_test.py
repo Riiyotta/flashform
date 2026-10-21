@@ -160,6 +160,139 @@ def m_adversarial_regression(r, proj):
         f.write(src)
 
 
+def _roles(r):
+    p = os.path.join(r, 'assets/asset-roles.json')
+    return p, jload(p)
+
+
+def _asset(doc, aid):
+    return next(a for ro in doc['roles'].values() for a in ro['assets'] if a['id'] == aid)
+
+
+def m_avail_invalid(r, proj):
+    p, d = _roles(r)
+    d['roles']['icon.generic-channel']['availability'] = 'semi-safe'  # not in the closed availability set
+    jsave(p, d)
+
+
+def m_avail_unclassified(r, proj):
+    p, d = _roles(r)
+    del d['roles']['icon.generic-channel']['availability']
+    jsave(p, d)
+
+
+def m_logo_role_avail(r, proj):
+    p, d = _roles(r)
+    d['roles']['brand.logo']['availability'] = 'generation-safe'  # a valid enum value, but the real logo is pinned reference-only
+    jsave(p, d)
+
+
+def m_logo_role_and_pin_map(r, proj):
+    p, d = _roles(r)
+    d['roles']['brand.logo']['availability'] = 'generation-safe'
+    d['pinnedAvailability']['brand.logo'] = 'generation-safe'  # the in-file pin map is edited too: the pin in code must still hold
+    jsave(p, d)
+
+
+def m_logo_asset_avail(r, proj):
+    p, d = _roles(r)
+    _asset(d, 'asset:logo-flashform')['availability'] = 'generation-safe'
+    jsave(p, d)
+
+
+def m_favicon_asset_avail(r, proj):
+    p, d = _roles(r)
+    _asset(d, 'asset:favicon')['availability'] = 'generation-safe'
+    jsave(p, d)
+
+
+def m_protected_asset_unclassified(r, proj):
+    p, d = _roles(r)
+    del _asset(d, 'asset:og-twitter')['availability']
+    jsave(p, d)
+
+
+def m_validator_pin_changed(r, proj):
+    p = os.path.join(r, 'schema/semantic_validate.py')
+    with open(p, encoding='utf-8') as f:
+        src = f.read()
+    src = src.replace("PINNED_ROLE_AVAILABILITY = {'brand.logo': 'reference-only'}", "PINNED_ROLE_AVAILABILITY = {'brand.logo': 'generation-safe'}", 1)
+    with open(p, 'w', encoding='utf-8') as f:
+        f.write(src)
+
+
+def m_schema_mode_enum(r, proj):
+    p = os.path.join(r, 'schema/pagespec.schema.json')
+    s = jload(p)
+    s['properties']['mode']['enum'].append('hybrid')
+    jsave(p, s)
+
+
+def m_gen_example_no_mode(r, proj):
+    p = os.path.join(r, 'schema/example.generated.pagespec.json')
+    e = jload(p)
+    del e['mode']
+    jsave(p, e)
+
+
+def m_gen_example_wrong_mode(r, proj):
+    p = os.path.join(r, 'schema/example.generated.pagespec.json')
+    e = jload(p)
+    e['mode'] = 'reference'
+    jsave(p, e)
+
+
+def m_ref_example_wrong_mode(r, proj):
+    p = os.path.join(r, 'schema/example.pagespec.json')
+    e = jload(p)
+    e['mode'] = 'generated'
+    jsave(p, e)
+
+
+def m_gen_example_real_logo(r, proj):
+    p = os.path.join(r, 'schema/example.generated.pagespec.json')
+    e = jload(p)
+    e['nodes'][0]['content']['logo'] = {'assetRole': 'brand.logo', 'assetRef': 'asset:logo-flashform'}
+    jsave(p, e)
+
+
+def m_gen_example_mentions_brand(r, proj):
+    p = os.path.join(r, 'schema/example.generated.pagespec.json')
+    e = jload(p)
+    e['meta']['description'] = 'A demo that mentions Flashform.'
+    jsave(p, e)
+
+
+def m_logo_enum_contract(r, proj):
+    p = os.path.join(r, 'schema/pagespec.schema.json')
+    s = jload(p)
+    s['definitions']['content.shell.navbar']['properties']['logo']['properties']['assetRole']['enum'].remove('brand.placeholder')
+    jsave(p, s)
+
+
+def m_manifest_lacks_example(r, proj):
+    p = os.path.join(r, 'registry.manifest.json')
+    m = jload(p)
+    del m['entryPoints']['exampleGenerated']
+    jsave(p, m)
+
+
+def m_graph_mode_rule_removed(r, proj):
+    p = os.path.join(r, 'compatibility/graph.json')
+    g = jload(p)
+    g['rules'] = [x for x in g['rules'] if x['id'] != 'GENERATED_MODE_BLOCKS_REFERENCE_ASSETS']
+    jsave(p, g)
+
+
+def m_validator_mode_rule_noop(r, proj):
+    p = os.path.join(r, 'schema/semantic_validate.py')
+    with open(p, encoding='utf-8') as f:
+        src = f.read()
+    src = src.replace("def r_generated_mode_blocks_reference_assets(spec, repo, emit):\n", "def r_generated_mode_blocks_reference_assets(spec, repo, emit):\n    return\n", 1)
+    with open(p, 'w', encoding='utf-8') as f:
+        f.write(src)
+
+
 MUTATIONS = [
     ('phantom allowlist entry', '5 allowlist', m_phantom_allowlist, False),
     ('contract file with no allowlist entry', '5 allowlist', m_orphan_contract, False),
@@ -176,6 +309,25 @@ MUTATIONS = [
     ('section contract diverges from schema', '6 contracts', m_contract_schema_divergence, False),
     ('theme value drift', '12 tokens', m_theme_drift, False),
     ('validator loses its template cross-reference', '4 adversarial', m_adversarial_regression, False),
+    # ---- reference/generated mode + generation-safe brand (availability, pins, examples, schema/contract enums)
+    ('availability outside the closed enum', '11 assets', m_avail_invalid, False),
+    ('role without an availability (unclassified)', '11 assets', m_avail_unclassified, False),
+    ('real-logo role availability -> another valid value', '11 assets', m_logo_role_avail, False),
+    ('real-logo role AND its in-file pin map changed (pin in code holds)', '11 assets', m_logo_role_and_pin_map, False),
+    ('real-logo asset availability -> generation-safe', '11 assets', m_logo_asset_avail, False),
+    ('real favicon asset availability -> generation-safe', '11 assets', m_favicon_asset_avail, False),
+    ('protected-role asset without explicit availability', '11 assets', m_protected_asset_unclassified, False),
+    ('validator pin for the real logo changed', '11 assets', m_validator_pin_changed, False),
+    ('schema mode enum gains a value', '15 modes', m_schema_mode_enum, False),
+    ('generated example loses mode', '2 schema', m_gen_example_no_mode, False),
+    ('generated example flipped to mode reference', '15 modes', m_gen_example_wrong_mode, False),
+    ('reference example flipped to mode generated', '15 modes', m_ref_example_wrong_mode, False),
+    ('generated example carries the real Flashform logo', '3 semantic', m_gen_example_real_logo, False),
+    ('generated example mentions the source brand', '15 modes', m_gen_example_mentions_brand, False),
+    ('schema logo role enum loses a brand role (contract divergence)', '15 modes', m_logo_enum_contract, False),
+    ('manifest stops listing the generated example', '15 modes', m_manifest_lacks_example, False),
+    ('graph loses a mode rule', '7 graph', m_graph_mode_rule_removed, False),
+    ('validator mode rule becomes a no-op', '4 adversarial', m_validator_mode_rule_noop, False),
 ]
 
 
