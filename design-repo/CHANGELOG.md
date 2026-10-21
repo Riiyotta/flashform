@@ -1,5 +1,52 @@
 # Changelog
 
+## 1.1.0 (2026-10-21): generation-safe brand handling
+
+Review item: generated sites must not be able to reuse the real Flashform trademark. Verified first against the
+repo: `brand.logo` (`must-not-fabricate`) was the only role the navbar/footer `logo` field accepted, and the
+validator accepted `asset:logo-flashform` in a `new-content` page (only owner-supplied-only media was blocked there),
+so a page generated for another brand could carry the real logo. `asset:favicon` was likewise accepted. This was a
+real gap, not a stale claim.
+
+### Added
+- **PageSpec `mode`** (required, closed enum `reference | generated`), `pageSpecVersion` 1.1.0. `reference` is clone /
+  fidelity validation of the source brand; `generated` is a new site for another brand. It must agree with the
+  existing `contentProvenance` (`reference` <-> `original-reference`, `generated` <-> `new-content`); the existing
+  new-content rules now key on `mode`.
+- **`availability`** on every role in `assets/asset-roles.json` (`generation-safe | reference-only |
+  blocked-in-generated`) and on each registered asset of a protected role. `brand.logo` is `reference-only`;
+  the registered favicon, OG image and the original's videos/screencast are `blocked-in-generated`.
+  Pinned: `brand.logo` -> `reference-only`, `asset:logo-flashform` -> `reference-only`, `asset:favicon` ->
+  `blocked-in-generated`, both in the file and in `semantic_validate.py` (a change to a different but still valid
+  value is rejected).
+- **Roles `brand.placeholder`, `brand.user-supplied`, `brand.generated-mark`** (generation-safe, with
+  `generationGuidance` and `allowedRefKinds`). Navbar and footer `logo` accept these four brand roles; the real
+  one is only valid in reference mode.
+- **Rules** `MODE_PROVENANCE_CONSISTENT`, `GENERATED_MODE_BLOCKS_REFERENCE_ASSETS`,
+  `GENERATED_MODE_REQUIRES_BRAND_MARK` (graph + validator, 24 -> 27 rules).
+- **`schema/example.generated.pagespec.json`**: a generated page for a fictional brand using `brand.placeholder`.
+- **Adversarial coverage** (57 -> 91 mutations incl. 12 registry mutations; 4 -> 9 controls): generated spec with the
+  real logo (nav, footer, either alone, any ref kind), real favicon / OG image / video, the real logo id smuggled
+  into a text field, missing / invalid mode, mode vs provenance mismatch, real-logo availability changed to another valid
+  value; controls: both examples, each generation-safe brand role, a reference-mode spec with the real logo.
+- **verify_all**: every `example*.pagespec.json` is schema- and semantically validated; check 11 adds availability
+  (closed enum, every role classified, protected assets explicit, pins); new check 15 `modes` (schema enum == validator ==
+  asset-roles, logo role enums == brand roles, example/generated-example consistency, manifest lists both). The drift test
+  gains 18 injected drifts (15 -> 33), each proven caught on a scratch copy.
+
+### Changed
+- `allowlistVersion` 1.1.0 (machine-checked), `pageSpecVersion` 1.1.0, `repositoryVersion` 1.1.0 (documentation-only).
+  Manifest `counts` and the README counts block were recomputed from the files, not hand-bumped.
+- The README / manifest / measured-values said the clone folder is not a git repository. It is one now (remote
+  Riiyotta/flashform); `design-repo.zip` is gitignored and untracked. Corrected.
+
+### Not changed, on purpose (stated so it is not mistaken for coverage)
+- Other roles (UI glyphs, shaders, the physics letter sprites, the commercial fonts, the third-party messenger marks)
+  keep their policy and are classified `generation-safe`. That means "may appear in a generated page under its existing
+  policy" (the messenger marks only as unmodified official marks, the fonts only with a licence), not that they are
+  free of third-party rights.
+- Status stays `design-review-pending`, `productionApproved: false`.
+
 ## 1.0.0 (2026-10-16): initial build
 
 This repo was built from scratch, bottom-up: tokens → primitives → components → sections → template →

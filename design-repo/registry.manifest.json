@@ -16,7 +16,7 @@
     "clone": "sibling project folder (React 18.3.1 + Vite 5.4 + Tailwind 3.4; gsap 3.10.4 + ScrollTrigger, split-type, ogl, matter-js 0.18.0)",
     "builtOn": "2026-10-16",
     "snapshotNote": "A snapshot, not a mirror. The clone source was being edited by other agents during this build; see CHANGELOG.md for the values re-checked at the end.",
-    "vcs": "The clone folder is not a git repository, so the rule \"never commit design-repo.zip alongside the live folder\" is trivially satisfied. If it ever becomes one, gitignore design-repo.zip."
+    "vcs": "This clone folder is now a git repository (remote Riiyotta/flashform). design-repo.zip is gitignored and no zip is tracked (`git ls-files | grep -i zip` is empty); regenerate it fresh, last, and never commit it."
   },
   "counts": {
     "tokensFoundation": 137,

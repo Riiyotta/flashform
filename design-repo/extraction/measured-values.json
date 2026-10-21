@@ -24,7 +24,7 @@
         "expect": "\"gsap\": "
       }
     ],
-    "vcs": "none - the project folder is not a git repository, so design-repo.zip can never be committed alongside the live folder."
+    "vcs": "git repository (remote Riiyotta/flashform); design-repo.zip is gitignored and not tracked."
   },
   "policies": {
     "maxWords": "maxWords = observedMaxWords + max(1, ceil(observedMaxWords * 0.2)). observedMaxWords is the longest instance of that field in the real page (example.pagespec.json). A design decision, applied uniformly; not a measured value.",
